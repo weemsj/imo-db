@@ -1,0 +1,27 @@
+
+<html>
+<head>
+    <title> IMO Fitness Database </title>
+</head>
+<body>
+    <h1> You have reached a relational table</h1>
+    <p> table is populated when the relevant information is inserted into the database you will not be able to modify this table only searches can be preformed</p>
+<table>
+    <thead>
+    {% for item in relational_tablehead %}
+    <tr>
+        <th> {{item['idhead1']}} </th>  {# this template can work for all relational tables since there are only two columns in those tables#}
+        <th> {{item['idhead2']}} </th>
+    </tr>
+    {% endfor %}
+    <tbody>
+    {% for item in relationships %}
+    <tr>
+        <td>{{item['id1']}}</td>
+        <td>{{item['id2']}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>
+
