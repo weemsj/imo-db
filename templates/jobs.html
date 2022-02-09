@@ -1,19 +1,60 @@
 <html>
 <head>
     <title> IMO Fitness Database </title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+  <div id="navBar" class="topnav">
+   <a href="index.html">Home</a>
+   <a href="certifications.html">Certifications</a>
+   <a href="classes.html">Classes</a>
+   <a href="departments.html">Departments</a>
+   <a href="employees.html">Employees</a>
+   <a class="active" href="jobs.html">Jobs</a>
+   <a href="members.html">Members</a>
+ </div>
+ 
+<body><center>
     <h1> Jobs </h1>
-    <p> This page shows all current jobs employees can be assigned to </p>
-    <p> You can search, add, modify or delete a job. </p>
-    <table>
+    <h3> This page shows all the jobs at IMO Fitness. Use the below form to add, modify, or delete jobs </h3></center><br>
+
+    <table id= "job_table" border="1" width="100%">
+    <thead>
+        <th>job_id</th>  
+        <th>dept_number</th>
+        <th>Edit Entry</th>
+		<th>Delete Entry</th>
+    </thead>
+    <tbody>
         <tr>
-            <th>job_id </th>  
-            <th>dept_number</th>
-            <th>job_description</th>
+            <td>1</td>
+            <td>1</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
         </tr>
-        </table>
-    <p><a href="/">home</a></p>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+    </tbody>
+    </table>
+	<br> <br>
+	<table>
+	<form>
+		<tr>
+		<td><label for="job_id">ID</label></td>
+		<td><input type="number" id="job_id"></td>
+		</tr>
+		<tr>
+		<td><label for="dept_id">Department ID</label></td>
+		<td><input type="number" id="dept_id"></td>
+		</tr>
+	</form>
+	</table>
+    <div>
+        <button type="button">add entry</button>
+    </div>
 </body>
 </html>

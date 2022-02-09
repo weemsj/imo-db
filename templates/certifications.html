@@ -1,19 +1,72 @@
 <html>
 <head>
     <title> IMO Fitness Database </title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1> Certifications </h1>
-    <p> This page shows all the different certifications IMO employees have</p>
-    <p> You can search, add, modify or delete a certificaition. </p>
-    <table>
-        <tr>
-            <th>cert_id </th>  
-            <th>cert_name</th>
-        </tr>
-        </table>
 
-    <p><a href="/">home</a></p>
+  <div id="navBar" class="topnav">
+   <a href="index.html">Home</a>
+   <a class="active" href="certifications.html">Certifications</a>
+   <a href="classes.html">Classes</a>
+   <a href="departments.html">Departments</a>
+   <a href="employees.html">Employees</a>
+   <a href="jobs.html">Jobs</a>
+   <a href="members.html">Members</a>
+ </div>
+ 
+<body><center>
+    <h1> Certifications </h1>
+    <h3> This page shows all the certifications at IMO Fitness. Use the below form to add, modify, or delete certifications </h3></center><br>
+
+    <table id= "cert_table" border="1" width="100%">
+    <thead>
+        <th>cert_id</th>  
+        <th>cert_name</th>
+        <th>Edit Entry</th>
+		<th>Delete Entry</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>NASM-CPT</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>FMS</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+		<tr>
+            <td>3</td>
+            <td>Pilates</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+		<tr>
+            <td>4</td>
+            <td>Nutritionist</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+    </tbody>
+    </table>
+	<br> <br>
+	<table>
+	<form>
+		<tr>
+		<td><label for="cert_id">ID</label></td>
+		<td><input type="number" id="cert_id"></td>
+		</tr>
+		<tr>
+		<td><label for="cert_name">Name</label></td>
+		<td><input type="text" id="cert_name"></td>
+		</tr>
+	</form>
+	</table>
+    <div>
+        <button type="button">add entry</button>
+    </div>
 </body>
 </html>

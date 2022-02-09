@@ -1,44 +1,68 @@
 <html>
 <head>
     <title> IMO Fitness Database </title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1> Departments </h1>
-    <p> This page shows all the departments at IMO Fitness </p>
-    <p> You can search, add, modify or delete a department. </p>
 
-    <table id= "dept_table"  >
+  <div id="navBar" class="topnav">
+   <a href="index.html">Home</a>
+   <a href="certifications.html">Certifications</a>
+   <a href="classes.html">Classes</a>
+   <a class="active" href="departments.html">Departments</a>
+   <a href="employees.html">Employees</a>
+   <a href="jobs.html">Jobs</a>
+   <a href="members.html">Members</a>
+ </div>
+ 
+<body><center>
+    <h1> Departments </h1>
+    <h3> This page shows all the departments at IMO Fitness. Use the below form to add, modify, or delete departments </h3></center><br>
+
+    <table id= "dept_table" border="1" width="100%">
     <thead>
         <th>dept_id </th>  
         <th>dept_name</th>
         <th>supervisor</th>  
         <th>dept_total</th>
-        <th>modify</th>
+        <th>Edit Entry</th>
+		<th>Delete Entry</th>
     </thead>
     <tbody>
-        <tr> {# sample data #}
+        <tr>
             <td>1</td>
             <td>training</td>
             <td>14</td>
             <td>1</td>
-            <td><button type="button">edit</button><button type="delete">delete</button></td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
         </tr>
-        {% for row in depts %}
         <tr>
-            <td>{{row['dept_id']}}</td>
-            <td>{{row['dept_name']}}</td>
-            <td>{{row['supervisor']}}</td>
-            <td>{{row[dept_total]}}</td>
-            <td><button type="button">edit</button><button type="delete">delete</button></td>
+            <td>2</td>
+            <td>culinary</td>
+            <td>12</td>
+            <td>5</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
         </tr>
-        {% endfor %}
     </tbody>
     </table>
+	<br> <br>
+	<table>
+	<form>
+		<tr>
+		<td><label for="dept_id">ID</label></td>
+		<td><input type="number" id="dept_id"></td>
+		</tr>
+		<tr><td><label for="dept_name">Name</label></td>
+		<td><input type="text" id="dept_name"></td></tr>
+		<tr><td><label for="supervisor">Supervisor</label>
+		<td><input type="number" id="supervisor"></td></tr>
+		<tr><td><label for="dept_total">Total employees</label>
+		<td><input type="number" id="dept_total"></td></tr>
+	</form>
+	</table>
     <div>
         <button type="button">add entry</button>
     </div>
-
-    <p><a href="/">home</a></p>
 </body>
 </html>

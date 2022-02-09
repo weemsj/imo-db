@@ -1,23 +1,107 @@
 <html>
 <head>
     <title> IMO Fitness Database </title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+
+  <div id="navBar" class="topnav">
+   <a href="index.html">Home</a>
+   <a href="certifications.html">Certifications</a>
+   <a class="active" href="classes.html">Classes</a>
+   <a href="departments.html">Departments</a>
+   <a href="employees.html">Employees</a>
+   <a href="jobs.html">Jobs</a>
+   <a href="members.html">Members</a>
+ </div>
+ 
+<body><center>
     <h1> Classes </h1>
-    <p> This page shows all of the classes offered at IMO Fitness </p>
-    <p> You can search, add, modify or delete a class. </p>
-    <table>
+    <h3> This page shows all the classes at IMO Fitness. Use the below form to add, modify, or delete classes </h3></center><br>
+
+    <table id= "class_table" border="1" width="100%">
+    <thead>
+        <th>class_id</th>  
+        <th>class_name</th>
+		<th>instructor</th>
+		<th>time</th>
+		<th>length</th>
+		<th>class_total</th>
+		<th>class_max</th>
+        <th>Edit Entry</th>
+		<th>Delete Entry</th>
+    </thead>
+    <tbody>
         <tr>
-            <th>class_id </th>  
-            <th>class_name</th>
-            <th>instructor</th>  
-            <th>time</th>
-            <th>length</th>
-            <th>class_total</th>
-            <th>class_max</th>
+            <td>1</td>
+            <td>Pilates MWF 830</td>
+			<td>12</td>
+			<td>0830</td>
+			<td>55</td>
+			<td>4</td>
+			<td>8</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
         </tr>
-        </table>
-    <p><a href="/">home</a></p>
+        <tr>
+            <td>2</td>
+            <td>Pilates TR 830</td>
+			<td>12</td>
+			<td>0830</td>
+			<td>55</td>
+			<td>3</td>
+			<td>8</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+		<tr>
+            <td>3</td>
+            <td>Richardson Training</td>
+			<td>9</td>
+			<td>1200</td>
+			<td>45</td>
+			<td>1</td>
+			<td>1</td>
+            <td><button type="button">edit</button></td>
+			<td><button type="delete">delete</button></td>
+        </tr>
+    </tbody>
+    </table>
+	<br> <br>
+	<table>
+	<form>
+		<tr>
+		<td><label for="class_id">ID</label></td>
+		<td><input type="number" id="class_id"></td>
+		</tr>
+		<tr>
+		<td><label for="class_name">Name</label></td>
+		<td><input type="text" id="class_name"></td>
+		</tr>
+		<tr>
+		<td><label for="instructor">Instructor</label></td>
+		<td><input type="number" id="instructor"></td>
+		</tr>
+		<tr>
+		<td><label for="time">Start Time (24 Hr, CST)</label></td>
+		<td><input type="time" id="time"></td>
+		</tr>
+		<tr>
+		<td><label for="length">Length (in minutes)</label></td>
+		<td><input type="number" id="length"></td>
+		</tr>
+		<tr>
+		<td><label for="class_total">Current Enrollment</label></td>
+		<td><input type="number" id="class_total"></td>
+		</tr>
+		<tr>
+		<td><label for="class_max">Max Enrollment</label></td>
+		<td><input type="number" id="class_max"></td>
+		</tr>
+		
+	</form>
+	</table>
+    <div>
+        <button type="button">add entry</button>
+    </div>
 </body>
 </html>
