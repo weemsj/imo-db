@@ -7,8 +7,8 @@
     <h1> Employees </h1>
     <p> This page shows all the employees at IMO Fitness </p>
     <p> You can search, add, modify or delete an employee. </p>
-    <table>
-        <tr>
+    <table id='emps_table'>
+        <thead>
             <th>emp_id </th>  
             <th>f_name</th>
             <th>l_name</th>
@@ -24,9 +24,34 @@
             <th>end_day</th>
             <th>status</th>  
             <th>dept_number</th>
-            <th>supervised_by </th>  
-        </tr>
-        </table>
+            <th>supervised_by </th>
+            <th>modify</th>  
+        </thead>
+        <tbody>
+            {% for row in emps %}
+            <tr>
+                <tr>{{item['emp_id']}} </tr>  
+                <tr>{{item['f_name']}}</tr>
+                <tr>{{item['l_name']}}</tr>
+                <tr>{{item['gender']}}</tr>  
+                <tr>{{item['address_1']}}</tr>
+                <tr>{{item['address_2']}}</tr>  
+                <tr>{{item['city']}}</tr>
+                <tr>{{item['state']}}</tr>
+                <tr>{{item['zip']}}</tr>  
+                <tr>{{item['tel']}}</tr>
+                <tr>{{item['email']}}</tr>  
+                <tr>{{item['start_day']}}</tr>
+                <tr>{{item['end_day']}}</tr>
+                <tr>{{item['status']}}</tr>  
+                <tr>{{item['dept_number']}}</tr>
+                <tr>{{item['supervised_by']}}</tr>
+                <td><button type="button">edit</button><button type="delete">delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>  
+     </table>
+     <button type="button">add entry</button>
     <p><a href="/">home</a></p>
 </body>
 </html>
