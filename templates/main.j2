@@ -1,20 +1,39 @@
 <html>
 <head>
-    <title> IMO Fitness Database </title>
+    {% block head %}
+    <link rel="stylesheet" href="static/css/stylesheet.css" />
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
 </head>
 <body>
-    <h1> IMO Fitness Database </h1>
-    <p> This database is for administrative use </p>
-    <p> Click a page below to navigate to it </p>
-    <p><a href="/departments">departments</a></p>
-    <p><a href="/employees">employees</a></p>
-    <p><a href="/emp_dept">department employees</a></p>
-    <p><a href="/certifications">certifications</a></p>
-    <p><a href="/emp_certs">employee certifications</a></p>
-    <p><a href="/emp_jobs">employee jobs</a></p>
-    <p><a href="/jobs">jobs</a></p>
-    <p><a href="/members">members</a></p>
-    <p><a href="/classes">classes</a></p>
-    <p><a href="/mem_classes">member classes</a></p>
+    <div id=header> {# container for header possibly add a log here #}
+        {% block header %}
+        {% set navigation_bar = [
+            ('/', 'index', 'Index'),
+            ('/departments', 'departments', 'Departments'),
+            ('/employees', 'employees', 'Employees'),
+            ('/emp_dept', 'emp_dept', 'Emp_dept'),
+            ('/certifications', 'certifications', 'Certifications'),
+            ('/emp_certs', 'emp_certs', 'Emp_certs'),
+            ('/emp_jobs', 'emp_jobs', 'Emp_jobs'),
+            ('/jobs', 'jobs', 'Jobs'),
+            ('/members', 'members', 'Members'),
+            ('/classes', 'classes', 'Classes'),
+            ('/mem_classes', 'mem_classes', 'mem_classes'),
+            ] -%}
+        {% set active_page = active_page|default('index') -%}
+        <nav id="nav">
+            <ul id="navigation">
+            {% for href, id, caption in navigation_bar %}
+                <li{% if id == active_page %} class="navigation-link current"{% endif%} class="navigation-link">
+                <a href="{{ href|e }}">{{ caption|e }}</a></li>
+            {% endfor %}
+            </ul>
+        </nav>
+        {% endblock %}
+    </div>
+
+    <div id="content">{% block content %}{% endblock %}</div>
+
 </body>
 </html>

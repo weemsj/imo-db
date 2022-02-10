@@ -1,20 +1,8 @@
-<html>
-<head>
-    <title> IMO Fitness Database </title>
-    <link rel="stylesheet" href="style.css">
-</head>
+{% extends "main.j2" %}
+{% block title %}Departments{% endblock %} 
+{% set active_page = "departments" %}
+{% block content %}
 
-  <div id="navBar" class="topnav">
-   <a href="index.html">Home</a>
-   <a href="certifications.html">Certifications</a>
-   <a class="active" href="classes.html">Classes</a>
-   <a href="departments.html">Departments</a>
-   <a href="employees.html">Employees</a>
-   <a href="jobs.html">Jobs</a>
-   <a href="members.html">Members</a>
- </div>
- 
-<body><center>
     <h1> Classes </h1>
     <h3> This page shows all the classes at IMO Fitness. Use the below form to add, modify, or delete classes </h3></center><br>
 
@@ -103,5 +91,4 @@
     <div>
         <button type="button">add entry</button>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,105 @@
+*{
+    font-family: open-sans, sans-serif;
+    color: #665544;
+    box-sizing: border-box;
+    padding: 5px
+}
+
+body{
+    width:none;
+    margin-top:auto;
+    font-family: open-sans, sans-serif;
+    align-content: center;
+}
+
+#header{
+    width: 100%;
+
+}
+
+#nav, #footer{
+    background-color: #efefef;
+    padding:3px 3px;
+    position: relative;
+    margin-bottom: auto;
+    text-align: center;
+    width: 100%;
+}
+
+h1{
+    font-family: timberline, sans-serif;
+    font-size: xxx-large;
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+
+.footer-link{
+    display: inline;
+
+}
+
+.navigation-link{
+    padding: 0.5em;
+    border: groove;
+    overflow: hidden;
+    display: inline;
+    text-decoration-color: #717171;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a.navigation-link:hover{
+    background-color: gray;
+}
+
+.navigation-link.current{
+    border-width: thick;
+    text-decoration-color: #e7e3d8;
+    background-color: gray;
+
+}
+input.button:hover{
+    background-color: gray;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 25px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
