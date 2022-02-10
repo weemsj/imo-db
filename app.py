@@ -64,5 +64,5 @@ def emp_jobs():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 3000))
-    app.run(port=port, debug=True)
+    port = int(os.environ.get('PORT', 57457))
+    app.run(port=port, debug=False)
