@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "app.py", line 12, in <module>
+    db_connection = db.connect_to_database()
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/database/db_connector.py", line 18, in connect_to_database
+    db_connection = MySQLdb.connect(host,user,passwd,db)
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/venv/lib64/python3.6/site-packages/MySQLdb/__init__.py", line 130, in Connect
+    return Connection(*args, **kwargs)
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/venv/lib64/python3.6/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+TypeError: connect() argument 1 must be str, not None
+Traceback (most recent call last):
+  File "app.py", line 6, in <module>
+    db_connection = db.connect_to_database()
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/database/db_connector.py", line 18, in connect_to_database
+    db_connection = MySQLdb.connect(host,user,passwd,db)
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/venv/lib64/python3.6/site-packages/MySQLdb/__init__.py", line 130, in Connect
+    return Connection(*args, **kwargs)
+  File "/nfs/stak/users/weemsj/cs340/portfolio-project/imo-db/venv/lib64/python3.6/site-packages/MySQLdb/connections.py", line 185, in __init__
+    super().__init__(*args, **kwargs2)
+TypeError: connect() argument 1 must be str, not None

@@ -1,0 +1,18 @@
+{% block table %}
+<table id= "table" border="1" width="100%">
+    <thead>
+    {% for key in entity[0].keys() %}
+    
+       <th>{{ key }}</th>
+    
+    {% endfor %}
+    <tbody>
+    {% for data in entity %}
+    <tr>
+        {% for key in data.keys() %}
+        <td>{{data[key]}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
