@@ -10,52 +10,27 @@
 	
 	<br><br>
 
-    <table id= "member_table" border="1" width="100%">
-    <thead>
-        <th>member_id</th>  
-        <th>f_name</th>
-		<th>l_name</th>
-		<th>address_1</th>
-		<th>address_2</th>
-		<th>city</th>
-		<th>state</th>
-		<th>tel</th>
-		<th>email</th>
-		<th>active_member</th>
-        <th>Edit Entry</th>
-		<th>Delete Entry</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Ray</td>
-			<td>Richardson</td>
-			<td>400 Rocky Road</td>
-			<td></td>
-			<td>St. Louis</td>
-			<td>MO</td>
-			<td>555-555-5555</td>
-			<td>rrichardson@email.com</td>
-			<td>YES</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Susan</td>
-			<td>Yomero</td>
-			<td>65 Mountain St</td>
-			<td>Apt 10</td>
-			<td>East St. Louis</td>
-			<td>IL</td>
-			<td>555-555-5556</td>
-			<td>syomero@email.com</td>
-			<td>NO</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-    </tbody>
-    </table>
+    <div id="table">
+        <table id= "mem_table" border="1" width="100%">
+        <thead>
+            {% for key in entity[0].keys() %}
+    
+            <th>{{ key }}</th>
+    
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for data in entity %}
+            <tr>
+                {% for key in data.keys() %}
+                <td>{{data[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+	<br> <br>
+	<table>
 	<br> <br>
 	<table>
 	<form>

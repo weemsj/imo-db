@@ -9,86 +9,27 @@
 	
 	<br><br>
 
-    <table id= "employee_table" border="1" width="100%">
-    <thead>
-        <th>emp_id</th>  
-        <th>f_name</th>
-		<th>l_name</th>
-		<th>gender</th>
-		<th>address_1</th>
-		<th>address_2</th>
-		<th>city</th>
-		<th>state</th>
-		<th>zip</th>
-		<th>tel</th>
-		<th>email</th>
-		<th>start_day</th>
-		<th>end_day</th>
-		<th>status</th>
-		<th>dept_number</th>
-        <th>Edit Entry</th>
-		<th>Delete Entry</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Ronald</td>
-			<td>Guerrerro</td>
-			<td>M</td>
-			<td>2555 West Place</td>
-			<td>Apt 19</td>
-			<td>St. Louis</td>
-			<td>MO</td>
-			<td>63101</td>
-			<td>555-555-8766</td>
-			<td>rguerrerro@imo.com</td>
-			<td>2017-08-01</td>
-			<td></td>
-			<td>YES</td>
-			<td>1</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-        <tr>
-			<td>2</td>
-            <td>Ashley</td>
-			<td>Park</td>
-			<td>F</td>
-			<td>299 Riverfront Blvd</td>
-			<td></td>
-			<td>St. Louis</td>
-			<td>MO</td>
-			<td>63101</td>
-			<td>555-555-2888</td>
-			<td>apark@imo.com</td>
-			<td>2019-06-15</td>
-			<td></td>
-			<td>YES</td>
-			<td>1</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-		<tr>
-			<td>3</td>
-            <td>Steven</td>
-			<td>Young</td>
-			<td>M</td>
-			<td>1700 Olympus Ave</td>
-			<td>Apt 303</td>
-			<td>St. Louis</td>
-			<td>MO</td>
-			<td>63101</td>
-			<td>555-555-2345</td>
-			<td>syoung@imo.com</td>
-			<td>2020-07-14</td>
-			<td>2022-01-05</td>
-			<td>NO</td>
-			<td>2</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-    </tbody>
-    </table>
+    <div id="table">
+        <table id= "emp_table" border="1" width="100%">
+        <thead>
+            {% for key in entity[0].keys() %}
+    
+            <th>{{ key }}</th>
+    
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for data in entity %}
+            <tr>
+                {% for key in data.keys() %}
+                <td>{{data[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+	<br> <br>
+	<table>
 	<br> <br>
 	<table>
 	<form>

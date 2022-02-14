@@ -25,27 +25,45 @@ def departments():
 
 @app.route('/employees')
 def employees():
-    return render_template('employees.html')
+    query = "SELECT * FROM Employees;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('employees.html', entity=results)
 
 @app.route('/certifications')
 def certifications():
-    return render_template('certifications.html')
+    query = "SELECT * FROM Certifications;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('certifications.html', entity=results)
 
 @app.route('/jobs')
 def jobs():
-    return render_template('jobs.html')
+    query = "SELECT * FROM Jobs;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('jobs.html', entity=results)
 
 @app.route('/classes')
 def classes():
-    return render_template('classes.html')
+    query = "SELECT * FROM Classes;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('classes.html', entity=results)
 
 @app.route('/members')
 def members():
-    return render_template('members.html')
+    query = "SELECT * FROM Members;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('members.html', entity=results)
 
 @app.route('/emp_dept')
 def emp_dept():
-    return render_template('relational_tables.j2')
+    query = "SELECT * FROM Emp_Dept;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('relational_tables.j2', entity=results)
 
 @app.route('/emp_certs')
 def emp_certs():
@@ -62,4 +80,4 @@ def emp_jobs():
 
 
 if __name__ == "__main__":
-    app.run(host='flip1.engr.oregonstate.edu', port=57457, debug=False)
+    app.run(host='flip1.engr.oregonstate.edu', port=45565, debug=False)

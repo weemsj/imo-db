@@ -31,30 +31,8 @@
     
     <div id="content">{% block content %}{% endblock %}</div>
 
-    <div id="table">
-        {% block table %}
-        <table id= "table" border="1" width="100%">
-        <thead>
-            {% for key in entity[0].keys() %}
+   
+    </div>
     
-            <th>{{ key }}</th>
-    
-            {% endfor %}
-        </thead>
-        <tbody>
-            {% for data in entity %}
-            <tr>
-                {% for key in data.keys() %}
-                <td>{{data[key]}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-        </table>
-
-        {% endblock %}
-
-    
-
 </body>
 </html>
