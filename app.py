@@ -1,21 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, json, redirect
+from flask_mysqldb import MySQL
+import database.db_connector as db
 import os
 
-# configuration 
- 
+
+# configuration & database connection
 app = Flask(__name__)
+db_connection = db.connect_to_database()
 
-# database connection
+db_connection.ping(True)
+cur = db_connection.cursor()
 
-# app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-# app.config['MYSQL_USER'] = 'cs340_weemsj'
-# app.config['MYSQL_PASSWORD'] = '8924' #last 4 of onid
-# app.config['MYSQL_DB'] = 'cs340_weemsj'
-# app.config['MYSQL_CURSORCLASS'] = "DictCursor"
-
-#mysql = MySQL(app)
-
- 
  # Routes
 @app.route('/')
 def root():
@@ -23,7 +18,10 @@ def root():
 
 @app.route('/departments')
 def departments():
-    return render_template('departments.html')
+    query = "SELECT * FROM Departments;"
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template("departments.html", entity=results)
 
 @app.route('/employees')
 def employees():
@@ -64,5 +62,4 @@ def emp_jobs():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 57457))
-    app.run(port=port, debug=False)
+    app.run(host='flip1.engr.oregonstate.edu', port=57457, debug=False)

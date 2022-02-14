@@ -5,35 +5,9 @@
 {% block content %}
     <h1> Departments </h1>
     <h3> This page shows all the departments at IMO Fitness. Use the below form to add, modify, or delete departments </h3></center><br>
-
-    <table id= "dept_table" border="1" width="100%">
-    <thead>
-        <th>dept_id </th>  
-        <th>dept_name</th>
-        <th>supervisor</th>  
-        <th>dept_total</th>
-        <th>Edit Entry</th>
-		<th>Delete Entry</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>training</td>
-            <td>14</td>
-            <td>1</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>culinary</td>
-            <td>12</td>
-            <td>5</td>
-            <td><button type="button">edit</button></td>
-			<td><button type="delete">delete</button></td>
-        </tr>
-    </tbody>
-    </table>
+{% endblock %}
+    {% block table %} {% endblock %}
+{% block content %}
 	<br> <br>
 	<table>
 	<form>

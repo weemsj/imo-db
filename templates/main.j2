@@ -9,17 +9,13 @@
     <div id=header> {# container for header possibly add a log here #}
         {% block header %}
         {% set navigation_bar = [
-            ('/', 'index', 'Index'),
+            ('/', 'index', 'Home'),
             ('/departments', 'departments', 'Departments'),
             ('/employees', 'employees', 'Employees'),
-            ('/emp_dept', 'emp_dept', 'Emp_dept'),
             ('/certifications', 'certifications', 'Certifications'),
-            ('/emp_certs', 'emp_certs', 'Emp_certs'),
-            ('/emp_jobs', 'emp_jobs', 'Emp_jobs'),
             ('/jobs', 'jobs', 'Jobs'),
             ('/members', 'members', 'Members'),
             ('/classes', 'classes', 'Classes'),
-            ('/mem_classes', 'mem_classes', 'mem_classes'),
             ] -%}
         {% set active_page = active_page|default('index') -%}
         <nav id="nav">
@@ -32,8 +28,33 @@
         </nav>
         {% endblock %}
     </div>
-
+    
     <div id="content">{% block content %}{% endblock %}</div>
+
+    <div id="table">
+        {% block table %}
+        <table id= "table" border="1" width="100%">
+        <thead>
+            {% for key in entity[0].keys() %}
+    
+            <th>{{ key }}</th>
+    
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for data in entity %}
+            <tr>
+                {% for key in data.keys() %}
+                <td>{{data[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        {% endblock %}
+
+    
 
 </body>
 </html>
