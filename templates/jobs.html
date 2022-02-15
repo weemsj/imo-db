@@ -2,29 +2,14 @@
 {% block title %}Departments{% endblock %} 
 {% set active_page = "jobs" %}
 {% block content %}
+    {% block content_head %}
+        {% block heading %} Jobs {% endblock %}
+        {% block subheading %} This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete members {% endblock %}
+    {% endblock %}
+    {% block table %}
+        entity = entity
+    {% endblock %}
 
-    <h1> Jobs </h1>
-    <h3> This page shows all the jobs at IMO Fitness. Use the below form to add, modify, or delete jobs </h3></center><br>
-
-    <div id="table">
-        <table id= "table" border="1" width="100%">
-        <thead>
-            {% for key in entity[0].keys() %}
-    
-            <th>{{ key }}</th>
-    
-            {% endfor %}
-        </thead>
-        <tbody>
-            {% for data in entity %}
-            <tr>
-                {% for key in data.keys() %}
-                <td>{{data[key]}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </tbody>
-        </table>
 	<br> <br>
 	<table>
 	<br> <br>
@@ -43,4 +28,5 @@
     <div>
         <button type="button">add entry</button>
     </div>
-{% endblock %}
+    {% endblock %}
+{% endblockv%}
