@@ -1,0 +1,29 @@
+{% extends "main.j2" %}
+{% block title %}Employees{% endblock %} 
+{% set active_page = "employees" %}
+{% block content %}
+    <h1> Employee Jobs </h1>
+    <h3> This page shows all of a specific employess jobs or classes. </h3></center><br>
+	
+    <div id="table"> {# shows employees in a specific department #}
+        <table id= "dept_table" border="1" width="100%">
+        <thead>
+            {% for key in entity[0].keys() %}
+    
+            <th>{{ key }}</th>
+    
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for data in entity %}
+            <tr>
+                {% for key in data.keys() %}
+                <td>{{data[key]}}</td>
+                {% endfor %}
+                <td><button class="edit">edit</button></td>
+				<td><button class="delete">delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>

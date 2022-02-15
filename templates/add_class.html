@@ -1,0 +1,23 @@
+{% extends "main.j2" %}
+{% block title %}Classes{% endblock %} 
+{% set active_page = "classes" %}
+{% block content %}
+<h3>Add new class:</h3>
+<form id='add_class' action='/add_class' method='post'>
+    Class name: <input type="text" name="class_name"><br>
+    <br>
+    Instructor: <select name="instructor"> 
+        {% for i in instructor %}
+        <option value="{{ i.emp_id }}">{{ i.f_name }}</option>
+        {% endfor %}
+        </select><br>
+    <br> <br>
+    Start time: <input type="time" name="time"><br>
+    <br> <br>
+    Length: <input type="number" name="length" min="0" step="15" max="60"><br>
+    <br> <br>
+    Class Max: <input type="number" name="class_max" min="1"><br>
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

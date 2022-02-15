@@ -1,0 +1,24 @@
+<h3> Add new employee:</h3>
+<form id ="add_employee" action="/add_employee" method="POST">
+    First name: <input type="text" name="f_name"><br>
+    Last name: <input type="text" name="l_name"><br>
+    Gender: <select name="gender">
+        <option value="MALE"> Male</option>
+        <option value="FEMALE"> Female</option>
+        <option value="NONBINARY"> NonBinary</option>
+    </select><br>
+    Address 1: <input type="text" name="address_1"><br>
+    Address 2:<input type="text" name="address_2"><br>
+    City: <input type="text" name="city"><br>
+    State: <input type="text" name="state"><br>
+    Zip: <input type="text" name="f_name"><br>
+    Telephone: <input type="text" name="tel"><br>
+    Email: <input type="text" name="email"><br>
+    Start date: <input type="DATE" name="start_date"><br>
+    Department: <section name="dept">
+        {% for d in dept %}
+        <option value="{{ d[0] }}">{{ d[1] }}</option>
+        {% endfor %}
+    </section>
+    <input type="submit" value="Submit">
+</form>
