@@ -1,5 +1,5 @@
 {% extends "main.j2" %}
-{% block title %}Departments{% endblock %} 
+{% block title %}Certifications{% endblock %} 
 {% set active_page = "certifications" %}
 {% block content %}
 
@@ -21,10 +21,15 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
+                <td><a href="emp_certs.html">Certified Employees</a></td>
+                <td><button class="edit">edit</button></td>
+				<td><button class="delete">delete</button></td>
             </tr>
             {% endfor %}
         </tbody>
         </table>
+    </div>
+    
 	<br> <br>
 	<table>
     </table>

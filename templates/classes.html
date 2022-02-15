@@ -1,5 +1,5 @@
 {% extends "main.j2" %}
-{% block title %}Departments{% endblock %} 
+{% block title %}Classes{% endblock %} 
 {% set active_page = "classes" %}
 {% block content %}
 
@@ -21,48 +21,15 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
+				<td><a herf="mem_classes.html">class Enrollment</a></td>
+				<td><button class="edit">edit</button></td>
+				<td><button class="delete">delete</button></td>
             </tr>
             {% endfor %}
         </tbody>
         </table>
-		
-	<br> <br>
-	<table>
-	<br> <br>
-	<table>
-	<form>
-		<tr>
-		<td><label for="class_id">ID</label></td>
-		<td><input type="number" id="class_id"></td>
-		</tr>
-		<tr>
-		<td><label for="class_name">Name</label></td>
-		<td><input type="text" id="class_name"></td>
-		</tr>
-		<tr>
-		<td><label for="instructor">Instructor</label></td>
-		<td><input type="number" id="instructor"></td>
-		</tr>
-		<tr>
-		<td><label for="time">Start Time (24 Hr, CST)</label></td>
-		<td><input type="time" id="time"></td>
-		</tr>
-		<tr>
-		<td><label for="length">Length (in minutes)</label></td>
-		<td><input type="number" id="length"></td>
-		</tr>
-		<tr>
-		<td><label for="class_total">Current Enrollment</label></td>
-		<td><input type="number" id="class_total"></td>
-		</tr>
-		<tr>
-		<td><label for="class_max">Max Enrollment</label></td>
-		<td><input type="number" id="class_max"></td>
-		</tr>
-		
-	</form>
-	</table>
+	</div>
     <div>
-        <button type="button">add entry</button>
+        <button type="button"><a href="add_class">Add class</a></button>
     </div>
 {% endblock %}
