@@ -1,19 +1,33 @@
-
+{% extends "main.j2" %}
+{% block title %}Members{% endblock %} 
+{% set active_page = "members" %}
+{% block content %}
 <h3> Add new member:</h3>
 <form id ="addperson" action="/add_member" method="POST">
     First name: <input type="text" name="f_name"><br>
+    <br>
     Last name: <input type="text" name="l_name"><br>
+    <br>
     Gender: <select name="gender">
         <option value="MALE"> Male</option>
         <option value="FEMALE"> Female</option>
         <option value="NONBINARY"> NonBinary</option>
     </select><br>
+    <br>
     Address 1: <input type="text" name="address_1"><br>
+    <br>
     Address 2:<input type="text" name="address_2"><br>
+    <br>
     City: <input type="text" name="city"><br>
+    <br>
     State: <input type="text" name="state"><br>
+    <br>
     Zip: <input type="text" name="f_name"><br>
+    <br>
     Telephone: <input type="text" name="tel"><br>
+    <br>
     Email: <input type="text" name="email"><br>
+    <br>
     <input type="submit" value="Submit">
 </form>
+{% endblock %}

@@ -5,13 +5,13 @@
     <h1> Employees </h1>
     <h3> This page shows all the employees at IMO Fitness. Use the below form to search, add, modify, or delete employees </h3></center><br>
 	
-	<input type="text" id="search" placeholder="Last name search..." title="name search">
+	<input type="text" id="emp_search" placeholder="Last name search..." onkeyup="empSearch()" title="name search">
 	
 	<br><br>
 
-    <div id="table">
+    <div style="overflow-x:auto" id="table">
         <table id= "emp_table" border="1" width="100%">
-        <thead>
+        <thead class="table-head">
             {% for key in entity[0].keys() %}
     
             <th>{{ key }}</th>
@@ -31,74 +31,7 @@
         </tbody>
         </table>
 	</div>
-	
-	<br> <br>
-	<table>
-	<br> <br>
-	<table>
-	<form>
-		<tr>
-		<td><label for="emp_id">ID</label></td>
-		<td><input type="number" id="emp_id"></td>
-		</tr>
-		<tr>
-		<td><label for="f_name">First Name</label></td>
-		<td><input type="text" id="f_name"></td>
-		</tr>
-		<tr>
-		<td><label for="l_name">Last Name</label></td>
-		<td><input type="text" id="l_name"></td>
-		</tr>
-		</tr>
-		<tr>
-		<td><label for="gender">Gender</label></td>
-		<td><input type="text" id="gender"></td>
-		</tr>
-		<tr>
-		<td><label for="address1">Street Adress (Line 1)</label></td>
-		<td><input type="text" id="address1"></td>
-		</tr>
-		<tr>
-		<td><label for="address2">Street Adress (Line 2)</label></td>
-		<td><input type="text" id="address2"></td>
-		</tr>
-		<tr>
-		<td><label for="city">City</label></td>
-		<td><input type="text" id="city"></td>
-		</tr>
-		<tr>
-		<td><label for="state">State</label></td>
-		<td><input type="text" id="state"></td>
-		</tr>
-		<tr>
-		</tr>
-		<tr>
-		<td><label for="zip">Zip Code</label></td>
-		<td><input type="number" id="zip"></td>
-		</tr>
-		<td><label for="tel">Telephone</label></td>
-		<td><input type="text" id="tel"></td>
-		</tr>
-		<tr>
-		<td><label for="email">Email</label></td>
-		<td><input type="email" id="email"></td>
-		</tr>
-		</tr>
-		<tr>
-		<td><label for="start_day">Start Date</label></td>
-		<td><input type="date" id="start_day"></td>
-		</tr>
-		<tr>
-		<td><label for="end_day">End Date</label></td>
-		<td><input type="date" id="end_day"></td>
-		</tr>
-		<tr>
-		<td><label for="dept_id">Department ID</label></td>
-		<td><input type="number" id="dept_id"></td>
-		</tr>
-	</form>
-	</table>
     <div>
-        <button type="button">add entry</button>
+        <button type="button"><a href="add_employee">Add Employee</a></button>
     </div>
 {% endblock %}

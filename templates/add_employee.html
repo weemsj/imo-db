@@ -1,24 +1,40 @@
+{% extends "main.j2" %}
+{% block title %}Employees{% endblock %} 
+{% set active_page = "employees" %}
+{% block content %}
 <h3> Add new employee:</h3>
 <form id ="add_employee" action="/add_employee" method="POST">
     First name: <input type="text" name="f_name"><br>
+    <br>
     Last name: <input type="text" name="l_name"><br>
+    <br>
     Gender: <select name="gender">
         <option value="MALE"> Male</option>
         <option value="FEMALE"> Female</option>
         <option value="NONBINARY"> NonBinary</option>
     </select><br>
+    <br>
     Address 1: <input type="text" name="address_1"><br>
+    <br>
     Address 2:<input type="text" name="address_2"><br>
+    <br>
     City: <input type="text" name="city"><br>
+    <br>
     State: <input type="text" name="state"><br>
+    <br>
     Zip: <input type="text" name="f_name"><br>
+    <br>
     Telephone: <input type="text" name="tel"><br>
+    <br>
     Email: <input type="text" name="email"><br>
+    <br>
     Start date: <input type="DATE" name="start_date"><br>
-    Department: <section name="dept">
+    <br>
+    Department: <select name="dept">
         {% for d in dept %}
-        <option value="{{ d[0] }}">{{ d[1] }}</option>
+        <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
         {% endfor %}
-    </section>
+    </select>
     <input type="submit" value="Submit">
 </form>
+{% endblock %}

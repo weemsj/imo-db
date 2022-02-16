@@ -3,7 +3,7 @@
 {% set active_page = "jobs" %}
 {% block content %}
     <h1>Jobs</h1> 
-    <h3>This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete members </h3>
+    <h3>This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete jobs </h3>
 	
 	<div id="table">  
 	   <table id= "table" border="1" width="100%">
@@ -28,23 +28,7 @@
         </tbody>
         </table>
 	</div>
-
-	<br> <br>
-	<table>
-	<br> <br>
-	<table>
-	<form>
-		<tr>
-		<td><label for="job_id">ID</label></td>
-		<td><input type="number" id="job_id"></td>
-		</tr>
-		<tr>
-		<td><label for="dept_id">Department ID</label></td>
-		<td><input type="number" id="dept_id"></td>
-		</tr>
-	</form>
-	</table>
     <div>
-        <button type="button">add entry</button>
+        <button type="button"><a href="add_job">Add Job</a></button>
     </div>
 {% endblock %}

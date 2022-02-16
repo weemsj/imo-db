@@ -6,7 +6,7 @@
     <h1> Certifications </h1>
     <h3> This page shows all the employees with a specific certifications at IMO Fitness. Use the below form to add, modify, or delete certifications </h3></center><br>
 
-    <div id="table">
+    <div style="overflow-x:auto" id="table">
         <table id= "certs_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
@@ -29,3 +29,7 @@
         </tbody>
         </table>
     </div>
+    <div>
+        <button type="button"><a href="add_empcert">Add Employee Certification</a></button> {# create add for emp_cert where dow drop down menues let you assign existing employees to existing certs #}
+    </div>
+{% endblock %}

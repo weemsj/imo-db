@@ -6,7 +6,7 @@
     {% endblock %}
 </head>
 <body>
-    <div id=header> {# container for header possibly add a log here #}
+     <div id=header> {# container for header possibly add a log here #}
         {% block header %}
         {% set navigation_bar = [
             ('/', 'index', 'Home'),
@@ -16,20 +16,22 @@
             ('/jobs', 'jobs', 'Jobs'),
             ('/members', 'members', 'Members'),
             ('/classes', 'classes', 'Classes'),
+            ('/others', 'others', 'Other Tables'),
             ] -%}
         {% set active_page = active_page|default('index') -%}
         <nav id="nav">
             <ul id="navigation">
             {% for href, id, caption in navigation_bar %}
                 <li{% if id == active_page %} class="navigation-link current"{% endif%} class="navigation-link">
-                <a href="{{ href|e }}">{{ caption|e }}</a></li>
+                <a class='navigation-link' href="{{ href|e }}">{{ caption|e }}</a></li>
             {% endfor %}
             </ul>
         </nav>
         {% endblock %}
     </div>
+
     
-    {% block content %}{% endblock %}
+    <div id="content">{% block content %}{% endblock %}
    
 </body>
 </html>

@@ -1,0 +1,18 @@
+{% extends "main.j2" %}
+{% block title %}Other_Tables{% endblock %} 
+{% set active_page = "others" %}
+{% block content %}
+    <h1> Other Tables </h1>
+    <h3> Below are relational tables. </h3>
+
+        <h4>Use the link below if you want to view all Employees Certificaitons</h4>
+           
+            <div class="other-tables"><a  class="other-tables" href="emp_certs">Emp_Certs</a></div>
+            
+        <h4>Use the link below if you want to view all Employee Jobs</h4> 
+            <div class="other-tables"> <a class="other-tables" href="emp_jobs">Emp_Jobs</a></div>
+            
+        <h4>Use the link below if you want to view Members and what class they are enrolled in</h4>
+            <div class="other-tables"><a class="other-tables" href="mem_classes">Mem_Classes</a></div>
+    
+{% endblock %}

@@ -1,12 +1,16 @@
+{% extends "main.j2" %}
+{% block title %}Job{% endblock %} 
+{% set active_page = "jobs" %}
+{% block content %}
 <h3>Add new job: </h3>
 <form id ="addjob" action="/add_job" method="POST">
     Department: <select name="dept">
         {% for d in dept %}
-        <option value="{{ d[0] }}">{{ d[1] }}</option>
+        <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
         {% endfor %}
     </select>
     Description: <textarea rows="5" cols="30" name="job_description">
-        Insert job details here...
         </textarea>
     <input type="submit" value="Submit">
 </form>
+{% endblock %}

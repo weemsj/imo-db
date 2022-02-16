@@ -1,6 +1,6 @@
 {% extends "main.j2" %}
 {% block title %}Members{% endblock %} 
-{% set active_page = "members" %}
+{% set active_page = 'members' %}
 {% block content %}
 
     <h1> Members </h1>
@@ -10,7 +10,7 @@
 	
 	<br><br>
 
-    <div id="table">
+    <div style="overflow-x:auto" id="table">
         <table id= "mem_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
@@ -25,6 +25,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
+				<td><a href="enrolled_classes">enrolled classes</a></td> {# link to view all classes member is enrolled in #}
 				<td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>
@@ -32,52 +33,8 @@
         </tbody>
         </table>
 	</div>
-
-
-	<br> <br>
-	<table>
-	<br> <br>
-	<table>
-	<form>
-		<tr>
-		<td><label for="member_id">ID</label></td>
-		<td><input type="number" id="member_id"></td>
-		</tr>
-		<tr>
-		<td><label for="f_name">First Name</label></td>
-		<td><input type="text" id="f_name"></td>
-		</tr>
-		<tr>
-		<td><label for="l_name">Last Name</label></td>
-		<td><input type="text" id="l_name"></td>
-		</tr>
-		<tr>
-		<td><label for="address1">Street Adress (Line 1)</label></td>
-		<td><input type="text" id="address1"></td>
-		</tr>
-		<tr>
-		<td><label for="address2">Street Adress (Line 2)</label></td>
-		<td><input type="text" id="address2"></td>
-		</tr>
-		<tr>
-		<td><label for="city">City</label></td>
-		<td><input type="text" id="city"></td>
-		</tr>
-		<tr>
-		<td><label for="state">State</label></td>
-		<td><input type="text" id="state"></td>
-		</tr>
-		<tr>
-		<td><label for="tel">Telephone</label></td>
-		<td><input type="text" id="tel"></td>
-		</tr>
-		<tr>
-		<td><label for="email">Email</label></td>
-		<td><input type="email" id="email"></td>
-		</tr>
-	</form>
-	</table>
-    <div>
-        <button type="button">add entry</button>
+	<div>
+        <button type="button"><a href="add_member">Add member</a></button>
     </div>
+	
 {% endblock %}

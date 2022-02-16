@@ -3,9 +3,9 @@
 {% set active_page = "employees" %}
 {% block content %}
     <h1> Employee Jobs </h1>
-    <h3> This page shows all of a specific employess jobs or classes. </h3></center><br>
+    <h3> This page shows all of a specific employess jobs </h3>
 	
-    <div id="table"> {# shows employees in a specific department #}
+    <div style="overflow-x:auto" id="table"> {# shows employees in a specific department #}
         <table id= "dept_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
@@ -27,3 +27,8 @@
         </tbody>
         </table>
     </div>
+    <div>
+        <button type="button"><a href="add_empjob">Assign Job</a></button> {# create add for emp_job where dow drop down menues let you assign existing employees to existing jobs #}
+    </div>
+
+{% endblock %}

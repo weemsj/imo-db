@@ -6,7 +6,7 @@
     <h1> Classes </h1>
     <h3> This page shows all the classes at IMO Fitness. Use the below form to add, modify, or delete classes </h3></center><br>
 
-	<div id="table">
+	<div style="overflow-x:auto" id="table">
         <table id= "classes_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
@@ -21,7 +21,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-				<td><a herf="mem_classes.html">class Enrollment</a></td>
+				<td><a herf="class_details">Class Details</a></td> {# not created but could show class details #}
 				<td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>

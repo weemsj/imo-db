@@ -33,16 +33,21 @@ def departments():
 @app.route('/add_department', methods=['POST','GET'])
 def add_department():
     ''' adds a department to the database '''
-    db_connection = db.connect_to_database()
-    # requests info from the user
-    dept_name = request.form['dept_name']
-    dept_total = 'Null'
-    # create query from user feedback 
-    query = "INSERT INTO Departments (dept_name, dept_total) VALUES (%s,%s);"
-    # put data in a tuple and execute query
-    data = (dept_name, dept_total)
-    execute_query(db_connection, query, data)
-    return render_template('success.html', action = 'Add department') # retuns a success message
+    if request.method =='GET':
+        return render_template("add_department.html")
+    
+    else:
+        
+        # requests info from the user
+        dept_name = request.form['dept_name']
+        dept_total = 'Null'
+        # create query from user feedback 
+        query = "INSERT INTO Departments (dept_name, dept_total) VALUES (%s,%s);"
+        # put data in a tuple and execute query
+        data = (dept_name, dept_total)
+        db_connection = db.connect_to_database()
+        execute_query(db_connection, query, data)
+        return render_template('success.html', action = 'Add department') # retuns a success message
 
 @app.route('/employees')
 def employees():
@@ -60,7 +65,7 @@ def add_employee():
         query = "SELECT dept_id, dept_name FROM Departments;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         results = execute_query(db_connection, query).fetchall()
-        return render_template('add_class.html', dept=results)
+        return render_template('add_employee.html', dept=results)
 
     # runs if it needs to update the database
     elif request.method == 'POST':
@@ -77,11 +82,12 @@ def add_employee():
         email = request.form['email']
         start_date = request.form['start_date']
         end_date = 'Null'
+        status = 'ACTIVE'
         dept_number = ['dept[0]']
         # create query from user feedback 
-        query = "INSERT INTO Employees (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, dept_number) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+        query = "INSERT INTO Employees (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
         # put data in a tuple and execute query
-        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, dept_name)
+        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_name)
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add employee') # retuns a success message
 
@@ -93,18 +99,20 @@ def certifications():
     results = cursor.fetchall()
     return render_template('certifications.html', entity=results)
 
-@app.route('/add_certification')
+@app.route('/add_certification', methods=['POST', 'GET'])
 def add_certification():
-    db_connection = db.connect_to_database()
-    # requests info from the user
-    cert_name = request.form['cert_name']
-
-    # create query from user feedback 
-    query = "INSERT INTO Certifications (cert_name) VALUES (%s);"
-    # put data in a tuple and execute query
-    data = (cert_name)
-    execute_query(db_connection, query, data)
-    return render_template('success.html', action = 'Add certification') # retuns a success message
+    if request.method == 'GET':
+        return render_template("add_certification.html")
+    else:
+        # requests info from the user
+        cert_name = request.form['cert_name']
+        # create query from user feedback 
+        query = "INSERT INTO Certifications (cert_name) VALUES (%s);"
+        # put data in a tuple and execute query
+        data = (cert_name)
+        db_connection = db.connect_to_database()
+        execute_query(db_connection, query, data)
+        return render_template('success.html', action = 'Add certification') # retuns a success message
 
 
 @app.route('/jobs')
@@ -117,7 +125,11 @@ def jobs():
 
 @app.route('/add_job')
 def add_job():
+    """ adds a job to the database"""
+
+    # connect to the database
     db_connection = db.connect_to_database()
+
     # runs if it needs information from the database
     if request.method == 'GET':
         query = "SELECT dept_id, dept_name FROM Departments;"
@@ -152,7 +164,6 @@ def add_class():
     """ adds a class to the database """
     # connect to database
     db_connection = db.connect_to_database()
-
     # runs if it needs information from the database
     if request.method == 'GET':
         query = "SELECT emp_id, f_name FROM Employees WHERE dept_number = 1 or dept_number = 2;"
@@ -172,6 +183,7 @@ def add_class():
         query = "INSERT INTO Classes (class_name, instructor, time, length, class_total, class_max) VALUES (%s,%s,%s,%s,%s,%s);"
         # put data in a tuple and execute query
         data = (class_name, instructor, time, length, class_total, class_max)
+        
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add class') # retuns a success message
 
@@ -187,29 +199,36 @@ def members():
 @app.route("/add_member", methods=['POST', 'GET'])
 def add_member():
     ''' adds a member to the database '''
-    # requests info from the user
-    f_name = request.form['f_name']
-    l_name = request.form['l_name']
-    gender = request.form['gender']
-    address_1 = request.form['address_1'] 
-    address_2 = request.form['address_2']
-    city = request.form['city']
-    state = request.form['state']
-    zip = request.form['zip']
-    tel = request.form['tel']
-    email = request.form['email']
+    
+    
+    if request.method == 'GET':
+        return render_template('add_member.html')
+    else:
+     # requests info from the user
+        f_name = request.form['f_name']
+        l_name = request.form['l_name']
+        gender = request.form['gender']
+        address_1 = request.form['address_1'] 
+        address_2 = request.form['address_2']
+        city = request.form['city']
+        state = request.form['state']
+        zip = request.form['zip']
+        tel = request.form['tel']
+        email = request.form['email']
+        status = 'ACTIVE'
     # create query from user feedback
-    query = "INSERT INTO Members (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+    query = "INSERT INTO Members (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
     # put data in a tuple and execute query
-    data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email)
+    data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status)
+    # connect to database
     db_connection = db.connect_to_database()
     execute_query(db_connection, query, data)
     return render_template('success.html', action = 'Add person')
 
-@app.route('/emp_dept')
+@app.route('/emp_jobs')
 def emp_dept():
     db_connection = db.connect_to_database()
-    query = "SELECT emp_id, f_name FROM Employees WHERE dept_number = ();"
+    query = "SELECT * FROM Empl_Jobs;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('emp_dept.html', entity=results)
@@ -238,6 +257,10 @@ def emp_jobs():
     results = cursor.fetchall()
     return render_template('emp_details.html', entity=results)
 
+@app.route('/others')
+def others():
+    return render_template('others.html')
+
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=45566, debug=False)
+    app.run(host='flip2.engr.oregonstate.edu', port=46655, debug=False)

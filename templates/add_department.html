@@ -1,5 +1,10 @@
+{% extends "main.j2" %}
+{% set active_page = "departments" %}
+{% block title %}Departments{% endblock %} 
+{% block content %}
 <h3>Add new department: </h3>
 <form id ="add_department" action="/add_department" method="POST">
     Depatment name: <input type="text" name="dept_name">
     <input type="submit" value="Submit">
 </form>
+{% endblock %}

@@ -1,5 +1,11 @@
+{% extends "main.j2" %}
+{% block title %}Certifications{% endblock %} 
+{% set active_page = "certifications" %}
+{% block content %}
 <h3>Add new certifications: </h3>
 <form id ="add_certification" action="/add_certification" method="POST">
     Certification name: <input type="text" name="cert_name">
     <input type="submit" value="Submit">
 </form>
+
+{% endblock %}
