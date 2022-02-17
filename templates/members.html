@@ -7,11 +7,13 @@
     <h3> This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete members </h3></center><br>
 	
 	<input type="text" id="search" placeholder="Last name search..." title="name search">
-	
+	<div id=insert-right>
+        <button type="button"><a href="add_member">Add member</a></button>
+    </div>
 	<br><br>
 
     <div style="overflow-x:auto" id="table">
-        <table id= "mem_table" border="1" width="100%">
+        <table class="nostretch" id= "mem_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
     

@@ -5,8 +5,11 @@
     <h1>Jobs</h1> 
     <h3>This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete jobs </h3>
 	
+    <div id=insert-right>
+        <button type="button"><a href="add_job">Add Job</a></button>
+    </div>
 	<div id="table">  
-	   <table id= "table" border="1" width="100%">
+	   <table class="nostretch" id= "table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
     
@@ -20,7 +23,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-                <td><a style="color:blue;font-size:10px" href='job_emps.html'>Jobs Employees </a></td>
+                <td><a style="color:blue;font-size:10px" href='job_emps'>Jobs Employees </a></td>
 				<td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>

@@ -6,8 +6,11 @@
     <h1> Classes </h1>
     <h3> This page shows all the classes at IMO Fitness. Use the below form to add, modify, or delete classes </h3></center><br>
 
+    <div id=insert-right>
+        <button type="button"><a href="add_class">Add class</a></button>
+    </div>
 	<div style="overflow-x:auto" id="table">
-        <table id= "classes_table" border="1" width="100%">
+        <table class="nostretch" id= "classes_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
     

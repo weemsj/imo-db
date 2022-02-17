@@ -237,10 +237,13 @@ def emp_certs():
 def add_emp_certs():
     db_connection = db.connect_to_database()
     if request.method == 'GET':
-        query = "SELECT * FROM Emp_Certs;"
+        query = "SELECT emp_id, f_name, l_name FROM Employees;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
-        results = cursor.fetchall()
-        return render_template('add_emp_certs.html', employees=results, certs=results )
+        employees = cursor.fetchall()
+        query = "SELECT cert_id, cert_name FROM Certifications;"
+        certs = db.execute_query(db_connection=db_connection, query=query)
+        employeees = cursor.fetchall()
+        return render_template('add_emp_certs.html', employees=employees, certs=certs )
     if request.method == 'POST':
         employee = request.form['employee']
         cert = request.form['cert']
@@ -261,10 +264,13 @@ def mem_classes():
 def add_mem_classes():
     db_connection = db.connect_to_database()
     if request.method == 'GET':
-        query = "SELECT * FROM Mem_Classes;"
+        query = "SELECT member_id, f_name, l_name FROM Members;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
-        results = cursor.fetchall()
-        return render_template('add_mem_classes.html', member=results, classes=results )
+        members = cursor.fetchall()
+        query = "SELECT class_id, class_name FROM Classes;"
+        cursor = db.execute_query(db_connection=db_connection, query=query)
+        classes = cursor.fetchall()
+        return render_template('add_mem_classes.html', member=members, classes=classes )
     if request.method == 'POST':
         member = request.form['member']
         class_id = request.form['class']
@@ -285,10 +291,12 @@ def emp_jobs():
 def add_emp_jobs():
     db_connection = db.connect_to_database()
     if request.method == 'GET':
-        query = "SELECT * FROM Emp_Jobs;"
-        cursor = db.execute_query(db_connection=db_connection, query=query)
-        results = cursor.fetchall()
-        return render_template('add_emp_jobs.html', employee=results, job=results )
+        query1 = "SELECT emp_id, f_name, l_name FROM Employees;"
+        cursor = db.execute_query(db_connection=db_connection, query=query1)
+        employees = cursor.fetchall()
+        query2 = "SELECT job_id FROM Jobs;"
+        jobs = db.execute_query(db_connection=db_connection, query=query2)
+        return render_template('add_emp_jobs.html', employee=employees, job=jobs )
     if request.method == 'POST':
         employee = request.form['employee']
         job = request.form['job']
@@ -301,6 +309,26 @@ def add_emp_jobs():
 def others():
     return render_template('others.html')
 
+@app.route('/job_emps')
+def job_emps():
+    return render_template('job_emps.html')
+
+@app.route('/enrolled_classes')
+def enrolled_classes():
+    return render_template('enrolled_classes.html')
+
+@app.route('/emp_details')
+def emp_details():
+    return render_template('emp_details.html')
+
+@app.route('/emp_dept')
+def emp_dept():
+    return render_template('emp_dept.html')
+
+@app.route('/class_details')
+def class_details():
+    return render_template('class_details.html')
+
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=46554, debug=True)
+    app.run(host='flip2.engr.oregonstate.edu', port=44554, debug=True)

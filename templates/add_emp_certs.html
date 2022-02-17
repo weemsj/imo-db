@@ -6,7 +6,7 @@
 <form id='add_emp_certs' action='/add_emp_certs' method='post'>
     Employee name: <select name="employee"><br>
         {% for e in employees %}
-        <option value="{{ e.emp_id }}">{{ e.f_name }}</option>
+        <option value="{{ e.emp_id }}">{{ e.f_name +" "+ e.l_name }}</option>
         {% endfor %}
         </select><br>
     <br>

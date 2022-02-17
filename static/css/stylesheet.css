@@ -97,23 +97,9 @@ li{
     top: 25px;
 }
 
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
-}
 
 #thead {
-    text-decoration-color: whitesmoke;
+    color: whitesmoke;
 }
 
 th, td {
@@ -124,14 +110,18 @@ th, td {
 th {
     background-color:  #717171;
     font-size: 20px;
-    text-decoration-color: whitesmoke;
+    color: whitesmoke;
 }
-td {
-    white-space: nowrap;
-}
+
 tr:hover{
     background-color: lightgray;
 }
 table{
     border-collapse: collapse;
+}
+
+
+.nostretch{
+    white-space: nowrap;
+    width: 1%;
 }

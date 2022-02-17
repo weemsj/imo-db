@@ -5,8 +5,11 @@
     <h1> Employee Jobs </h1>
     <h3> This page shows all of a specific employess jobs </h3>
 	
-    <div style="overflow-x:auto" id="table"> {# shows employees in a specific department #}
-        <table id= "dept_table" border="1" width="100%">
+    <div id=insert-right>
+        <button type="button"><a href="add_emp_jobs">Assign Job</a></button>
+    </div>
+    <div style="overflow-x:auto" id="table"> 
+        <table class="nostretch" id= "dept_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
     

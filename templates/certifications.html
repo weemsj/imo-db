@@ -6,8 +6,11 @@
     <h1> Certifications </h1>
     <h3> This page shows all the certifications at IMO Fitness. Use the below form to add, modify, or delete certifications </h3></center><br>
 
+    <div id=insert-right>
+        <button type="button"><a href="add_certification">Add Certification</a></button>
+    </div>
     <div style="overflow-x:auto" id="table">
-        <table id="certs_table" border="1" width="100%">
+        <table class="nostretch" id="certs_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
         
@@ -21,7 +24,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-                <td><a style="color:blue;font-size:10px" href="emp_certs.html">Certified Employees</a></td>
+                <td><a style="color:blue;font-size:10px" href="emp_certs">Certified Employees</a></td>
                 <td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>

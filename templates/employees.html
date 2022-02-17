@@ -6,11 +6,13 @@
     <h3> This page shows all the employees at IMO Fitness. Use the below form to search, add, modify, or delete employees </h3></center><br>
 	
 	<input type="text" id="emp_search" placeholder="Last name search..." onkeyup="empSearch()" title="name search">
-	
+	<div id=insert-right>
+        <button type="button"><a href="add_employee">Add Employee</a></button>
+    </div>
 	<br><br>
 
     <div style="overflow-x:auto" id="table">
-        <table id= "emp_table" border="1" width="100%">
+        <table class="nostretch" id= "emp_table" border="1" width="100%">
         <thead class="table-head">
             {% for key in entity[0].keys() %}
     

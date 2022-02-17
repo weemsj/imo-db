@@ -6,8 +6,11 @@
     <h1> Class Enrollment </h1>
     <h3> This page shows all members associated with a specific class at IMO Fitness. Use the below form to add or remove a member from a class </h3></center><br>
 
+    <div id=insert-right>
+        <button type="button"><a href="add_mem_classes">Enroll member in class</a></button>
+    </div>
 	<div style="overflow-x:auto" id="table">
-        <table id= "classes_table" border="1" width="100%">
+        <table class="nostretch" id= "classes_table" border="1" width="100%">
         <thead>
             {% for key in entity[0].keys() %}
     
