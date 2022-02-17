@@ -3,11 +3,12 @@
 {% set active_page = "others" %}
 {% block content %}
 <h3>Add employee certification:</h3>
-<form id='add_emp_certs' action='/add_emp_ccerts' method='post'>
+<form id='add_emp_certs' action='/add_emp_certs' method='post'>
     Employee name: <select name="employee"><br>
         {% for e in employees %}
         <option value="{{ e.emp_id }}">{{ e.f_name }}</option>
         {% endfor %}
+        </select><br>
     <br>
     Certification: <select name="cert"> 
         {% for c in certs %}
