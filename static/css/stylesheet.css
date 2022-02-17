@@ -10,6 +10,7 @@ body{
     margin-top:auto;
     font-family: open-sans, sans-serif;
     align-content: center;
+    text-align: center;
 }
 
 #header{
@@ -102,6 +103,11 @@ li{
     color: whitesmoke;
 }
 
+.nostretch{ 
+    margin-left:auto; 
+    margin-right:auto; 
+}
+
 th, td {
     padding: 8px;
     text-align: left;
@@ -121,7 +127,17 @@ table{
 }
 
 
-.nostretch{
+tr,td {
+    text-align:left;
     white-space: nowrap;
-    width: 1%;
+}
+
+#insert-right{
+    text-align: right;
+}
+#emp_search, #search{
+    text-align: left;
+}
+button{
+    text-align: left;
 }
