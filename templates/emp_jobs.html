@@ -1,6 +1,6 @@
 {% extends "main.j2" %}
 {% block title %}Employees{% endblock %} 
-{% set active_page = "employees" %}
+{% set active_page = "others" %}
 {% block content %}
     <h1> Employee Jobs </h1>
     <h3> This page shows all of a specific employess jobs </h3>
@@ -10,7 +10,7 @@
         <thead>
             {% for key in entity[0].keys() %}
     
-            <th>{{ key }}</th>
+            <th id="thead">{{ key }}</th>
     
             {% endfor %}
         </thead>
@@ -28,7 +28,7 @@
         </table>
     </div>
     <div>
-        <button type="button"><a href="add_empjob">Assign Job</a></button> {# create add for emp_job where dow drop down menues let you assign existing employees to existing jobs #}
+        <button type="button"><a href="add_emp_jobs">Assign Job</a></button> {# create add for emp_job where dow drop down menues let you assign existing employees to existing jobs #}
     </div>
 
 {% endblock %}

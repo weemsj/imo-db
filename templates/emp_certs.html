@@ -1,9 +1,9 @@
 {% extends "main.j2" %}
 {% block title %}Certified Employees {% endblock %} 
-{% set active_page = "certifications" %}
+{% set active_page = "others" %}
 {% block content %}
 
-    <h1> Certifications </h1>
+    <h1> Employee Certifications </h1>
     <h3> This page shows all the employees with a specific certifications at IMO Fitness. Use the below form to add, modify, or delete certifications </h3></center><br>
 
     <div style="overflow-x:auto" id="table">
@@ -11,7 +11,7 @@
         <thead>
             {% for key in entity[0].keys() %}
     
-            <th>{{ key }}</th>
+            <th id="thead">{{ key }}</th>
     
             {% endfor %}
         </thead>
@@ -21,7 +21,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-                <td><a href="emp_details.html">Employee Details</a></td>
+                <td><a style="color:blue;font-size:10px" href="emp_details.html">Employee Details</a></td>
                 <td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>
@@ -30,6 +30,6 @@
         </table>
     </div>
     <div>
-        <button type="button"><a href="add_empcert">Add Employee Certification</a></button> {# create add for emp_cert where dow drop down menues let you assign existing employees to existing certs #}
+        <button type="button"><a href="add_emp_certs">Add Employee Certification</a></button> {# create add for emp_cert where dow drop down menues let you assign existing employees to existing certs #}
     </div>
 {% endblock %}

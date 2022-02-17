@@ -1,0 +1,20 @@
+{% extends "main.j2" %}
+{% block title %}Emp_Jobs{% endblock %} 
+{% set active_page = "others" %}
+{% block content %}
+<h3>Assign a job to an employee:</h3>
+<form id='add_emp_jobs' action='/add_emp_jobs' method='post'>
+    Employee name: <select name="employee"><br>
+        {% for e in employee %}
+        <option value="{{ e.emp_id }}">{{ e.f_name }}</option>
+        {% endfor %}
+    <br>
+    Job Id: <select name="job"> 
+        {% for j in job %}
+        <option value="{{ j.job_id }}">{{ j.job_id }}</option>
+        {% endfor %}
+        </select><br>
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

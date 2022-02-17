@@ -1,6 +1,6 @@
 {% extends "main.j2" %}
 {% block title %}Class Enrollment{% endblock %} 
-{% set active_page = "classes" %}
+{% set active_page = "others" %}
 {% block content %}
 
     <h1> Class Enrollment </h1>
@@ -11,7 +11,7 @@
         <thead>
             {% for key in entity[0].keys() %}
     
-            <th>{{ key }}</th>
+            <th id="thead">{{ key }}</th>
     
             {% endfor %}
         </thead>
@@ -21,7 +21,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-                <td><a href="class_details">Class details</a></td> {# creat a view for class details #}
+                <td><a style="color:blue;font-size:10px" href="class_details">Class details</a></td> {# creat a view for class details #}
 				<td><a href="mem_details">Member details</a></td> {# create a view for member details #}
 				<td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
@@ -31,6 +31,6 @@
         </table>
 	</div>
     <div>
-        <button type="button"><a href="add_memclasses">Enroll member in class</a></button> {# create a page to add an existing member to a class #}
+        <button type="button"><a href="add_mem_classes">Enroll member in class</a></button> {# create a page to add an existing member to a class #}
     </div>
     {% endblock %}

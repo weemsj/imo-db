@@ -11,7 +11,7 @@
         <thead>
             {% for key in entity[0].keys() %}
         
-            <th>{{ key }}</th>
+            <th id="thead">{{ key }}</th>
     
             {% endfor %}
         </thead>
@@ -21,7 +21,7 @@
                 {% for key in data.keys() %}
                 <td>{{data[key]}}</td>
                 {% endfor %}
-                <td><a href="emp_certs.html">Certified Employees</a></td>
+                <td><a style="color:blue;font-size:10px" href="emp_certs.html">Certified Employees</a></td>
                 <td><button class="edit">edit</button></td>
 				<td><button class="delete">delete</button></td>
             </tr>

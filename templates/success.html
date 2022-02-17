@@ -1,8 +1,9 @@
 {% extends "main.j2" %}
-{% block title %}Employee Details{% endblock %} 
-{% set active_page = "classes" %}
+{% block title %}{{ entity }}{% endblock %} 
+{% set active_page = "{{ active }}" %}
 {% block content %}
 
 <h3>{{ action }} was successful!</h3>
+<a href="{{ return_page }}">back to {{ entity }}</a>
 
 {% endblock %}

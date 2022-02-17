@@ -1,0 +1,20 @@
+{% extends "main.j2" %}
+{% block title %}Emp_Certs{% endblock %} 
+{% set active_page = "others" %}
+{% block content %}
+<h3>Add employee certification:</h3>
+<form id='add_emp_certs' action='/add_emp_ccerts' method='post'>
+    Employee name: <select name="employee"><br>
+        {% for e in employees %}
+        <option value="{{ e.emp_id }}">{{ e.f_name }}</option>
+        {% endfor %}
+    <br>
+    Certification: <select name="cert"> 
+        {% for c in certs %}
+        <option value="{{ c.cert_id }}">{{ c.cert_name }}</option>
+        {% endfor %}
+        </select><br>
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
