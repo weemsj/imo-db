@@ -344,9 +344,10 @@ def emp_details():
 def emp_dept():
     return render_template('emp_dept.html')
 
-@app.route('/class_details/<class_name>')
-def class_details(class_name):
+@app.route('/class_details')
+def class_details():
     db_connection = db.connect_to_database()
+    class_name = request.args.get('class_name')
     print(class_name)
     query = "SELECT * from Classes WHERE class_name=%s; "
     data = (class_name)
