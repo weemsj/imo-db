@@ -350,7 +350,7 @@ def class_details():
     class_name = request.args.get('class')
     query = "SELECT * from Classes WHERE class_name = %s "
     data = (class_name)
-    cursor = db.execute_query(db_connection=db_connection, query=query, data)
+    cursor = db.execute_query(db_connection=db_connection, query=query, query_params=data)
     results = cursor.fetchall()
     return render_template('class_details.html', entity=results )
 
