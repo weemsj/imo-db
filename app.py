@@ -348,7 +348,7 @@ def emp_dept():
 def class_details():
     db_connection = db.connect_to_database()
     class_name = request.args.get('class')
-    query = "SELECT * from Classes WHERE class_name = %s; "
+    query = "SELECT * from Classes WHERE class_name = (%s); "
     data = (class_name)
     cursor = db.execute_query(db_connection=db_connection, query=query, query_params=data)
     results = cursor.fetchall()
