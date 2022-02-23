@@ -21,6 +21,7 @@ def root():
     '''renders home page'''
     return render_template('index.html')
 
+# ------- Departments add, update, delete and edit ------------------------
 @app.route('/departments')
 def departments():
     '''displays all deparments in the database'''
@@ -47,7 +48,9 @@ def add_department():
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
         return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='departments') # retuns a success message
+# -----------End Departments------------------------------------------------------------
 
+# ------- Employees add, update, delete and edit ------------------------
 @app.route('/employees')
 def employees():
     db_connection = db.connect_to_database()
@@ -82,14 +85,16 @@ def add_employee():
         start_date = request.form['start_date']
         end_date = 'Null'
         status = 'ACTIVE'
-        dept_number = ['dept[0]']
+        dept_number = request.form['dept']
         # create query from user feedback 
         query = "INSERT INTO Employees (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
         # put data in a tuple and execute query
-        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_name)
+        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number)
         execute_query(db_connection, query, data)
-        return render_template('success.html', action = 'Add employee', entity='Employees', active='employees', return_page='employees') # retuns a success message
+        return render_template('success.html', action = 'Add employee', entity='Employees', active='employees', return_page='employees') # returns a success message
+# -------------End Employees----------------------------------------------------------
 
+# ------- Certifications add, update, delete and edit ------------------------
 @app.route('/certifications')
 def certifications():
     db_connection = db.connect_to_database()
@@ -112,8 +117,9 @@ def add_certification():
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add certification', entity='Certifications', active='certifications', return_page='certifications') # retuns a success message
+# -----------End Certifications------------------------------------------------------------
 
-
+# ------- Jobs add, update, delete and edit ------------------------
 @app.route('/jobs')
 def jobs():
     db_connection = db.connect_to_database()
@@ -148,7 +154,9 @@ def add_job():
         data = (dept_number, job_description)
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add job', entity='Jobs', active='jobs', return_page='jobs') # retuns a success message
+# ---------------End Jobs--------------------------------------------------------
 
+# ------- Classes add, update, delete and edit ------------------------
 @app.route('/classes')
 def classes():
     """ displays all the classes in the database """
@@ -185,7 +193,9 @@ def add_class():
         
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add class', entity='Classes', active='classes', return_page='classes') # retuns a success message
+# ---------------End Classes--------------------------------------------------------
 
+# ------- Members add, update, delete and edit ------------------------
 @app.route('/members')
 def members():
     ''' Displays all members in the database '''
@@ -198,8 +208,7 @@ def members():
 @app.route("/add_member", methods=['POST', 'GET'])
 def add_member():
     ''' adds a member to the database '''
-    
-    
+
     if request.method == 'GET':
         return render_template('add_member.html')
     else:
@@ -223,12 +232,13 @@ def add_member():
     db_connection = db.connect_to_database()
     execute_query(db_connection, query, data)
     return render_template('success.html', action ='Add member', entity='Members', active='members', return_page='members')
+# ----------------End Members-------------------------------------------------------
 
-
+# ------- Emp_Certs add, update, delete and edit ------------------------
 @app.route('/emp_certs')
 def emp_certs():
     db_connection = db.connect_to_database()
-    query = "SELECT * FROM Emp_Certs;"
+    query = "SELECT e.f_name, e.l_name, c.cert_name FROM Employees e LEFT JOIN Emp_Certs ec ON e.emp_id = ec.emp_id LEFT JOIN Certifications c ON ec.cert_id = c.cert_id WHERE c.cert_name is not NULL ORDER by e.emp_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('emp_certs.html', entity=results)
@@ -241,8 +251,8 @@ def add_emp_certs():
         cursor = db.execute_query(db_connection=db_connection, query=query)
         employees = cursor.fetchall()
         query = "SELECT cert_id, cert_name FROM Certifications;"
-        certs = db.execute_query(db_connection=db_connection, query=query)
-        employeees = cursor.fetchall()
+        cursor = db.execute_query(db_connection=db_connection, query=query)
+        certs = cursor.fetchall()
         return render_template('add_emp_certs.html', employees=employees, certs=certs )
     if request.method == 'POST':
         employee = request.form['employee']
@@ -251,11 +261,13 @@ def add_emp_certs():
         data = (employee, cert)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Certification added to an employee', entity='Emp_Certs', active='other', return_page='emp_certs')
+# ------------------End Emp_Certs-----------------------------------------------------
 
+# ------- Mem_Classes add, update, delete and edit ------------------------
 @app.route('/mem_classes')
 def mem_classes():
     db_connection = db.connect_to_database()
-    query = "SELECT * FROM Mem_Classes;"
+    query = "SELECT m.f_name, m.l_name, c.class_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('mem_classes.html', entity=results)
@@ -278,11 +290,13 @@ def add_mem_classes():
         data = (member, class_id)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
+# -----------------End Mem_Classes------------------------------------------------------
 
+# ------- Emp_Jobs add, update, delete and edit ------------------------
 @app.route('/emp_jobs')
 def emp_jobs():
     db_connection = db.connect_to_database()
-    query = "SELECT * FROM Emp_Jobs;"
+    query = "SELECT e.f_name, e.l_name, j.job_description FROM Employees e LEFT JOIN Emp_Jobs ej ON e.emp_id = ej.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id WHERE j.job_description is not NULL ORDER by e.emp_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('emp_jobs.html', entity=results)
@@ -290,6 +304,7 @@ def emp_jobs():
 @app.route('/add_emp_jobs', methods=['POST','GET'])
 def add_emp_jobs():
     db_connection = db.connect_to_database()
+
     if request.method == 'GET':
         query1 = "SELECT emp_id, f_name, l_name FROM Employees;"
         cursor = db.execute_query(db_connection=db_connection, query=query1)
@@ -297,6 +312,7 @@ def add_emp_jobs():
         query2 = "SELECT job_id FROM Jobs;"
         jobs = db.execute_query(db_connection=db_connection, query=query2)
         return render_template('add_emp_jobs.html', employee=employees, job=jobs )
+
     if request.method == 'POST':
         employee = request.form['employee']
         job = request.form['job']
@@ -304,6 +320,7 @@ def add_emp_jobs():
         data = (employee, job)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Assignment was', entity='Emp_Jobs', active='other', return_page='emp_jobs')
+# -------------------End Emp_Jobs----------------------------------------------------
 
 @app.route('/others')
 def others():
@@ -311,6 +328,8 @@ def others():
 
 @app.route('/job_emps')
 def job_emps():
+    """ this view shows a specific job and the employees associated with the job """
+
     return render_template('job_emps.html')
 
 @app.route('/enrolled_classes')
@@ -331,4 +350,4 @@ def class_details():
 
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=57457, debug=True)
+    app.run(host='flip2.engr.oregonstate.edu', port=57455, debug=True)
