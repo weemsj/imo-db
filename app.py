@@ -347,6 +347,7 @@ def emp_dept():
 @app.route('/class_details/<class_name>')
 def class_details(class_name):
     db_connection = db.connect_to_database()
+    print(class_name)
     query = "SELECT * from Classes WHERE class_name=%s; "
     data = (class_name)
     cursor = db.execute_query(db_connection, query, data)
