@@ -353,7 +353,8 @@ def class_details():
     data = (class_name)
     cursor = db.execute_query(db_connection, query, data)
     results = cursor.fetchall()
-    return render_template('class_details.html', entity=results )
+    print(results)
+    # return render_template('class_details.html', entity=results )
 
 
 if __name__ == "__main__":
