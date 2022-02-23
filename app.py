@@ -349,7 +349,7 @@ def class_details():
     db_connection = db.connect_to_database()
     class_name = request.args.get('class_name')
     print(class_name)
-    query = "SELECT * from Classes WHERE class_name=%s; "
+    query = "SELECT * from Classes WHERE class_name=%s;"
     data = (class_name)
     cursor = db.execute_query(db_connection, query, data)
     results = cursor.fetchall()
@@ -357,4 +357,4 @@ def class_details():
 
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=57455, debug=True)
+    app.run(host='flip2.engr.oregonstate.edu', port=57454, debug=True)
