@@ -346,6 +346,7 @@ def emp_dept():
 
 @app.route('/class_details')
 def class_details():
+'''
     db_connection = db.connect_to_database()
     class_name = request.args.get('class_name')
     print(class_name)
@@ -354,7 +355,8 @@ def class_details():
     cursor = db.execute_query(db_connection=db_connection, query=query, query_params=data)
     results = cursor.fetchall()
     return render_template('class_details.html', entity=results )
-
+ '''
+    return render_template('class_details.html')
 
 if __name__ == "__main__":
     app.run(host='flip2.engr.oregonstate.edu', port=57454, debug=True)
