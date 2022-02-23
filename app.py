@@ -350,7 +350,7 @@ def class_details():
     class_name = request.args.get('class_name')
     print(class_name)
     query = "SELECT * from Classes WHERE class_name = %s ;"
-    data = class_name
+    data = (class_name,)
     print(db.execute_query(db_connection=db_connection, query=query, query_params=data).fetchall())
 
     print(results)
