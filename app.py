@@ -346,7 +346,13 @@ def emp_dept():
 
 @app.route('/class_details')
 def class_details():
-    return render_template('class_details.html')
+    db_connection = db.connect_to_database()
+    class_name = request.args.get('class')
+    query = "SELECT * from Classes WHERE class_name = %s "
+    data = (class_name)
+    cursor = db.execute_query(db_connection=db_connection, query=query, data)
+    results = cursor.fetchall()
+    return render_template('class_details.html', entity=results )
 
 
 if __name__ == "__main__":
