@@ -48,6 +48,20 @@ def add_department():
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
         return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='departments') # retuns a success message
+
+@app.route('/update_department/<int:dept_id>', methods=['POST', 'GET'])
+def update_department(dept_id):
+    db_connection = connect_to_database()
+    if request.method == 'GET':
+        dept_query = 'SELECT * FROM Departments WHERE dept_id = %s' % (id)
+        dept_result = execute_query(db_connection, dept_query).fetchone()
+        return render_template('update_department.html', department = dept_result)
+    elif request.method == 'POST':
+        dept_name = request.form['dept_name']
+        query = "UPDATE Departments SET dept_name = %s"
+        data = (dept_name)
+        return render_template('success.html', action= 'Update department', entity='Departments', return_page='departments')
+
 # -----------End Departments------------------------------------------------------------
 
 # ------- Employees add, update, delete and edit ------------------------
@@ -234,7 +248,7 @@ def add_member():
     return render_template('success.html', action ='Add member', entity='Members', active='members', return_page='members')
 # ----------------End Members-------------------------------------------------------
 
-# ------- Emp_Certs add, update, delete and edit ------------------------
+# ------- Emp_Certs add, update, delete and edit ----------------------------------
 @app.route('/emp_certs')
 def emp_certs():
     db_connection = db.connect_to_database()
