@@ -2,10 +2,12 @@
 {% block title %}Departments{% endblock %}
 {% set active_page = "departments" %}
 {% block content %}
-    <h3>Update department: </h3>
+    <h1>Departments</h1>
+    <h3>Update department:{{ department.dept_name }} </h3>
     <form id ="update_department" action="/update_department/{{ department.dept_id }}" method="POST">
-        Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}">
+        Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}"><br>
+        <br><br>
         Department total: <input type="text" name="dept_total" value="{{ department.dept_total }}" readonly>
         <input type="submit" value="Submit">
     </form>
-{% endblock %}
+{% endblock %} 

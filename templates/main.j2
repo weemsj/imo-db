@@ -6,7 +6,7 @@
     {% endblock %}
 </head>
 <body>
-     <div id=header> {# container for header possibly add a log here #}
+    <div id=header> {# container for header possibly add a log here #}
         {% block header %}
         {% set navigation_bar = [
             ('/', 'index', 'Home'),
@@ -29,9 +29,9 @@
         </nav>
         {% endblock %}
     </div>
-
-    
-    <div id="content">{% block content %}{% endblock %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
    
 </body>
 </html>

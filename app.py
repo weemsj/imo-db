@@ -52,17 +52,17 @@ def add_department():
 
 @app.route('/update_department/<dept_id>', methods=['POST', 'GET'])
 def update_department(dept_id):
-    print(dept_id)
     db_connection = connect_to_database()
     if request.method == 'GET':
         dept_query = 'SELECT * FROM Departments WHERE dept_id = %s;' % (dept_id)
         dept_result = execute_query(db_connection, dept_query).fetchone()
-        print(dept_result)
-        return render_template('update_department.html', department = dept_result)
+        return render_template('update_department.html', department=dept_result)
     elif request.method == 'POST':
         dept_name = request.form['dept_name']
         query = "UPDATE Departments SET dept_name = %s"
         data = (dept_name)
+        db_connection = db.connect_to_database()
+        execute_query(db_connection, query, data)
         return render_template('success.html', action= 'Update department', entity='Departments', active='departments', return_page='departments')
 
 # -----------End Departments------------------------------------------------------------
