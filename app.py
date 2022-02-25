@@ -29,6 +29,7 @@ def departments():
     query = "SELECT * FROM Departments;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
+    print(results)
     return render_template("departments.html", entity=results)
 
 @app.route('/add_department', methods=['POST','GET'])
@@ -49,18 +50,20 @@ def add_department():
         execute_query(db_connection, query, data)
         return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='departments') # retuns a success message
 
-@app.route('/update_department/<int:dept_id>', methods=['POST', 'GET'])
+@app.route('/update_department/<dept_id>', methods=['POST', 'GET'])
 def update_department(dept_id):
+    print(dept_id)
     db_connection = connect_to_database()
     if request.method == 'GET':
-        dept_query = 'SELECT * FROM Departments WHERE dept_id = %s' % (id)
+        dept_query = 'SELECT * FROM Departments WHERE dept_id = %s;' % (dept_id)
         dept_result = execute_query(db_connection, dept_query).fetchone()
+        print(dept_result)
         return render_template('update_department.html', department = dept_result)
     elif request.method == 'POST':
         dept_name = request.form['dept_name']
         query = "UPDATE Departments SET dept_name = %s"
         data = (dept_name)
-        return render_template('success.html', action= 'Update department', entity='Departments', return_page='departments')
+        return render_template('success.html', action= 'Update department', entity='Departments', active='departments', return_page='departments')
 
 # -----------End Departments------------------------------------------------------------
 
@@ -354,9 +357,13 @@ def enrolled_classes():
 def emp_details():
     return render_template('emp_details.html')
 
-@app.route('/emp_dept')
-def emp_dept():
-    return render_template('emp_dept.html')
+@app.route('/emp_dept/<dept_id>')
+def emp_dept(dept_id):
+    db_connection = db.connect_to_database()
+    query = 'SELECT f_name, l_name FROM Employees WHERE dept_number = %s;' % (dept_id)
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchall()
+    return render_template('emp_dept.html', entity = results)
 
 @app.route('/class_details')
 def class_details():
@@ -373,4 +380,4 @@ def class_details():
     return render_template('class_details.html')
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=57454, debug=True)
+    app.run(host='flip2.engr.oregonstate.edu', port=5745, debug=True)

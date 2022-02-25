@@ -1,11 +1,11 @@
 {% extends "main.j2" %}
-{% set active_page = "departments" %}
 {% block title %}Departments{% endblock %}
+{% set active_page = "departments" %}
 {% block content %}
-<h3>Update department: </h3>
-<form id ="update_department" action="/update_department/{{ department[0] }}" method="POST">
-    Department name: <input type="text" name="dept_name" value = "{{ department[1 }}">
-    Department total: <input type="text" name="dept_total" value="{{ department[2] }}" readonly>
-    <input type="submit" value="Submit">
-</form>
+    <h3>Update department: </h3>
+    <form id ="update_department" action="/update_department/{{ department.dept_id }}" method="POST">
+        Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}">
+        Department total: <input type="text" name="dept_total" value="{{ department.dept_total }}" readonly>
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
