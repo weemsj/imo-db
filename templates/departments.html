@@ -4,13 +4,13 @@
 {% set active_page = "departments" %}
 {% block content %}
     <h1> Departments </h1>
-    <h3> This page shows all the departments at IMO Fitness. Use the below form to add, modify, or delete departments </h3></center><br>
+    <h3> This page shows all the departments at IMO Fitness. Use the below form to add, modify, or delete departments </h3><br>
 	
     <div id=insert-right>
-        <button type="button"><a href="add_department">Add Department</a></button>
+        <button type="button"><a href="/add_department">Add Department</a></button>
     </div>
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "dept_table" border="1">
+        <table class="nostretch" id= "dept_table">
         <thead>
             {% for key in entity[0].keys() %}
     
