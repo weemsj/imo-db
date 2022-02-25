@@ -64,7 +64,7 @@ def update_department(dept_id):
         data = (dept_name, dept_id)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
-        return render_template('success.html', action= 'Update department', entity='Departments', active='departments', return_page='departments')
+        return render_template('success.html', action='Update department', entity='Departments', active='departments', return_page='departments')
 
 # -----------End Departments------------------------------------------------------------
 
