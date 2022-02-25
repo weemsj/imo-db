@@ -380,4 +380,4 @@ def class_details():
     return render_template('class_details.html')
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=5745, debug=True)
+    app.run(host='flip2.engr.oregonstate.edu', port=4024, debug=True)
