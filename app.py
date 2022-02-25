@@ -59,8 +59,8 @@ def update_department(dept_id):
         return render_template('update_department.html', department=dept_result)
     elif request.method == 'POST':
         dept_name = request.form['dept_name']
-        query = "UPDATE Departments SET dept_name = %s"
-        data = (dept_name)
+        query = "UPDATE Departments SET dept_name = %s;"
+        data = (dept_name,)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
         return render_template('success.html', action= 'Update department', entity='Departments', active='departments', return_page='departments')
