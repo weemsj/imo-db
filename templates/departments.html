@@ -24,8 +24,8 @@
                 {% for value in data.keys() %}
                 <td>{{data[value]}}</td>
                     {% if loop.last %}
-                    <td><a style="color:blue;font-size:10px" href="emp_dept/data.dept_id">department employees</a></td>
-                    <td><a href="update_department/data.dept_id"><input type="button" class="edit" value="update" ></a></td>
+                    <td><a style="color:blue;font-size:10px" href="emp_dept/{{data.dept_id}}}">department employees</a></td>
+                    <td><a href="update_department/{{data.dept_id}}}"><input type="button" class="edit" value="update" ></a></td>
                     {% endif %}
                 {% endfor %}
                 
