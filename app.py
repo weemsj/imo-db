@@ -476,7 +476,7 @@ def update_emp_certs():
         query = "SELECT cert_id FROM Certifications WHERE cert_name = %s;" % (cert_name)
         cursor = db.execute_query(db_connection, query)
         cert_id = cursor.fetchone()
-        cert_id = cert_id['cert_id']
+        print(cert_id)
         return render_template('update_emp_cert.html', employee = employee, certs=certs, curr_cert_id=cert_id)
 
     else:
