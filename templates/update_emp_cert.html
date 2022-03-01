@@ -11,11 +11,11 @@
     <br>
     Certification: <select name="cert">
         {% for c in certs %}
-            {{% if c.cert_id == curr_cert_id %}}
+            {% if c.cert_id == curr_cert_id %}
                 <option selected value="{{ c.cert_id }}">{{ c.cert_name }}</option>
-            {{% else %}}
+            {% else %}
                 <option value="{{ c.cert_id }}">{{ c.cert_name }}</option>
-            {{% endif %}}
+            {% endif %}
         {% endfor %}
         </select><br>
     <br> <br>
