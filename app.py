@@ -295,6 +295,16 @@ def update_job():
         execute_query(db_connection, query, data)
         return redirect('/certifications')
 
+
+@app.route('/delete_job')
+def delete_job:
+    job_id = request.args.get('job_id')
+    db_connection = db.connect_to_database()
+    query = "DELETE from Jobs WHERE job_id = %s ;"
+    data = (job_id,)
+    execute_query(db_connection, query, data)
+    return redirect('/jobs')
+
 # ---------------End Jobs--------------------------------------------------------
 
 # ------- Classes add, update, delete and edit ------------------------
@@ -317,7 +327,7 @@ def add_class():
     db_connection = db.connect_to_database()
     # runs if it needs information from the database
     if request.method == 'GET':
-        query = "SELECT emp_id, f_name FROM Employees WHERE dept_number = 1 or dept_number = 2;"
+        query = "SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = 1 or dept_number = 2;"
         results = db.execute_query(db_connection=db_connection, query=query).fetchall()
         return render_template('add_class.html', instructor=results)
 
@@ -337,6 +347,42 @@ def add_class():
         
         execute_query(db_connection, query, data)
         return render_template('success.html', action = 'Add class', entity='Classes', active='classes', return_page='classes') # retuns a success message
+
+
+@app.route('/update_class', methods=['POST', 'GET'])
+def update_class():
+    db_connection = db.connect_to_database()
+    class_id = request.args.get('class_id')
+    print(class_id)
+    if request.method == 'GET':
+        class_query = 'SELECT * FROM Classes WHERE class_id = %s;' % (class_id)
+        instructor_query = 'SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = 1 or dept_number = 2;'
+        instructor_result = execute_query(db_connection, instructor_query).fetchall()
+        class_result = execute_query(db_connection, class_query).fetchone()
+        print(class_result)
+        return render_template("update_job.html", class_id=class_id, instructor=instructor_result, classes=class_result, return_page='/classes', entity='Classes')
+
+    elif request.method == 'POST':
+        class_id = request.form['class_id']
+        class_name = request.form['class_name']
+        instructor = request.form['instructor']
+        time = request.form['time']
+        length = request.form['length']
+        class_total = request.form['class_total']
+        class_max = request.form['class_max']
+        query = "UPDATE Classes SET class_name = %s, instructor = %s, time = %s, length = %s, class_total = %s, class_max = %s, WHERE job_id = %s WHERE class_id = %s ;"
+        data = (class_name, instructor, time, length, class_total, class_max, class_id )
+        execute_query(db_connection, query, data)
+        return redirect('/classes')
+
+@app.route('/delete_class')
+def delete_class:
+    class_id = request.args.get('class_id')
+    db_connection = db.connect_to_database()
+    query = "DELETE from Classes WHERE class_id = %s ;"
+    data = (class_id,)
+    execute_query(db_connection, query, data)
+    return redirect('/certifications')
 # ---------------End Classes--------------------------------------------------------
 
 # ------- Members add, update, delete and edit ------------------------
@@ -641,17 +687,13 @@ def emp_dept():
 
 @app.route('/class_details')
 def class_details():
-    '''
     db_connection = db.connect_to_database()
     class_name = request.args.get('class_name')
     print(class_name)
-    query = "SELECT * from Classes WHERE class_name = %s ;"
-    data = (class_name,)
-    cursor = db.execute_query(db_connection=db_connection, query=query, query_params=data)
-    results = cursor.fetchall()
-    return render_template('class_details.html', entity=results )
-    '''
-    return render_template('class_details.html')
+    query = "SELECT m.f_name, m.l_name from Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE class_name = %s ;" % (class_name)
+    cursor = db.execute_query(db_connection=db_connection, query=query)
+    results = cursor.fetchone()
+    return render_template('class_details.html', entity=results, class_name=class_name )
 
 
 if __name__ == "__main__":
