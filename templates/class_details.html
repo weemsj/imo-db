@@ -6,6 +6,7 @@
     <h1> Class Enrollment </h1>
     <h3> This page shows members enrolled in the {{ class_id }} class </h3>
 
+    {% if entity != () %}
 	<div style="overflow-x:auto" class="table">
         <table class="nostretch" id= "classes_table" border="1">
         <thead>
@@ -26,6 +27,9 @@
         </tbody>
         </table>
 	</div>
+    {% else %}
+        <h2> No Members are enrolled in this class </h2>
+    {% endif %}
 
 {% endblock %}
 
