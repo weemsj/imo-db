@@ -297,7 +297,7 @@ def update_job():
 
 
 @app.route('/delete_job')
-def delete_job:
+def delete_job():
     job_id = request.args.get('job_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Jobs WHERE job_id = %s ;"
@@ -376,7 +376,7 @@ def update_class():
         return redirect('/classes')
 
 @app.route('/delete_class')
-def delete_class:
+def delete_class():
     class_id = request.args.get('class_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Classes WHERE class_id = %s ;"
