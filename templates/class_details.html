@@ -6,9 +6,10 @@
     <h1> Class Enrollment </h1>
     <h3> This page shows members enrolled in the {{ class_id }} class </h3>
 
-    {% if entity != () %}
+    {% if entity is None  %}
 	<div style="overflow-x:auto" class="table">
         <table class="nostretch" id= "classes_table" border="1">
+
         <thead>
             {% for key in entity[0].keys() %}
 
