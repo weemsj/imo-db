@@ -437,10 +437,22 @@ def update_emp_certs():
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')
     cert_id = request.args.get('cert_id')
-    query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s;"
-    data = (emp_id, cert_id)
-    execute_query(db_connection, query, data)
-    return redirect('emp_certs')
+    if request.method == 'GET':
+        query = "SELECT emp_id, f_name, l_name FROM Employees WHERE emp_id = %s ;" % (emp_id)
+        cusor = db.execute_query(db_connection, query)
+        employee = cursor.fetchall()
+        query = "SELECT cert_id, cert_name FROM Certifications;"
+        cursor = db.execute_query(db_connection, query)
+        certs = cursor.fetchall()
+        return render_template('update_emp_cert.html', employee = employee, certs=certs, curr_cert_id=cert_id)
+
+    else:
+        emp_id = request.form['emp_id']
+        cert_id = request.form['cert_id']
+        query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s;"
+        data = (emp_id, cert_id)
+        execute_query(db_connection, query, data)
+        return redirect('emp_certs')
 
 # ------------------End Emp_Certs-----------------------------------------------------
 
