@@ -584,6 +584,7 @@ def job_emps():
     result = cursor.fetchall()
     if result is None:
         print(result) # add flash message here
+        redirect('/jobs')
     else:
         return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')
 
