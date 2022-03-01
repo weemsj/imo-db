@@ -690,7 +690,7 @@ def class_details():
     db_connection = db.connect_to_database()
     class_id = request.args.get('class_id')
     print(class_id)
-    query = "SELECT m.f_name, m.l_name from Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE class_id = %s ;" % (class_id)
+    query = "SELECT m.f_name, m.l_name from Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_id = %s ;" % (class_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchone()
     return render_template('class_details.html', entity=results, class_id=class_id)
