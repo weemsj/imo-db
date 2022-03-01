@@ -1,0 +1,55 @@
+{% extends "main.j2" %}
+{% block title %}Members{% endblock %} 
+{% set active_page = "members" %}
+{% block content %}
+<h1>Member</h1>
+<h3> Update member {{ member.member_id }}:</h3>
+<form id ="update_member" action="/update_member" method="POST">
+    <input type="hidden" value="{{ member.member_id }}">
+    First name: <input type="text" name="f_name" value="{{ member.f_name }}"><br>
+    <br>
+    Last name: <input type="text" name="l_name" value="{{ member.l_name }}"><br>
+    <br>
+    Gender: <select name="gender">
+        {% if member.gender == "MALE" %}
+            <option selected value = "MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="NONBINARY">NonBinary</option>   
+        {% elif member.gender == "FEMALE" %}
+            <option selected value="FEMALE"> Female</option>
+            <option selected value = "MALE">Male</option>
+            <option value="NONBINARY">NonBinary</option> 
+        {% else %}
+            <option selected value="NONBINARY"> NonBinary</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+        {% endif %}
+        </select><br>
+    <br>
+    Address 1: <input type="text" name="address_1" value="{{ member.address_1 }}"><br>
+    <br>
+    Address 2:<input type="text" name="address_2" value="{{ member.address_2 }}"><br>
+    <br>
+    City: <input type="text" name="city" value="{{ member.city }}"><br>
+    <br>
+    State: <input type="text" name="state" value="{{ member.state }}"><br>
+    <br>
+    Zip: <input type="text" name="f_name" value="{{ member.zip }}"><br>
+    <br>
+    Telephone: <input type="text" name="tel" value="{{ member.tel }}"><br>
+    <br>
+    Email: <input type="text" name="email" value="{{ member.email }}"><br>
+    <br>
+    Status: <select name="status">
+        {% if member.status == "ACTIVE" %}
+            <option selected value="ACTIVE">Active</option>
+            <option value="NON ACTIVE">Non Active</option>
+        {% else %}
+            <option selected value="NON ACTIVE">Non Active</option>
+            <option value="ACTIVE">Active</option>
+        {% endif %}
+    </select>
+    <input type="submit" value="Submit">
+</form>
+<a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
+{% endblock %}

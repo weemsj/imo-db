@@ -1,0 +1,13 @@
+{% extends "main.j2" %}
+{% block title %}Certifications{% endblock %} 
+{% set active_page = "certifications" %}
+{% block content %}
+<h1>Certificaiton</h1>
+<h3>Update certification {{ cert.cert_id }}: </h3>
+<form id ="update_certification" action="/update_certification" method="POST">
+    <input type="hidden" value="{{ cert.cert_id }}">
+    Certification name: <input type="text" name="cert_name" value="{{ cert.cert_name }}">
+    <input type="submit" value="Submit">
+</form>
+<a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
+{% endblock %}
