@@ -692,7 +692,8 @@ def class_details():
     print(class_id)
     query = "SELECT m.f_name, m.l_name from Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_id = %s ;" % (class_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
-    results = cursor.fetchone()
+    results = cursor.fetchall()
+    print(results)
     return render_template('class_details.html', entity=results, class_id=class_id)
 
 
