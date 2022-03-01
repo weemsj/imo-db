@@ -582,8 +582,10 @@ def job_emps():
     query = 'SELECT d.dept_name, e.f_name, e.l_name, j.job_description FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL and j.job_id = %s;' % (job_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     result = cursor.fetchall()
-    print(result)
-    return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')
+    if result is None:
+        print(result) # add flash message here
+    else:
+        return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')
 
 
 @app.route('/emp_details')
