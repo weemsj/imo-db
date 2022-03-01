@@ -360,7 +360,7 @@ def update_class():
         instructor_result = execute_query(db_connection, instructor_query).fetchall()
         class_result = execute_query(db_connection, class_query).fetchone()
         print(class_result)
-        return render_template("update_job.html", class_id=class_id, instructor=instructor_result, classes=class_result, return_page='/classes', entity='Classes')
+        return render_template("update_class.html", class_id=class_id, instructor=instructor_result, classes=class_result, return_page='/classes', entity='Classes')
 
     elif request.method == 'POST':
         class_id = request.form['class_id']
