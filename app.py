@@ -476,7 +476,7 @@ def update_emp_certs():
         query = "SELECT cert_id FROM Certifications WHERE cert_name = '%s';" % (cert_name)
         cursor = db.execute_query(db_connection, query)
         cert_id = cursor.fetchall()
-        print(cert_id)
+        cert_id = cert_id['cert_id']
         return render_template('update_emp_cert.html', employee = employee, certs=certs, curr_cert_id=cert_id)
 
     else:
@@ -493,7 +493,7 @@ def delete_emp_certs():
     cert_name = request.args.get('cert_name')
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
-    certquery = "SELECT cert_id FROM Certifications WHERE cert_name = %s;" % (cert_name)
+    certquery = "SELECT cert_id FROM Certifications WHERE cert_name = '%s';" % (cert_name)
     cursor = db.execute_query(db_connection, certquery)
     result = cursor.fetchone()
     cert_id = result['cert_id']
