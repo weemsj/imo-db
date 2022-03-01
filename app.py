@@ -473,7 +473,7 @@ def update_emp_certs():
         query = "SELECT cert_id, cert_name FROM Certifications;"
         cursor = db.execute_query(db_connection, query)
         certs = cursor.fetchall()
-        query = "SELECT cert_id FROM Certifications WHERE cert_name = %s;" % (cert_name)
+        query = "SELECT cert_id FROM Certifications WHERE cert_name = '%s';" % (cert_name)
         cursor = db.execute_query(db_connection, query)
         cert_id = cursor.fetchall()
         print(cert_id)
