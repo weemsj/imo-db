@@ -431,6 +431,17 @@ def add_emp_certs():
         data = (employee, cert)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Certification added to an employee', entity='Emp_Certs', active='other', return_page='emp_certs')
+
+@app.route('/update_emp_certs', methods=['POST', 'GET'])
+def update_emp_certs():
+    db_connection = db.connect_to_database()
+    emp_id = request.args.get('emp_id')
+    cert_id = request.args.get('cert_id')
+    query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s;"
+    data = (emp_id, cert_id)
+    execute_query(db_connection, query, data)
+    return redirect('emp_certs')
+
 # ------------------End Emp_Certs-----------------------------------------------------
 
 # ------- Mem_Classes add, update, delete and edit ------------------------
