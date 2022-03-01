@@ -563,7 +563,7 @@ def member_details():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     print(results)
-    return render_template('emp_details.html', entity = results)
+    return render_template('emp_details.html', entity=results)
 
 @app.route('/emp_dept')
 def emp_dept():
