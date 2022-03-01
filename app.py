@@ -469,7 +469,7 @@ def update_emp_certs():
     if request.method == 'GET':
         query = "SELECT emp_id, f_name, l_name FROM Employees WHERE emp_id = %s ;" % (emp_id)
         cursor = db.execute_query(db_connection, query)
-        employee = cursor.fetchall()
+        employee = cursor.fetchone()
         query = "SELECT cert_id, cert_name FROM Certifications;"
         cursor = db.execute_query(db_connection, query)
         certs = cursor.fetchall()
@@ -477,6 +477,7 @@ def update_emp_certs():
         cursor = db.execute_query(db_connection, query)
         cert_id = cursor.fetchall()
         cert_id = cert_id[0]['cert_id']
+        print(employee)
         return render_template('update_emp_cert.html', employee = employee, certs=certs, curr_cert_id=cert_id)
 
     else:

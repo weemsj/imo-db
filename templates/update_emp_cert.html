@@ -4,7 +4,7 @@
 {% block content %}
 
     <h1> Update Employee Certifications </h1>
-    <h3>  Update {{ employee.f_name + " " + employee.l_name }} certification </h3><br>
+    <h3>  Update {{ employee }} certification </h3><br>
     <form id='add_emp_certs' action='/update_emp_certs' method='post'>
         <input type="hidden" value="{{ employee.emp_id }}">
     Employee name: <input type="text" name="employee" value='{{ employee.f_name + " " + employee.l_name }}' readonly><br>
