@@ -427,7 +427,7 @@ def members():
     query = "SELECT member_id, f_name, l_name, status FROM Members;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    return render_template('members.html', entity=results)
+    return render_template('members.html', entity=results, view="current and past")
 
 
 @app.route("/add_member", methods=['POST', 'GET'])

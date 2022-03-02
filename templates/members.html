@@ -4,8 +4,9 @@
 {% block content %}
 
     <h1> Members </h1>
-    <h3> This page shows all the members at IMO Fitness. Use the below form to search, add, modify, or delete members </h3><br>
-	
+    <h3> This page shows all {{ view }} at IMO Fitness. Use the below form to search, add, modify, or delete members </h3><br>
+
+<!-- add filter option for view of active and non active members -->
 	<input type="text" id="search" placeholder="Last name search..." title="name search">
 	<div id=insert-right>
         <button type="button"><a href="add_member">Add member</a></button>
