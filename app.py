@@ -621,6 +621,7 @@ def add_mem_classes():
         check_cap = cursor.fetchone()
         if check_cap['class_total'] == check_cap['class_max']:  # make sure class isn't full
             # insert flash message here (class is at capacity)
+            print('class is full')
             return redirect('/mem_classes')
         query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
