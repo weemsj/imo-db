@@ -606,7 +606,7 @@ def mem_classes():
 def add_mem_classes():
     db_connection = db.connect_to_database()
     if request.method == 'GET':
-        query = "SELECT member_id, f_name, l_name FROM Members;"
+        query = "SELECT member_id, f_name, l_name FROM Members WHERE status = 'ACTIVE';"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         members = cursor.fetchall()
         query = "SELECT class_id, class_name FROM Classes;"
