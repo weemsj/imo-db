@@ -44,6 +44,7 @@ def add_department():
     else:
         # requests info from the user
         dept_name = request.form['dept_name']
+        dept_name = dept_name.title()
         dept_total = 'Null'
         # create query from user feedback 
         query = "INSERT INTO Departments (dept_name, dept_total) VALUES (%s,%s);"
@@ -68,6 +69,7 @@ def update_department():
     elif request.method == 'POST':
         dept_id = request.form['dept_id']
         dept_name = request.form['dept_name']
+        dept_name = dept_name.title()
         query = "UPDATE Departments SET dept_name = %s WHERE dept_id = %s ;"
         data = (dept_name, dept_id)
         execute_query(db_connection, query, data)
@@ -163,6 +165,8 @@ def update_employee():
         gender = request.form['gender']
         address_1 = request.form['address_1']
         address_2 = request.form['address_2']
+        if address_2 == '':
+            address_2 = None
         city = request.form['city'].title()
         state = request.form['state']
         state = state.upper()
@@ -173,7 +177,7 @@ def update_employee():
         end_date = request.form['end_date']
         if end_date == '':
             status = 'ACTIVE'
-            end_date = 'Null'
+            end_date = None
         else:
             status = 'NOT ACTIVE'
         dept_number = request.form['dept']
@@ -216,6 +220,7 @@ def add_certification():
     else:
         # requests info from the user
         cert_name = request.form['cert_name']
+        cert_name = cert_name.title()
         # create query from user feedback 
         query = "INSERT INTO Certifications (cert_name) VALUES (%s);"
         # put data in a tuple and execute query
@@ -238,6 +243,7 @@ def update_certification():
     elif request.method == 'POST':
         cert_id = request.form['cert_id']
         cert_name = request.form['cert_name']
+        cert_name = cert_name.title()
         query = "UPDATE Certifications SET cert_name = %s WHERE cert_id = %s ;"
         data = (cert_name, cert_id)
         execute_query(db_connection, query, data)
@@ -357,6 +363,7 @@ def add_class():
     elif request.method == 'POST':
         # requests info from the user
         class_name = request.form['class_name']
+        class_name = class_name.title()
         instructor = request.form['instructor']
         time = request.form['time']
         length = request.form['length']
@@ -387,6 +394,7 @@ def update_class():
     elif request.method == 'POST':
         class_id = request.form['class_id']
         class_name = request.form['class_name']
+        class_name = class_name.title()
         instructor = request.form['instructor']
         time = request.form['time']
         length = request.form['length']
@@ -525,7 +533,7 @@ def add_emp_certs():
         query = "SELECT cert_id, cert_name FROM Certifications;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         certs = cursor.fetchall()
-        return render_template('add_emp_certs.html', employees=employees, certs=certs )
+        return render_template('add_emp_certs.html', employees=employees, certs=certs)
 
     if request.method == 'POST':
         employee = request.form['employee']
@@ -605,7 +613,7 @@ def add_mem_classes():
     if request.method == 'POST':
         member = request.form['member']
         class_id = request.form['class']
-        query = "INSERT INTO Mem_Classes (mem_id, class_id) VALUES (%s,%s);"
+        query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
