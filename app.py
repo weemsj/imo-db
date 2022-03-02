@@ -700,7 +700,7 @@ def enrolled_classes():
     member = cursor.fetchall()
     print(results)
     print(member)
-    return render_template('enrolled_classes.html', entity = results, member = member)
+    return render_template('enrolled_classes.html', entity=results, member=member, return_page='/members', page='Members')
 
 
 @app.route('/member_details')
