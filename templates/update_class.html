@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Classes</h1>
 <h3>Update {{ classes.class_name }} class:</h3>
-<form id='add_class' action='/update_class?class_id={{ classes.class_id }}' method='post'>
+<form id='add_class' action='/update_class?class_id={{ classes.class_id }}' method='POST'>
     <input type="hidden" value="classes.class_id">
     Class name: <input type="text" name="class_name" value="{{classes.class_name}}" required><br>
     <br>
