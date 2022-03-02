@@ -112,19 +112,26 @@ def add_employee():
     if request.method == 'GET':
         query = "SELECT dept_id, dept_name FROM Departments;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
-        results = execute_query(db_connection, query).fetchall()
+        results = cursor.fetchall()
         return render_template('add_employee.html', dept=results)
 
     # runs if it needs to update the database
     elif request.method == 'POST':
         # requests info from the user
         f_name = request.form['f_name']
+        if not f_name.istitle():
+            f_name.lower()
+            f_name.capitalize()
         l_name = request.form['l_name']
+        if not l_name.istitle():
+            l_name.lower()
+            l_name.capitalize()
         gender = request.form['gender']
         address_1 = request.form['address_1'] 
         address_2 = request.form['address_2']
         city = request.form['city']
         state = request.form['state']
+        state = state.upper()  # converts state to uppercase to keep with database formate
         zip = request.form['zip']
         tel = request.form['tel']
         email = request.form['email']
@@ -154,12 +161,19 @@ def update_employee():
         return render_template("update_employee.html", emp_id=emp_id, employee=emp_result, dept=dept_result, entity='Employees', return_page='/employees')
     else:
         f_name = request.form['f_name']
+        if not f_name.istitle():        # validate the first letter in the name is cap and others are lower if not convert
+            f_name.lower()
+            f_name.capitalize()
         l_name = request.form['l_name']
+        if not l_name.istitle():
+            l_name.lower()
+            l_name.capitalize()
         gender = request.form['gender']
         address_1 = request.form['address_1']
         address_2 = request.form['address_2']
         city = request.form['city']
         state = request.form['state']
+        state = state.upper()
         zip = request.form['zip']
         tel = request.form['tel']
         email = request.form['email']
@@ -423,12 +437,19 @@ def add_member():
     else:
         # requests info from the user
         f_name = request.form['f_name']
+        if not f_name.istitle():
+            f_name.lower()
+            f_name.capitalize()
         l_name = request.form['l_name']
+        if not l_name.istitle():
+            l_name.lower()
+            l_name.capitalize()
         gender = request.form['gender']
         address_1 = request.form['address_1'] 
         address_2 = request.form['address_2']
         city = request.form['city']
         state = request.form['state']
+        state = state.upper()
         zip = request.form['zip']
         tel = request.form['tel']
         email = request.form['email']
@@ -453,12 +474,19 @@ def update_member():
         return render_template("update_member.html", member_id=member_id, member=member_result, return_page='/members', entity='Members')
     else:
         f_name = request.form['f_name']
+        if not f_name.istitle():
+            f_name.lower()
+            f_name.capitalize()
         l_name = request.form['l_name']
+        if not l_name.istitle():
+            l_name.lower()
+            l_name.capitalize()
         gender = request.form['gender']
         address_1 = request.form['address_1']
         address_2 = request.form['address_2']
         city = request.form['city']
         state = request.form['state']
+        state = state.upper()
         zip = request.form['zip']
         tel = request.form['tel']
         email = request.form['email']
