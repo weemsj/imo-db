@@ -3,7 +3,7 @@
 {% set active_page = "others" %}
 {% block content %}
     <h1> Member Details </h1>
-    <h3> This page shows all of member: {{ member_id }}'s details </h3>
+    <h3> This page shows all of member: {{ entity[0]['member_id'] }}'s details </h3>
     <div style="overflow-x:auto" class="table"> 
         <table class="nostretch" id= "emp_details_table" border="1" >
         <thead>
