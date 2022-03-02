@@ -612,6 +612,11 @@ def add_mem_classes():
         query = "SELECT class_id, class_name FROM Classes;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         classes = cursor.fetchall()
+        for c in classes:
+            print(c)
+            if c['class_total'] == c['class_max']:
+                # display flash message saying class full
+                return redirect('/mem_classes')
         return render_template('add_mem_classes.html', member=members, classes=classes )
     if request.method == 'POST':
         member = request.form['member']
