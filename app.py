@@ -471,6 +471,7 @@ def update_member():
         member_result = execute_query(db_connection, member_query).fetchone()
         return render_template("update_member.html", member_id=member_id, member=member_result, return_page='/members', entity='Members')
     else:
+        member_id = request.form['member_id']
         f_name = request.form['f_name']
         f_name = f_name.title()
         l_name = request.form['l_name']
@@ -485,8 +486,8 @@ def update_member():
         tel = request.form['tel']
         email = request.form['email']
         status = request.form['status']
-        query = "UPDATE Members SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, status = %s;"
-        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status) 
+        query = "UPDATE Members SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, status = %s WHERE member_id = %s;"
+        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status, member_id)
         execute_query(db_connection, query, data)
         return redirect('/members')
 
@@ -565,10 +566,11 @@ def update_emp_certs():
         return render_template('update_emp_cert.html', employee=employee, certs=certs, curr_cert_id=cert_id, return_page='emp_certs', entity='Emp_Certs')
 
     else:
+        curr_emp_id = emp_id
         emp_id = request.form['emp_id']
         cert_id = request.form['cert_id']
-        query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s;"
-        data = (emp_id, cert_id)
+        query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %;"
+        data = (emp_id, cert_id, curr_emp_id)
         execute_query(db_connection, query, data)
         return redirect('emp_certs')
 
