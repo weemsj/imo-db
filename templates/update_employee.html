@@ -4,7 +4,7 @@
 {% block content %}
     <h1>Employee</h1>
     <h3>Update Employee: {{ employee.emp_id }}</h3>
-    <form id="update_employee" action="/update_employee/{{ employee.emp_id }}" method="POST">
+    <form id="update_employee" action="/update_employee/emp_id={{ employee.emp_id }}" method="POST">
         <input type="hidden" value="{{ employee.emp_id }}">
         First name: <input type="text" name="f_name" value="{{ employee.f_name }}" required><br>
         <br>
