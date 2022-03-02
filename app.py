@@ -179,7 +179,7 @@ def update_employee():
         email = request.form['email']
         start_date = request.form['start_date']
         end_date = request.form['end_date']
-        if end_date is Null:
+        if end_date is None:
             status = 'ACTIVE'
         else:
             status = 'NOT ACTIVE'
