@@ -2,10 +2,11 @@
 {% block title %}Job{% endblock %} 
 {% set active_page = "jobs" %}
 {% block content %}
-<h3>Update job: </h3>
+<h1> Job </h1>
+<h3>Update job {{ job['job_id'] }}: </h3>
 <form id ="updatejob" action="/update_job" method="POST">
     <input type="hidden" value="{{dept.dept_id}}">
-    Department: <select name="dept">
+    Department: <select name="dept" required>
         {% for d in dept %}
                 {{ d.dept_id }}
                 {{ job.dept_number }}
@@ -16,7 +17,7 @@
                 {% endif %}
             {% endfor %}
     </select>
-    Description: <textarea rows="5" cols="30" name="job_description" value="{{ job['job_description'] }}">
+    Description: <textarea rows="5" cols="30" name="job_description" value="{{ job['job_description'] }}" required>
         </textarea>
     <input type="submit" value="Submit">
 </form>

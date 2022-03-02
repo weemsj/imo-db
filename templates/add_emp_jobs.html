@@ -4,13 +4,13 @@
 {% block content %}
 <h3>Assign a job to an employee:</h3>
 <form id='add_emp_jobs' action='/add_emp_jobs' method='post'>
-    Employee name: <select name="employee"><br>
+    Employee name: <select name="employee" required><br>
         {% for e in employee %}
         <option value="{{ e.emp_id }}">{{ e.f_name +" "+ e.l_name }}</option>
         {% endfor %}
         </select><br>
     <br>
-    Job Id: <select name="job"> 
+    Job Id: <select name="job" required>
         {% for j in job %}
         <option value="{{ j.job_id }}">{{ j.job_id }}</option>
         {% endfor %}

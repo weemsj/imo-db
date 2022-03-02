@@ -4,19 +4,19 @@
 {% block content %}
 <h3>Add new class:</h3>
 <form id='add_class' action='/add_class' method='post'>
-    Class name: <input type="text" name="class_name"><br>
+    Class name: <input type="text" name="class_name" required ><br> <!-- add len max validation ? -->
     <br>
-    Instructor: <select name="instructor"> 
+    Instructor: <select name="instructor" required >
         {% for i in instructor %}
         <option value="{{ i.emp_id }}">{{ i.f_name + " " + i.l_name }}</option>
         {% endfor %}
         </select><br>
     <br> <br>
-    Start time: <input type="time" name="time"><br>
+    Start time: <input type="time" name="time" required><br>
     <br> <br>
-    Length: <input type="number" name="length" min="0" step="15" max="60"><br>
+    Length: <input type="number" name="length" min="0" step="15" max="60" required ><br>
     <br> <br>
-    Class Max: <input type="number" name="class_max" min="1"><br>
+    Class Max: <input type="number" name="class_max" min="1" required><br>
     <br> <br>
     <input type="submit" value="Submit">
 </form>

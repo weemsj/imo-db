@@ -6,11 +6,11 @@
 <h3> Update member {{ member.member_id }}:</h3>
 <form id ="update_member" action="/update_member" method="POST">
     <input type="hidden" value="{{ member.member_id }}">
-    First name: <input type="text" name="f_name" value="{{ member.f_name }}"><br>
+    First name: <input type="text" name="f_name" value="{{ member.f_name }}" required><br>
     <br>
-    Last name: <input type="text" name="l_name" value="{{ member.l_name }}"><br>
+    Last name: <input type="text" name="l_name" value="{{ member.l_name }}" required><br>
     <br>
-    Gender: <select name="gender">
+    Gender: <select name="gender" required>
         {% if member.gender == "MALE" %}
             <option selected value = "MALE">Male</option>
             <option value="FEMALE">Female</option>
@@ -26,21 +26,21 @@
         {% endif %}
         </select><br>
     <br>
-    Address 1: <input type="text" name="address_1" value="{{ member.address_1 }}"><br>
+    Address 1: <input type="text" name="address_1" value="{{ member.address_1 }}" required><br>
     <br>
-    Address 2:<input type="text" name="address_2" value="{{ member.address_2 }}"><br>
+    Address 2:<input type="text" name="address_2" value="{{ member.address_2 }}" ><br>
     <br>
-    City: <input type="text" name="city" value="{{ member.city }}"><br>
+    City: <input type="text" name="city" value="{{ member.city }}" required><br>
     <br>
-    State: <input type="text" name="state" value="{{ member.state }}"><br>
+    State: <input type="text" name="state" value="{{ member.state }}" minlength="2" maxlength="2" required><br>
     <br>
-    Zip: <input type="text" name="f_name" value="{{ member.zip }}"><br>
+    Zip: <input type="text" name="zip" value="{{ member.zip }}" minlength="5" maxlength="5" required><br>
     <br>
-    Telephone: <input type="text" name="tel" value="{{ member.tel }}"><br>
+    Telephone: <input type="text" name="tel" value="{{ member.tel }}" minlength="12" maxlength="12" required><br>
     <br>
-    Email: <input type="text" name="email" value="{{ member.email }}"><br>
+    Email: <input type="email" name="email" value="{{ member.email }}" required><br>
     <br>
-    Status: <select name="status">
+    Status: <select name="status" required>
         {% if member.status == "ACTIVE" %}
             <option selected value="ACTIVE">Active</option>
             <option value="NON ACTIVE">Non Active</option>

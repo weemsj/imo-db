@@ -2,12 +2,13 @@
 {% block title %}Classes{% endblock %} 
 {% set active_page = "classes" %}
 {% block content %}
-<h3>Update class:</h3>
+<h1>Classes</h1>
+<h3>Update {{ classes.class_name }} class:</h3>
 <form id='add_class' action='/update_class' method='post'>
     <input type="hidden" value="classes.class_id">
-    Class name: <input type="text" name="class_name" value="{{classes.class_name}}"><br>
+    Class name: <input type="text" name="class_name" value="{{classes.class_name}}" required><br>
     <br>
-    Instructor: <select name="instructor"> 
+    Instructor: <select name="instructor" required>
         {% for i in instructor %}
             {% if classes.instructor == i.emp_id %}
                 <option selected value="{{ i.emp_id }}">{{ i.f_name + " " + i.l_name }}</option>
@@ -17,14 +18,15 @@
         {% endfor %}
         </select><br>
     <br> <br>
-    Start time: <input type="time" name="time" value="{{ classes.time }}"><br>
+    Start time: <input type="time" name="time" value="{{ classes.time }}" required><br>
     <br> <br>
-    Length: <input type="number" name="length" min="0" step="15" max="60" value="{{ classes.length }}"><br>
+    Length: <input type="number" name="length" min="0" step="15" max="60" value="{{ classes.length }}" required><br>
     <br> <br>
-    Class Total: <input type="number" name="class_total" value="{{ classes.class_total }}"><br>
+    Class Total: <input type="number" name="class_total" value="{{ classes.class_total }}" readonly><br>
     <br> <br>
-    Class Max: <input type="number" name="class_max" min="1" value="{{ classes.class_max }}"><br>
+    Class Max: <input type="number" name="class_max" min="1" value="{{ classes.class_max }}" required><br>
     <br> <br>
     <input type="submit" value="Submit">
 </form>
+<a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
 {% endblock %}

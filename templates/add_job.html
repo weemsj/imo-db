@@ -4,12 +4,12 @@
 {% block content %}
 <h3>Add new job: </h3>
 <form id ="addjob" action="/add_job" method="POST">
-    Department: <select name="dept">
+    Department: <select name="dept" required>
         {% for d in dept %}
         <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
         {% endfor %}
     </select>
-    Description: <textarea rows="5" cols="30" name="job_description">
+    Description: <textarea rows="5" cols="30" name="job_description" required>
         </textarea>
     <input type="submit" value="Submit">
 </form>

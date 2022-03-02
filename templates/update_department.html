@@ -6,7 +6,7 @@
     <h3>Update department:{{ dept_id }} </h3>
     <form id="update_department" action="/update_department/{{ department.dept_id }}" method="POST">
         <input type="hidden" name="dept_id" value="{{ department.dept_id }}">
-        Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}"><br>
+        Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}" required><br>
         <br><br>
         Department total: <input type="text" name="dept_total" value="{{ department.dept_total }}" readonly><br>
         <br><br>

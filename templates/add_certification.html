@@ -4,7 +4,7 @@
 {% block content %}
 <h3>Add new certifications: </h3>
 <form id ="add_certification" action="/add_certification" method="POST">
-    Certification name: <input type="text" name="cert_name">
+    Certification name: <input type="text" name="cert_name" required>  <!-- add length validations ? -->
     <input type="submit" value="Submit">
 </form>
 

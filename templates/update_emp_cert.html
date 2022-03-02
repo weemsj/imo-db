@@ -9,7 +9,7 @@
         <input type="hidden" value="{{ employee.emp_id }}">
     Employee name: <input type="text" name="employee" value='{{ employee.f_name + " " + employee.l_name }}' readonly><br>
     <br>
-    Certification: <select name="cert">
+    Certification: <select name="cert" required>
         {% for c in certs %}
             {% if c.cert_id == curr_cert_id %}
                 <option selected value="{{ c.cert_id }}">{{ c.cert_name }}</option>
@@ -21,4 +21,5 @@
     <br> <br>
     <input type="submit" value="Submit">
 </form>
+<a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
 {% endblock %}

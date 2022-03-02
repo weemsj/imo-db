@@ -6,11 +6,11 @@
     <h3>Update Employee: {{ employee.emp_id }}</h3>
     <form id="update_employee" action="/update_employee/{{ employee.emp_id }}" method="POST">
         <input type="hidden" value="{{ employee.emp_id }}">
-        First name: <input type="text" name="f_name" value="{{ employee.f_name }}"><br>
+        First name: <input type="text" name="f_name" value="{{ employee.f_name }}" required><br>
         <br>
-        Last name: <input type="text" name="l_name" value="{{ employee.l_name }}"><br>
+        Last name: <input type="text" name="l_name" value="{{ employee.l_name }}" required><br>
         <br>
-        Gender: <select name="gender">
+        Gender: <select name="gender" required>
             {% if employee.gender == "MALE" %}
                 <option selected value = "MALE">Male</option>
                 <option value="FEMALE">Female</option>
@@ -26,25 +26,25 @@
             {% endif %}
             </select><br>
         <br>
-        Address 1: <input type="text" name="address_1" value="{{ employee.address_1 }}"><br>
+        Address 1: <input type="text" name="address_1" value="{{ employee.address_1 }}" required><br>
         <br>
         Address 2:<input type="text" name="address_2" value="{{ employee.address_2 }}"><br>
         <br>
-        City: <input type="text" name="city" value="{{ employee.city }}"><br>
+        City: <input type="text" name="city" value="{{ employee.city }}" required><br>
         <br>
-        State: <input type="text" name="state" value="{{ employee.state }}"><br>
+        State: <input type="text" name="state" value="{{ employee.state }}" minlength="2" maxlength="2" required><br>
         <br>
-        Zip: <input type="text" name="zip" value="{{ employee.zip }}"><br>
+        Zip: <input type="text" name="zip" value="{{ employee.zip }}" minlength="2" maxlength="2" required><br>
         <br>
-        Telephone: <input type="text" name="tel" value="{{ employee.tel }}"><br>
+        Telephone: <input type="text" name="tel" value="{{ employee.tel }}" minlength="12" maxlength="12" required><br>
         <br>
-        Email: <input type="text" name="email" value="{{ employee.email }}"><br>
+        Email: <input type="email" name="email" value="{{ employee.email }}" required><br>
         <br>
-        Start date: <input type="DATE" name="start_date" value="{{ employee.start_date }}" readonly><br>
+        Start date: <input type="Date" name="start_date" value="{{ employee.start_date }}" readonly><br>
         <br>
         End date: <input type="Date" name="end_date"><br>
         <br>
-        Department: <select name="dept">
+        Department: <select name="dept" required>
             {% for d in dept %}
                 {{ d.dept_id }}
                 {{ employee.dept_number }}

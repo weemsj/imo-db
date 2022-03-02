@@ -26,12 +26,12 @@ def root():
 # ------- Departments add, update, delete and edit ------------------------
 @app.route('/departments')
 def departments():
-    '''displays all deparments in the database'''
+    '''displays all departments in the database'''
     db_connection = db.connect_to_database()
     query = "SELECT * FROM Departments;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    print(results)
+    print(results)  # print statement can be removed
     return render_template("departments.html", entity=results)
 
 
@@ -51,16 +51,18 @@ def add_department():
         data = (dept_name, dept_total)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
+        # below we display a success page (instead we need to redirect to 'departments' page and add flash message here.
         return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='/departments') # retuns a success message
 
 
 @app.route('/update_department', methods=['POST', 'GET'])
 def update_department():
+    """ updates department using the department pk dept_id sent as an argument. This function expects an integer argument named 'dept_id' """
     db_connection = db.connect_to_database()
     dept_id = request.args.get('dept_id')
     if request.method == 'GET':
         dept_query = 'SELECT * FROM Departments WHERE dept_id = %s;' % (dept_id)
-        dept_result = execute_query(db_connection, dept_query).fetchone()
+        dept_result = execute_query(db_connection, dept_query).fetchone()  # when fetchone results are a dictionary
         return render_template("update_department.html", dept_id=dept_id, department=dept_result, entity='Departments', return_page='/departments')
 
     elif request.method == 'POST':
@@ -69,17 +71,20 @@ def update_department():
         query = "UPDATE Departments SET dept_name = %s WHERE dept_id = %s ;"
         data = (dept_name, dept_id)
         execute_query(db_connection, query, data)
-        return redirect('/departments')
+        # add flash message here if update was successful
+        return redirect('/departments')     # after update redirect to the page to show results
 
 
 @app.route('/delete_department')
 def delete_department():
+    """ Deletes a department from the database. This function expects an integer argument named 'dept_id' """
     dept_id = request.args.get('dept_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Departments WHERE dept_id = %s ;"
     data = (dept_id,)
     execute_query(db_connection, query, data)
-    return redirect('/departments')
+    # add flash message here if delete was successful
+    return redirect('/departments')        # after delete redirect to page to show results
 
 
 # -----------End Departments------------------------------------------------------------
@@ -88,15 +93,20 @@ def delete_department():
 
 @app.route('/employees')
 def employees():
+    """ Displays employee id, first name, last name, status and department number of an employee """
     db_connection = db.connect_to_database()
-    query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees;"
+    query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees;"  # should department name also be added or in Leu of dept number
     cursor = db.execute_query(db_connection=db_connection, query=query)
-    results = cursor.fetchall()
+    results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
     return render_template('employees.html', entity=results)
 
 
 @app.route('/add_employee', methods=['POST','GET'])
 def add_employee():
+    """
+    adds an employee to the employee table 'end_date' is automatically 'Null' on add can be modified on update. Status is also defaulted to 'ACTIVE'.
+    On get request a query for all departments is done to provide the user with a dropdown of preset departments in the database to choose from when adding an employee.
+    """
     db_connection = db.connect_to_database()
     # runs if it needs information from the database
     if request.method == 'GET':
@@ -119,19 +129,21 @@ def add_employee():
         tel = request.form['tel']
         email = request.form['email']
         start_date = request.form['start_date']
-        end_date = 'Null'
-        status = 'ACTIVE'
+        end_date = 'Null'   # default is null. Can't add a terminated employee to the database
+        status = 'ACTIVE'       # employee is only added to the database when active
         dept_number = request.form['dept']
         # create query from user feedback 
         query = "INSERT INTO Employees (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
         # put data in a tuple and execute query
         data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number)
         execute_query(db_connection, query, data)
+        # need to return to redirected 'employees' page and add flash message here
         return render_template('success.html', action = 'Add employee', entity='Employees', active='employees', return_page='employees') # returns a success message
 
 
 @app.route('/update_employee', methods=['POST','GET'])
 def update_employee():
+    """ updates employee expects an integer argument passed called 'emp_id' """
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
     if request.method == 'GET':
@@ -161,16 +173,19 @@ def update_employee():
         query = "UPDATE Employees SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, start_date = %s , end_date = %s, status = %s, dept_number = %s WHERE emp_id = %s;"
         data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number)
         execute_query(db_connection, query, data)
+        # add flash message here
         return redirect('/employees')
 
 
 @app.route('/delete_employee')
 def delete_employee():
+    """ deletes an employee from the table, expects an integer argument passed as 'emp_id' """
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Employees WHERE emp_id = %s ;"
     data = (emp_id,)
     execute_query(db_connection, query, data)
+    # flash message here
     return redirect('/employees')
 
 # -------------End Employees----------------------------------------------------------
@@ -375,6 +390,7 @@ def update_class():
         execute_query(db_connection, query, data)
         return redirect('/classes')
 
+
 @app.route('/delete_class')
 def delete_class():
     class_id = request.args.get('class_id')
@@ -524,7 +540,7 @@ def update_emp_certs():
         cert_id = cursor.fetchall()
         cert_id = cert_id[0]['cert_id']
         print(employee)
-        return render_template('update_emp_cert.html', employee = employee, certs=certs, curr_cert_id=cert_id)
+        return render_template('update_emp_cert.html', employee=employee, certs=certs, curr_cert_id=cert_id, return_page='emp_certs', entity='Emp_Certs')
 
     else:
         emp_id = request.form['emp_id']
@@ -619,6 +635,7 @@ def add_emp_jobs():
 def others():
     return render_template('others.html')
 
+# --------------- Additional views------------------------------------------------------------
 
 @app.route('/job_emps')
 def job_emps():
