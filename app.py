@@ -181,7 +181,7 @@ def update_employee():
             status = 'NOT ACTIVE'
         dept_number = request.form['dept']
         query = "UPDATE Employees SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, start_date = %s , end_date = %s, status = %s, dept_number = %s WHERE emp_id = %s;"
-        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number)
+        data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number, emp_id)
         execute_query(db_connection, query, data)
         # add flash message here
         return redirect('/employees')
