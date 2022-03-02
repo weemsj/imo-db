@@ -161,17 +161,13 @@ def update_employee():
         return render_template("update_employee.html", emp_id=emp_id, employee=emp_result, dept=dept_result, entity='Employees', return_page='/employees')
     else:
         f_name = request.form['f_name']
-        if not f_name.istitle():        # validate the first letter in the name is cap and others are lower if not convert
-            f_name.lower()
-            f_name.capitalize()
+        f_name = f_name.title()
         l_name = request.form['l_name']
-        if not l_name.istitle():
-            l_name.lower()
-            l_name.capitalize()
+        l_name = l_name.title()
         gender = request.form['gender']
         address_1 = request.form['address_1']
         address_2 = request.form['address_2']
-        city = request.form['city']
+        city = request.form['city'].title()
         state = request.form['state']
         state = state.upper()
         zip = request.form['zip']
@@ -179,7 +175,7 @@ def update_employee():
         email = request.form['email']
         start_date = request.form['start_date']
         end_date = request.form['end_date']
-        if end_date is None:
+        if end_date == '':
             status = 'ACTIVE'
         else:
             status = 'NOT ACTIVE'
