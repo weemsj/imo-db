@@ -342,7 +342,7 @@ def delete_job():
 def classes():
     """ displays all the classes in the database """
     db_connection = db.connect_to_database()
-    query = "SELECT * FROM Classes;"
+    query = "SELECT c.class_id, c.class_name, c.instructor, e.f_name, e.l_name, c.time, c.length, c.class_total, c.class_max FROM Classes c LEFT JOIN Employees e ON c.instuctor = e.emp_id ;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('classes.html', entity=results)
