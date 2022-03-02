@@ -414,7 +414,7 @@ def delete_class():
     query = "DELETE from Classes WHERE class_id = %s ;"
     data = (class_id,)
     execute_query(db_connection, query, data)
-    return redirect('/certifications')
+    return redirect('/classes')
 # ---------------End Classes--------------------------------------------------------
 
 # ------- Members add, update, delete and edit ------------------------
