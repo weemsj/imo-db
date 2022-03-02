@@ -393,6 +393,7 @@ def update_class():
 
     elif request.method == 'POST':
         class_id = request.form['class_id']
+        print(class_id)
         class_name = request.form['class_name']
         class_name = class_name.title()
         instructor = request.form['instructor']
@@ -401,7 +402,7 @@ def update_class():
         class_total = request.form['class_total']
         class_max = request.form['class_max']
         query = "UPDATE Classes SET class_name = %s, instructor = %s, time = %s, length = %s, class_total = %s, class_max = %s WHERE class_id = %s ;"
-        data = (class_name, instructor, time, length, class_total, class_max, class_id )
+        data = (class_name, instructor, time, length, class_total, class_max, class_id)
         execute_query(db_connection, query, data)
         return redirect('/classes')
 
