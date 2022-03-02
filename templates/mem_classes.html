@@ -4,7 +4,7 @@
 {% block content %}
 
     <h1> Class Enrollment </h1>
-    <h3> This page shows all members associated with a specific class at IMO Fitness. Use the below form to add or remove a member from a class </h3></center><br>
+    <h3> This page shows all enrolled in classes at IMO Fitness. Use the below form to add or remove a member from a class </h3></center><br>
 
     <div id=insert-right>
         <button type="button"><a href="add_mem_classes">Enroll member in class</a></button>
@@ -36,11 +36,10 @@
 	</div>
 
         {% else %}
-        <h2> No employees are assigned to this job </h2>
+        <h2> No members are enrolled in classes </h2>
         {% endif %}
     <div>
         <button type="button"><a href="add_mem_classes">Enroll member in class</a></button> {# create a page to add an existing member to a class #}
     </div>
-    <a href="{{ return_page }}"><u>back to {{ page }}</u></a>
 
 {% endblock %}

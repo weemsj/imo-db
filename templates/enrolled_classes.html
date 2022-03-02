@@ -6,6 +6,7 @@
     <h3> This page shows all classes {% for value in member[0].values() %} {{ value }} {% endfor %} is enrolled in </h3>
     <div style="overflow-x:auto" class="table">
         <table class="nostretch" id= "enrolled_table" border="1">
+            {% if entity != () %}
         <thead>
             {% for key in entity[0].keys() %}
     
@@ -23,4 +24,9 @@
             {% endfor %}
         </tbody>
         </table>
+    </div>
+        <a href="{{ return_page }}"><u>back to {{ page }}</u></a>
+        {% else %}
+        <h2> No employees are assigned to this job </h2>
+        {% endif %}
 {% endblock %}
