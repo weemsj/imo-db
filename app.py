@@ -177,6 +177,7 @@ def update_employee():
         end_date = request.form['end_date']
         if end_date == '':
             status = 'ACTIVE'
+            end_date = 'Null'
         else:
             status = 'NOT ACTIVE'
         dept_number = request.form['dept']
