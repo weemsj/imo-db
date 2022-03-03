@@ -648,10 +648,9 @@ def update_mem_class():
         print(member)
         return render_template('update_mem_class.html', member_id=member_id, member=member, classes=classes, curr_class_id=class_id, return_page='mem_classes', entity="Member's Classes")
     else:
-        print(member_id)
         member_id = request.form['member_id']
         class_id = request.form['class_id']
-        query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %;"
+        query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %s;"
         data = (member_id, class_id, member_id)
         execute_query(db_connection, query, data)
         return redirect('mem_classes')
