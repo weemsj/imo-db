@@ -669,7 +669,7 @@ def delete_mem_class():
 @app.route('/emp_jobs')
 def emp_jobs():
     db_connection = db.connect_to_database()
-    query = 'SELECT d.dept_name, e.f_name, e.l_name, j.job_description FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL;'
+    query = 'SELECT d.dept_name, e.f_name, e.l_name, j.job_description, j.job_id FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL;'
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('emp_jobs.html', entity=results, page='Jobs', return_page='/jobs')
@@ -694,6 +694,43 @@ def add_emp_jobs():
         data = (employee, job)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Assignment was', entity='Emp_Jobs', active='other', return_page='emp_jobs')
+
+
+@app.route('/update_emp_job', methods=['POST', 'GET'])
+def update_emp_job():
+    db_connection = db.connect_to_database()
+    emp_id = request.args.get('emp_id')
+    job_id = request.args.get('job_id')
+    if request.method == 'GET':
+        query = "SELECT emp_id, f_name, l_name FROM Employees WHERE emp_id = %s ;" % (emp_id)
+        cursor = db.execute_query(db_connection, query)
+        employee = cursor.fetchone()
+        query = "SELECT job_id, job_description FROM Jobs;"
+        cursor = db.execute_query(db_connection, query)
+        jobs = cursor.fetchall()
+        print(employee)
+        return render_template('update_emp_job.html', employee=employee, jobs=jobs, curr_job_id=job_id, return_page='emp_jobs', entity="Employee's Jobs")
+
+    else:
+        emp_id = request.form['emp_id']
+        job_id = request.form['cert_id']
+        query = "UPDATE Emp_Certs SET emp_id = %s, job_id = %s WHERE emp_id = %;"
+        data = (emp_id, job_id, emp_id)
+        execute_query(db_connection, query, data)
+        return redirect('emp_jobs')
+
+
+@app.route('/delete_emp_jobs')
+def delete_emp_certs():
+    job_id = request.args.get('job_id')
+    emp_id = request.args.get('emp_id')
+    db_connection = db.connect_to_database()
+    query = "DELETE from Emp_Jobs WHERE emp_id = %s and job_id = %s ;"
+    data = (emp_id, job_id)
+    execute_query(db_connection, query, data)
+    return redirect('/emp_jobs')
+
+
 # -------------------End Emp_Jobs----------------------------------------------------
 
 
