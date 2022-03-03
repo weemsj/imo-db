@@ -25,8 +25,8 @@
                     {% for key in data.keys() %}
                     <td>{{data[key]}}</td>
                     {% endfor %}
-                    <td><a style="color:blue;font-size:10px" href="class_details">Class details</a></td> {# creat a view for class details #}
-				    <td><a href="mem_details">Member details</a></td> {# create a view for member details #}
+                    <td><input type="button" value="class participants" onclick="window.location.href='{{ url_for('class_details', class_id=data.class_id) }}';"></td> {# creat a view for class details #}
+				    <td><input type="button" value="more details" onclick="window.location.href='{{ url_for('member_details', member_id=data.member_id) }}';"></td> {# create a view for member details #}
 				    <td><input type='button' value="edit" onclick="window.location.href ='{{ url_for('update_mem_class', class_name=data.class_name, member_id=data.member_id) }}';"></td>
                     <td><input type="button" value="delete" onclick="window.location ='/delete_mem_class/{{ data.class_name }},{{ data.member_id }}'"></td>
                 </tr>
