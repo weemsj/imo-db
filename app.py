@@ -596,7 +596,7 @@ def delete_emp_certs():
 @app.route('/mem_classes')
 def mem_classes():
     db_connection = db.connect_to_database()
-    query = "SELECT m.member_id, m.f_name, m.l_name, c.class_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
+    query = "SELECT c.class_id, c.class_name, m.member_id, m.f_name, m.l_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('mem_classes.html', entity=results)
