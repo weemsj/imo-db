@@ -720,8 +720,8 @@ def update_emp_job():
         return redirect('emp_jobs')
 
 
-@app.route('/delete_emp_jobs')
-def delete_emp_certs():
+@app.route('/delete_emp_job')
+def delete_emp_job():
     job_id = request.args.get('job_id')
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
