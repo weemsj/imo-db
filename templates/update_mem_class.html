@@ -6,7 +6,7 @@
     <h1> Update Member's Class </h1>
     <h3>  Update {{ member.f_name + " " + member.l_name }}'s Class </h3><br>
     <form id='update_mem_class' action='/update_mem_class' method='POST'>
-        <input type="hidden" name="member_id" value="{{ member.member_id }}">
+        <input type="hidden" name="member_id" value="{{ member_id }}">
     Employee name: <input type="text" name="member" value='{{ member.f_name + " " + member.l_name }}' readonly><br>
     <br>
     Certification: <select name="class_id" required>
