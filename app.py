@@ -596,7 +596,7 @@ def delete_emp_certs():
 @app.route('/mem_classes')
 def mem_classes():
     db_connection = db.connect_to_database()
-    query = "SELECT m.f_name, m.l_name, c.class_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
+    query = "SELECT m.member_id, m.f_name, m.l_name, c.class_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('mem_classes.html', entity=results)
@@ -627,6 +627,51 @@ def add_mem_classes():
         data = (member, class_id)
         execute_query(db_connection, query, data)
         return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
+
+
+@app.route('/update_mem_class', methods=['POST', 'GET'])
+def update_mem_class():
+    db_connection = db.connect_to_database()
+    member_id = request.args.get('member_id')
+    class_name = request.args.get('class_name')
+    if request.method == 'GET':
+        query = "SELECT f_name, l_name FROM Members WHERE member_id = %s ;" % (member_id)
+        cursor = db.execute_query(db_connection, query)
+        member = cursor.fetchone()
+        query = "SELECT class_id, class_name FROM Classes;"
+        cursor = db.execute_query(db_connection, query)
+        classes = cursor.fetchall()
+        query = "SELECT class_id FROM Classes WHERE class_name = '%s';" % (class_name)
+        cursor = db.execute_query(db_connection, query)
+        class_id = cursor.fetchall()
+        class_id = class_id[0]['class_id']
+        print(member)
+        return render_template('update_mem_class.html', member=member, classes=classes, curr_class_id=class_id, return_page='mem_classes', entity="Member's Classes")
+
+    else:
+        curr_member_id = member_id
+        member_id = request.form['member_id']
+        class_id = request.form['class_id']
+        query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %;"
+        data = (member_id, class_id, curr_member_id)
+        execute_query(db_connection, query, data)
+        return redirect('mem_classes')
+
+
+@app.route('/delete_mem_class')
+def delete_mem_class():
+    class_name = request.args.get('class_name')
+    member_id = request.args.get('member_id')
+    db_connection = db.connect_to_database()
+    classquery = "SELECT class_id FROM Classes WHERE class_name = '%s';" % (class_name)
+    cursor = db.execute_query(db_connection, classquery)
+    result = cursor.fetchone()
+    class_id = result[0]['class_id']
+    query = "DELETE from Mem_Classes WHERE member_id = %s and class_id = %s ;"
+    data = (member_id, class_id)
+    execute_query(db_connection, query, data)
+    return redirect('/mem_classes')
+
 # -----------------End Mem_Classes------------------------------------------------------
 
 

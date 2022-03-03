@@ -1,0 +1,25 @@
+{% extends "main.j2" %}
+{% block title %}Member's Class{% endblock %}
+{% set active_page = "others" %}
+{% block content %}
+
+    <h1> Update Member's Class </h1>
+    <h3>  Update {{ member.f_name + " " + member.l_name }}'s Class </h3><br>
+    <form id='update_mem_class' action='/update_mem_class' method='POST'>
+        <input type="hidden" name="member_id" value="{{ member.emp_id }}">
+    Employee name: <input type="text" name="member" value='{{ member.f_name + " " + member.l_name }}' readonly><br>
+    <br>
+    Certification: <select name="class_id" required>
+        {% for c in classes %}
+            {% if c.class_id == curr_class_id %}
+                <option selected value="{{ c.class_id }}">{{ c.class_name }}</option>
+            {% else %}
+                <option value="{{ c.class_id }}">{{ c.class_name }}</option>
+            {% endif %}
+        {% endfor %}
+        </select><br>
+    <br> <br>
+    <input type="submit" value="Submit">
+</form>
+<a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
+{% endblock %}
