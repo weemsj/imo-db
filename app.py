@@ -669,7 +669,7 @@ def delete_mem_class():
 @app.route('/emp_jobs')
 def emp_jobs():
     db_connection = db.connect_to_database()
-    query = 'SELECT d.dept_name, e.f_name, e.l_name, j.job_description, j.job_id FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL;'
+    query = 'SELECT d.dept_name, e.emp_id, e.f_name, e.l_name, j.job_description, j.job_id FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL;'
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('emp_jobs.html', entity=results, page='Jobs', return_page='/jobs')
