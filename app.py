@@ -713,7 +713,7 @@ def update_emp_job():
 
     else:
         emp_id = request.form['emp_id']
-        job_id = request.form['cert_id']
+        job_id = request.form['job_id']
         query = "UPDATE Emp_Certs SET emp_id = %s, job_id = %s WHERE emp_id = %;"
         data = (emp_id, job_id, emp_id)
         execute_query(db_connection, query, data)
