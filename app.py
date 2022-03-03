@@ -569,7 +569,7 @@ def update_emp_certs():
         curr_emp_id = emp_id
         emp_id = request.form['emp_id']
         cert_id = request.form['cert_id']
-        query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %;"
+        query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %s;"
         data = (emp_id, cert_id, curr_emp_id)
         execute_query(db_connection, query, data)
         return redirect('emp_certs')
