@@ -633,7 +633,7 @@ def add_mem_classes():
 def update_mem_class():
     db_connection = db.connect_to_database()
     member_id = request.args.get('member_id')
-    class_name = request.args.get('class_name')
+    class_id = request.args.get('class_id')
     if request.method == 'GET':
         query = "SELECT f_name, l_name FROM Members WHERE member_id = %s ;" % (member_id)
         cursor = db.execute_query(db_connection, query)
@@ -641,10 +641,6 @@ def update_mem_class():
         query = "SELECT class_id, class_name FROM Classes;"
         cursor = db.execute_query(db_connection, query)
         classes = cursor.fetchall()
-        query = "SELECT class_id FROM Classes WHERE class_name = '%s';" % (class_name)
-        cursor = db.execute_query(db_connection, query)
-        class_id = cursor.fetchall()
-        class_id = class_id[0]['class_id']
         print(member)
         return render_template('update_mem_class.html', member_id=member_id, member=member, classes=classes, curr_class_id=class_id, return_page='mem_classes', entity="Member's Classes")
     else:
@@ -658,13 +654,9 @@ def update_mem_class():
 
 @app.route('/delete_mem_class')
 def delete_mem_class():
-    class_name = request.args.get('class_name')
+    class_id = request.args.get('class_id')
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
-    classquery = "SELECT class_id FROM Classes WHERE class_name = '%s';" % (class_name)
-    cursor = db.execute_query(db_connection, classquery)
-    result = cursor.fetchone()
-    class_id = result[0]['class_id']
     query = "DELETE from Mem_Classes WHERE member_id = %s and class_id = %s ;"
     data = (member_id, class_id)
     execute_query(db_connection, query, data)
