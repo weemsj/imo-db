@@ -102,6 +102,19 @@ def employees():
     results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
     return render_template('employees.html', entity=results)
 
+@app.route('/employee_search', methods=['POST'])
+def employee_search():
+    """ Displays employee id, first name, last name, status and department number for a provided last name, using SQL LIKE functionality """
+    db_connection = db.connect_to_database()
+    last_name = request.form['emp_search']
+    last_name = last_name.title()
+    query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;")
+    data = (last_name,)
+    #cursor = db_connection.cursor()
+    #cursor.execute("SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;", (last_name,))
+    cursor = db.execute_query(db_connection = db_connection, query=query, data=data)
+    results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
+    return render_template('employee_search.html', entity=results)
 
 @app.route('/add_employee', methods=['POST','GET'])
 def add_employee():
@@ -818,4 +831,4 @@ def class_details():
 
 
 if __name__ == "__main__":
-    app.run(host='flip2.engr.oregonstate.edu', port=4024, debug=True)
+    app.run(host='flip3.engr.oregonstate.edu', port=57458, debug=True)
