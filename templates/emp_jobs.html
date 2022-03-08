@@ -4,9 +4,6 @@
 {% block content %}
     <h1> Employee Jobs </h1>
     <h3> This page shows all employees assigned to jobs </h3>
-    <div id=insert-right>
-        <button type="button"><a href="add_emp_jobs">Assign to Job</a></button>
-    </div>
     <div style="overflow-x:auto" class="table"> 
         <table class="nostretch" id= "dept_table" border="1" >
         <thead>
@@ -29,9 +26,6 @@
             {% endfor %}
         </tbody>
         </table>
-    </div>
-    <div>
-        <button type="button"><a href="add_emp_jobs">Assign Job</a></button> {# create add for emp_job where dow drop down menues let you assign existing employees to existing jobs #}
     </div>
 
 {% endblock %}
