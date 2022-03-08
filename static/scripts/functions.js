@@ -62,7 +62,7 @@ function onlyActive() {
   // Declare variables
   var filter, table, tr, td, i, txtValue;
   filter = 'ACTIVE';
-  table = document.getElementById("emp_table");
+  table = document.getElementById("mem_table");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
