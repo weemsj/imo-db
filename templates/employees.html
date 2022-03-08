@@ -1,4 +1,5 @@
 {% extends "main.j2" %}
+{% block head %}<script type="text/javascript" src="static/scripts/emp_search.js"></script>{% endblock %}
 {% block title %}Employees{% endblock %} 
 {% set active_page = "employees" %}
 {% block content %}
@@ -6,7 +7,7 @@
     <h3> This page shows all the employees at IMO Fitness. Use the below form to search, add, modify, or delete employees </h3></center><br>
 	
 	<form id="employee_search" action="/employee_search" method="POST">
-		<input type="text" name="emp_search" id="emp_search" onkeyup="empSearch()" placeholder="Last name search..." title="name search" required>
+		<input type="text" name="emp_search" id="emp_search" onkeyup="emp_search()" placeholder="Last name search..." title="name search" required>
 	<input type="submit">
 	</form>
 	<div id=insert-right>

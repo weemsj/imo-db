@@ -1,4 +1,5 @@
 {% extends "main.j2" %}
+{% block head %}<script type="text/javascript" src="static/scripts/mem_search.js"></script>{% endblock %}
 {% block title %}Members{% endblock %} 
 {% set active_page = 'members' %}
 {% block content %}
@@ -8,7 +9,7 @@
 
 <!-- add filter option for view of active and not active members -->
 	<form id="members_search" action="/members_search" method="POST">
-		<input type="text" name="mem_search" id="mem_search" onkeyup="memSearch()" placeholder="Last name search..." title="name search" required>
+		<input type="text" name="mem_search" id="mem_search" onkeyup="mem_search()" placeholder="Last name search..." title="name search" required>
 	<input type="submit">
 	</form>
 	<div id=insert-right>
