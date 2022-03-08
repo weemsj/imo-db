@@ -854,4 +854,4 @@ def class_details():
 
 
 if __name__ == "__main__":
-    app.run(host='flip3.engr.oregonstate.edu', port=57455, debug=True)
+    app.run(host='flip3.engr.oregonstate.edu', port=57452, debug=True)
