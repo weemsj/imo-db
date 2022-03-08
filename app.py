@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, redirect
+from flask import Flask, render_template, json, redirect, flash
 from flask import request
 from flask_mysqldb import MySQL
 import database.db_connector as db
@@ -8,6 +8,7 @@ import os
 
 # configuration & database connection
 app = Flask(__name__)
+app.secret_key = 'secret'
 
 
 """ use this after after debugging
@@ -108,13 +109,18 @@ def employee_search():
     db_connection = db.connect_to_database()
     last_name = request.form['emp_search']
     last_name = last_name.title()
-    query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;")
+    query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;"
     data = (last_name,)
     #cursor = db_connection.cursor()
     #cursor.execute("SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;", (last_name,))
-    cursor = db.execute_query(db_connection = db_connection, query=query, data=data)
+    cursor = db.execute_query(db_connection, query, data)
     results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
-    return render_template('employee_search.html', entity=results)
+    #Only display results if one is found:
+    if results:
+        return render_template('employee_search.html', entity=results)
+    else:
+        flash('No results found for entry')
+        return redirect('/employees')
 
 @app.route('/add_employee', methods=['POST','GET'])
 def add_employee():
@@ -441,6 +447,23 @@ def members():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('members.html', entity=results, view="current and past")
+
+@app.route('/members_search', methods=['POST'])
+def members_search():
+    """ Displays member id, first name, last name, and status for a provided last name, using SQL LIKE functionality """
+    db_connection = db.connect_to_database()
+    last_name = request.form['mem_search']
+    last_name = last_name.title()
+    query = "SELECT member_id, f_name, l_name, status FROM Members WHERE l_name LIKE %s;"
+    data = (last_name,)
+    cursor = db.execute_query(db_connection, query, data)
+    results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
+    #Only display results if one is found:
+    if results:
+        return render_template('members_search.html', entity=results)
+    else:
+        flash('No results found for entry')
+        return redirect('/members')
 
 
 @app.route("/add_member", methods=['POST', 'GET'])
