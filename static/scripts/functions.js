@@ -87,9 +87,6 @@ function showAll() {
 
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td.textContent) {
-      tr[i].style.display = "";
-    }
+    tr[i].style.display = "";
   }
 }
