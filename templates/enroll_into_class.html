@@ -4,8 +4,8 @@
 {% block content %}
     <h3>Add a member to a {{ classes.class_name }}:</h3>
     <form id='add_mem_classes' action='/enroll_into_class' method='post'>
-
-        Class name: <input name="class" value="{{ classes.class_id }}" readonly>{{ classes.class_name }}>
+        <input type="hidden" name="class" value="{{ classes.class_id }}">
+        Class name: <input name="class_name" value="{{ classes.class_name }}" readonly>
         <br>
         <br>
         Member name: <select name="member" required><br>
