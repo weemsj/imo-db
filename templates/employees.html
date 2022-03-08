@@ -1,6 +1,31 @@
 {% extends "main.j2" %}
 {% block title %}Employees{% endblock %} 
 {% set active_page = "employees" %}
+{% block scripts %}
+<script>
+    function emp_search() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("emp_search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("emp_table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}
 {% block content %}
     <h1> Employees </h1>
     <h3> This page shows all the employees at IMO Fitness. Use the below form to search, add, modify, or delete employees </h3></center><br>
@@ -15,7 +40,7 @@
 	<br><br>
 
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "emp_table" border="1">
+        <table class="nostretch" id="emp_table" border="1">
         <thead class="table-head">
             {% for key in entity[0].keys() %}
     
@@ -41,29 +66,4 @@
         <button type="button"><a href="add_employee">Add Employee</a></button>
     </div>
 
-{% endblock %}
-{% block scripts %}
-<script>
-    function emp_search() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("emp_search");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("emp_table");
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
 {% endblock %}
