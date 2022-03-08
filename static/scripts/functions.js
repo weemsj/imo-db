@@ -2,12 +2,12 @@
 // source - https://www.w3schools.com/howto/howto_js_sort_table.asp
 
 
-function lname_search() {
+function empSearch() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("search");
+  input = document.getElementById("emp_search");
   filter = input.value.toUpperCase();
-  table = document.getElementById("mytable");
+  table = document.getElementById("emp_table");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
