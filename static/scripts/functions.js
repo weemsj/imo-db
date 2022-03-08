@@ -22,6 +22,7 @@ function empSearch() {
     }
   }
 }
+
 function memSearch() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
