@@ -316,7 +316,8 @@ def add_job():
 
     # runs if it needs information from the database
     if request.method == 'GET':
-        query = "SELECT dept_id, dept_name FROM Departments;"
+        dept_name = request.args.get('dept_name')
+        query = "SELECT dept_id, dept_name FROM Departments WHERE dept_name = %s;" % (dept_name)
         cursor = db.execute_query(db_connection=db_connection, query=query)
         results = cursor.fetchall()
         return render_template('add_job.html', dept=results)
