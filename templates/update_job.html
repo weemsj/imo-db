@@ -1,21 +1,21 @@
 {% extends "main.j2" %}
-{% block title %}Job{% endblock %} 
+{% block title %}Job{% endblock %}
 {% set active_page = "jobs" %}
 {% block content %}
-<h1> Job </h1>
-<h3>Update job {{ job['job_id'] }}: </h3>
-<form id ="updatejob" action="/update_job" method="POST">
-    <input type="hidden" value="{{dept.dept_id}}">
-    Department: <select name="dept" required>
-    {% for d in dept %}
-        {{ d.dept_id }}
-        {{ job.dept_number }}
-        {% if d.dept_id == job.dept_number %}
-            <option selected value="{{ d.dept_id }}">{{ d.dept_name }}</option>
-        {% else %}
-            <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
-        {% endif %}
-    {% endfor %}
+    <h1> Job </h1>
+    <h3>Update job {{ job['job_id'] }}: </h3>
+    <form id="updatejob" action="/update_job" method="POST">
+        <input type="hidden" name="job_id" value="{{ job['job_id'] }}">
+        Department: <select name="dept" required>
+        {% for d in dept %}
+            {{ d.dept_id }}
+            {{ job.dept_number }}
+            {% if d.dept_id == job.dept_number %}
+                <option selected value="{{ d.dept_id }}">{{ d.dept_name }}</option>
+            {% else %}
+                <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
+            {% endif %}
+        {% endfor %}
 </select>
     Description: <textarea rows="5" cols="30" name="job_description" required>
     {{ job['job_description'] }}
