@@ -23,3 +23,34 @@ function empSearch() {
     }
   }
 }
+
+function isActive() {
+  // Get the checkbox
+  var checkBox = document.getElementById("Active");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true) {
+    onlyActive();
+  }
+}
+
+function onlyActive() {
+  // Declare variables
+  var filter, table, tr, td, i, txtValue;
+  filter = 'ACTIVE';
+  table = document.getElementById("emp_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent;
+      if (txtValue === filter) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
