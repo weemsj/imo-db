@@ -649,7 +649,7 @@ def delete_emp_certs():
     certquery = "SELECT cert_id FROM Certifications WHERE cert_name = '%s';" % (cert_name)
     cursor = db.execute_query(db_connection, certquery)
     result = cursor.fetchone()
-    cert_id = result[0]['cert_id']
+    cert_id = result['cert_id']
     query = "DELETE from Emp_Certs WHERE emp_id = %s and cert_id = %s ;"
     data = (emp_id, cert_id)
     execute_query(db_connection, query, data)
