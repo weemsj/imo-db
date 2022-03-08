@@ -827,7 +827,7 @@ def job_emps():
     if result is None:
         print(result)  # add flash message here
         flash("employee isn't assigned to any jobs")
-        redirect('/jobs')
+        return redirect('/jobs')
     else:
         return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')
 
@@ -883,7 +883,7 @@ def emp_dept():
     if results == ():
         print(results)  # add flash message here
         flash("employee isn't assigned to any jobs")
-        redirect('/jobs')
+        return redirect('/departments')
     else:
         return render_template('emp_dept.html', entity=results, dept_name=dept_name)
 
