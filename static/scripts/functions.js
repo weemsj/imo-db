@@ -82,7 +82,7 @@ function onlyActive() {
 function showAll() {
   // Declare variables
   var table, tr, td, i, txtValue;
-  table = document.getElementById("emp_table");
+  table = document.getElementById("mem_table");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
