@@ -10,7 +10,7 @@
         {% endfor %}
     </select><br>
         <br>
-        Job Id: <select name="job" required>
+        Job description: <select name="job" required>
         {% for j in job %}
             <option value="{{ j.job_id }}">{{ j.job_description }}</option>
         {% endfor %}

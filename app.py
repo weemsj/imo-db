@@ -301,7 +301,7 @@ def delete_certification():
 @app.route('/jobs')
 def jobs():
     db_connection = db.connect_to_database()
-    query = "SELECT j.job_id, d.dept_id, j.job_description FROM Jobs j LEFT JOIN Departments d ON j.dept_number = d.dept_id;"
+    query = "SELECT j.job_id, d.dept_name, j.job_description FROM Jobs j LEFT JOIN Departments d ON j.dept_number = d.dept_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     return render_template('jobs.html', entity=results)
