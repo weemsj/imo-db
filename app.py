@@ -354,7 +354,7 @@ def update_job():
     elif request.method == 'POST':
         job_id = request.form['job_id']
         job_description = request.form['job_description']
-        query = "UPDATE Jobs SET job_descriptions = %s WHERE job_id = %s ;"
+        query = "UPDATE Jobs SET job_description = %s WHERE job_id = %s ;"
         data = (job_description, job_id)
         execute_query(db_connection, query, data)
         flash('job updated successfully')
