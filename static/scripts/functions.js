@@ -31,6 +31,8 @@ function isActive() {
   // If the checkbox is checked, display the output text
   if (checkBox.checked == true) {
     onlyActive();
+  } else {
+    all();
   }
 }
 
@@ -50,6 +52,24 @@ function onlyActive() {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function all() {
+  // Declare variables
+  var table, tr, td, i, txtValue;
+  table = document.getElementById("emp_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent;
+      if (txtValue) {
+        tr[i].style.display = "";
       }
     }
   }
