@@ -4,7 +4,7 @@
 {% block content %}
     <h1>Departments</h1>
     <h3>Update department:{{ dept_id }} </h3>
-    <form id="update_department" action="/update_department/{{ department.dept_id }}" method="POST">
+    <form id="update_department" action="/update_department" method="POST">
         <input type="hidden" name="dept_id" value="{{ department.dept_id }}">
         Department name: <input type="text" name="dept_name" value ="{{ department.dept_name }}" required><br>
         <br><br>

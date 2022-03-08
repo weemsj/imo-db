@@ -882,7 +882,7 @@ def emp_dept():
     print(results)
     if results == ():
         print(results)  # add flash message here
-        flash("employee isn't assigned to any jobs")
+        flash("this department doesn't have any employees")
         return redirect('/departments')
     else:
         return render_template('emp_dept.html', entity=results, dept_name=dept_name)
