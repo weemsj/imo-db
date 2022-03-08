@@ -704,7 +704,7 @@ def add_mem_classes():
 @app.route('/enroll_into_class', methods=['POST', 'GET'])
 def enroll_into_class():
     db_connection = db.connect_to_database()
-    class_id = requet.args.get('class_id')
+    class_id = request.args.get('class_id')
     if request.method == 'GET':
         query = "SELECT member_id, f_name, l_name FROM Members WHERE status = 'ACTIVE';"
         cursor = db.execute_query(db_connection=db_connection, query=query)
