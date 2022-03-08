@@ -22,4 +22,3 @@ function emp_search() {
     }
   }
 }
-
