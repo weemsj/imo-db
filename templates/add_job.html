@@ -8,9 +8,8 @@
         {% for d in dept %}
         <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
         {% endfor %}
-    </select>
-    Description: <textarea rows="5" cols="30" name="job_description" required>
-        </textarea>
+</select>
+    Description: <textarea rows="5" cols="30" name="job_description" required></textarea>
     <input type="submit" value="Submit">
 </form>
 {% endblock %}

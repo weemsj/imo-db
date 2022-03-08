@@ -307,7 +307,7 @@ def jobs():
     return render_template('jobs.html', entity=results)
 
 
-@app.route('/add_job')
+@app.route('/add_job', methods=['POST', 'GET'])
 def add_job():
     """ adds a job to the database"""
 
