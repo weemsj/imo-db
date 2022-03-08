@@ -24,12 +24,19 @@
             <ul id="navigation">
             {% for href, id, caption in navigation_bar %}
                 <li{% if id == active_page %} class="navigation-link current"{% endif%} class="navigation-link">
-                <a class='navigation-link' href="{{ href|e }}">{{ caption|e }}</a></li>
+<a class='navigation-link' href="{{ href|e }}">{{ caption|e }}</a></li>
             {% endfor %}
             </ul>
         </nav>
         {% endblock %}
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div id="content">
         {% block content %}{% endblock %}
     </div>
