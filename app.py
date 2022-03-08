@@ -879,6 +879,7 @@ def emp_dept():
     query = 'SELECT f_name, l_name FROM Employees WHERE dept_number = %s;' % (dept_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
+    print(results)
     if results is None:
         print(results)  # add flash message here
         flash("employee isn't assigned to any jobs")
