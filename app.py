@@ -752,7 +752,7 @@ def add_emp_jobs():
 
     if request.method == 'GET':
         dept_name = request.args.get('dept_name')
-        query1 = "SELECT dept_id FROM Departments WHERE dept_name = %s;" % (dept_name)
+        query1 = "SELECT dept_id FROM Departments WHERE dept_name = '%s';" % (dept_name)
         cursor = db.execute_query(db_connection, query1)
         results = cursor.fetchone()
         dept_id = results['dept_id']
