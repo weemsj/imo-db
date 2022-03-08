@@ -452,7 +452,7 @@ def members():
 def members_search():
     """ Displays member id, first name, last name, and status for a provided last name, using SQL LIKE functionality """
     db_connection = db.connect_to_database()
-    last_name = request.form['mem_search']
+    last_name = request.form['lname']
     last_name = last_name.title()
     query = "SELECT member_id, f_name, l_name, status FROM Members WHERE l_name LIKE %s;"
     data = (last_name,)

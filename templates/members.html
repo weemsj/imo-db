@@ -7,11 +7,8 @@
     <h3> This page shows all {{ view }} at IMO Fitness. Use the below form to search, add, modify, or delete
         members </h3><br>
 
-    <!-- add filter option for view of active and not active members -->
-    <input type="text" name="mem_search" id="emp_search" onkeyup="empSearch()" placeholder="Last name search..."
-           title="name search" required>
-
-    </form>
+    <!-- add filter option for view of active and non active members -->
+    <input type="text" id="search" placeholder="Last name search..." title="name search">
     <div id=insert-right>
         <button type="button"><a href="add_member">Add member</a></button>
         Show Only Active: <input type="checkbox" id="Active" onclick="isActive()">
@@ -20,7 +17,7 @@
     <br><br>
 
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id="emp_table" border="1">
+        <table class="nostretch" id="mem_table" border="1">
             <thead>
             {% for key in entity[0].keys() %}
 
