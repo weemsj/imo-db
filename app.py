@@ -712,7 +712,7 @@ def enroll_into_class():
         query = "SELECT class_id, class_name FROM Classes WHERE class_id = %s;" % (class_id)
         cursor = db.execute_query(db_connection=db_connection, query=query)
         classes = cursor.fetchone()
-        return render_template('add_mem_classes.html', member=members, classes=classes, entity='Member Classes',
+        return render_template('enroll_into_class.html', member=members, classes=classes, entity='Member Classes',
                                return_page='mem_classes')
 
     if request.method == 'POST':
