@@ -41,7 +41,7 @@ h4 {
     text-align: center;
 }
 
-#emp_search {
+#emp_search, #mem_search {
     background-image: url('Vector_search_icon.svg');
     /*By MediaWiki authors - MediaWiki Vector skin, Public Domain, https://commons.wikimedia.org/w/index.php?curid=44788763*/
     background-position: 10px 10px;
