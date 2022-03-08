@@ -1,6 +1,7 @@
 
 // source - https://www.w3schools.com/howto/howto_js_sort_table.asp
 
+
 function lname_search() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
