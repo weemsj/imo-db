@@ -54,7 +54,7 @@ function isActive() {
   if (checkBox.checked == true) {
     onlyActive();
   } else {
-    showAll()
+    showAll();
   }
 }
 
