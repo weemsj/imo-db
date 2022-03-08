@@ -1,7 +1,7 @@
 
 // source - https://www.w3schools.com/howto/howto_js_sort_table.asp
 
-function emp_search() {
+function search() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("emp_search");
