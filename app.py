@@ -632,11 +632,10 @@ def update_emp_certs():
         return render_template('update_emp_cert.html', employee=employee, certs=certs, curr_cert_id=cert_id, return_page='emp_certs', entity='Emp_Certs')
 
     else:
-        curr_emp_id = emp_id
         emp_id = request.form['emp_id']
         cert_id = request.form['cert_id']
         query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %s;"
-        data = (emp_id, cert_id, curr_emp_id)
+        data = (emp_id, cert_id, emp_id)
         execute_query(db_connection, query, data)
         flash('employee certification update was successful')
         return redirect('emp_certs')
