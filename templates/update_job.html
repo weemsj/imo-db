@@ -16,11 +16,10 @@
                 <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
             {% endif %}
         {% endfor %}
-</select>
-    Description: <textarea rows="5" cols="30" name="job_description" required>
-    {{ job['job_description'] }}
-        </textarea>
-    <input type="submit" value="Submit">
-</form>
+    </select>
+        Description: <textarea rows="5" cols="30" name="job_description"
+                               required>{{ job['job_description'] }}</textarea>
+        <input type="submit" value="Submit">
+    </form>
     <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
 {% endblock %}
