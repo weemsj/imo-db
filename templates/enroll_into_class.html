@@ -1,0 +1,21 @@
+{% extends "main.j2" %}
+{% block title %}Mem_Classes{% endblock %}
+{% set active_page = "others" %}
+{% block content %}
+    <h3>Add a member to a {{ classes.class_name }}:</h3>
+    <form id='add_mem_classes' action='/enroll_into_class' method='post'>
+
+        Class name: <input name="class" value="{{ classes.class_id }}" readonly>{{ classes.class_name }}>
+        <br>
+        <br>
+        Member name: <select name="member" required><br>
+        {% for m in member %}
+            <option value="{{ m.member_id }}">{{ m.f_name + " " + m.l_name }}</option>
+        {% endfor %}
+    </select><br>
+        <br>
+        <br> <br>
+        <input type="submit" value="Submit">
+    </form>
+    <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
+{% endblock %}

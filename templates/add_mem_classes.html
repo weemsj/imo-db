@@ -8,14 +8,15 @@
         {% for m in member %}
         <option value="{{ m.member_id }}">{{ m.f_name + " " + m.l_name }}</option>
         {% endfor %}
-        </select><br>
+</select><br>
     <br>
     Class name: <select name="class" required>
-        {% for c in classes %}
+    {% for c in classes %}
         <option value="{{ c.class_id }}">{{ c.class_name }}</option>
-        {% endfor %}
-        </select><br>
+    {% endfor %}
+</select><br>
     <br> <br>
     <input type="submit" value="Submit">
 </form>
+    <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
 {% endblock %}

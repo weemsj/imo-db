@@ -680,7 +680,9 @@ def add_mem_classes():
         query = "SELECT class_id, class_name FROM Classes;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         classes = cursor.fetchall()
-        return render_template('add_mem_classes.html', member=members, classes=classes)
+        return render_template('add_mem_classes.html', member=members, classes=classes, entity='Member Classes',
+                               return_page='mem_classes')
+
     if request.method == 'POST':
         member = request.form['member']
         class_id = request.form['class']
@@ -697,6 +699,37 @@ def add_mem_classes():
         flash("member's class was successfully added ")
         return redirect('/mem_classes')
         # return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
+
+
+@app.route('/enroll_into_class', methods=['POST', 'GET'])
+def enroll_into_class():
+    db_connection = db.connect_to_database()
+    class_id = requet.args.get('class_id')
+    if request.method == 'GET':
+        query = "SELECT member_id, f_name, l_name FROM Members WHERE status = 'ACTIVE';"
+        cursor = db.execute_query(db_connection=db_connection, query=query)
+        members = cursor.fetchall()
+        query = "SELECT class_id, class_name FROM Classes WHERE class_id = %s;" % (class_id)
+        cursor = db.execute_query(db_connection=db_connection, query=query)
+        classes = cursor.fetchone()
+        return render_template('add_mem_classes.html', member=members, classes=classes, entity='Member Classes',
+                               return_page='mem_classes')
+
+    if request.method == 'POST':
+        member = request.form['member']
+        class_id = request.form['class']
+        query = "SELECT class_total, class_max FROM Classes WHERE  class_id = %s;" % (class_id)
+        cursor = db.execute_query(db_connection, query)
+        check_cap = cursor.fetchone()
+        if check_cap['class_total'] == check_cap['class_max']:  # make sure class isn't full
+            # insert flash message here (class is at capacity)
+            print('class is full')
+            return redirect('/mem_classes')
+        query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
+        data = (member, class_id)
+        execute_query(db_connection, query, data)
+        flash("member's class was successfully added ")
+        return redirect('/mem_classes')
 
 
 @app.route('/update_mem_class', methods=['POST', 'GET'])
