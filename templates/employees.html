@@ -7,7 +7,8 @@
         employees </h3></center><br>
 
     <form id="employee_search" action="/employee_search" method="POST">
-        <input type="text" name="emp_search" id="emp_search" placeholder="Last name search..." title="name search"
+        <input type="text" name="emp_search" onkeyup="empSearch()" id="emp_search" placeholder="Last name search..."
+               title="name search"
                required>
         <input type="submit">
     </form>
