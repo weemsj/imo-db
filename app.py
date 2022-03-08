@@ -716,8 +716,9 @@ def update_mem_class():
     else:
         member_id = request.form['member_id']
         class_id = request.form['class_id']
-        query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %s;"
-        data = (member_id, class_id, member_id)
+        curr_class_id = request.form['curr_class_id']
+        query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %s and class_id = %s;"
+        data = (member_id, class_id, member_id, curr_class_id)
         execute_query(db_connection, query, data)
         flash("member's class was successfully updated ")
         return redirect('mem_classes')
