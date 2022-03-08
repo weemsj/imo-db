@@ -316,8 +316,7 @@ def add_job():
 
     # runs if it needs information from the database
     if request.method == 'GET':
-        dept_name = request.args.get('dept_name')
-        query = "SELECT dept_id, dept_name FROM Departments WHERE dept_name = %s;" % (dept_name)
+        query = "SELECT dept_id, dept_name FROM Departments;"
         cursor = db.execute_query(db_connection=db_connection, query=query)
         results = cursor.fetchall()
         return render_template('add_job.html', dept=results)
@@ -752,12 +751,17 @@ def add_emp_jobs():
     db_connection = db.connect_to_database()
 
     if request.method == 'GET':
-        query1 = "SELECT emp_id, f_name, l_name FROM Employees;"
-        cursor = db.execute_query(db_connection=db_connection, query=query1)
+        dept_name = request.args.get('dept_name')
+        query1 = "SELECT dept_id FROM Departments WHERE dept_name = %s;" % (dept_name)
+        cursor = db.execute_query(db_connection, query1)
+        results = cursor.fetchone()
+        dept_id = results['dept_id']
+        query2 = "SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = %s;" % (dept_id)
+        cursor = db.execute_query(db_connection=db_connection, query=query2)
         employees = cursor.fetchall()
-        query2 = "SELECT * FROM Jobs;"
-        jobs = db.execute_query(db_connection=db_connection, query=query2)
-        return render_template('add_emp_jobs.html', employee=employees, job=jobs )
+        query3 = "SELECT * FROM Jobs;"
+        jobs = db.execute_query(db_connection=db_connection, query=query3)
+        return render_template('add_emp_jobs.html', employee=employees, job=jobs)
 
     if request.method == 'POST':
         employee = request.form['employee']
