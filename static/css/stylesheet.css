@@ -42,7 +42,8 @@ h4 {
 }
 
 #emp_search {
-    background-image: url('/css/searchicon.png');
+    background-image: url('Vector_search_icon.svg');
+    /*By MediaWiki authors - MediaWiki Vector skin, Public Domain, https://commons.wikimedia.org/w/index.php?curid=44788763*/
     background-position: 10px 10px;
     background-repeat: no-repeat;
     width: 100%;
