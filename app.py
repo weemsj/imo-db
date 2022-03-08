@@ -880,7 +880,7 @@ def emp_dept():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
     print(results)
-    if results is None:
+    if results == ():
         print(results)  # add flash message here
         flash("employee isn't assigned to any jobs")
         redirect('/jobs')
