@@ -879,7 +879,12 @@ def emp_dept():
     query = 'SELECT f_name, l_name FROM Employees WHERE dept_number = %s;' % (dept_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    return render_template('emp_dept.html', entity = results, dept_name=dept_name)
+    if results is None:
+        print(results)  # add flash message here
+        flash("employee isn't assigned to any jobs")
+        redirect('/jobs')
+    else:
+        return render_template('emp_dept.html', entity=results, dept_name=dept_name)
 
 
 @app.route('/class_details')
