@@ -43,6 +43,11 @@ h4 {
 
 }
 
+#alert {
+    background: darkseagreen;
+    background-blend-mode: lighten;
+}
+
 
 #intro {
     text-align: center;
