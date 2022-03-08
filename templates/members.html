@@ -9,7 +9,7 @@
 
     <!-- add filter option for view of active and not active members -->
     <form id="members_search" action="/members_search" method="POST">
-        <input type="text" name="mem_search" id="mem_search" onkeyup="search()" placeholder="Last name search..."
+        <input type="text" name="mem_search" id="search" onkeyup="lname_search()" placeholder="Last name search..."
                title="name search" required>
         <input type="submit">
     </form>
@@ -19,7 +19,7 @@
     <br><br>
 
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id="mem_table" border="1">
+        <table class="nostretch" id="mytable" border="1">
             <thead>
             {% for key in entity[0].keys() %}
 
