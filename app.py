@@ -77,7 +77,7 @@ def update_department():
         data = (dept_name, dept_id)
         execute_query(db_connection, query, data)
         # add flash message here if update was successful
-        flash('update department was successful', 'successful')
+        flash('update department was successful', 'success')
         return redirect('/departments')     # after update redirect to the page to show results
 
 
@@ -87,7 +87,8 @@ def delete_department():
     dept_id = request.args.get('dept_id')
     db_connection = db.connect_to_database()
     query = "SELECT dept_total FROM Departments WHERE dept_id = %s;" % (dept_id)
-    dept = (db_connection, query).fetchone()
+    cursor = execute_query(db_connection, query)
+    dept = cursor.fetchone()
     if dept['dept_total'] > 0:
         flash("can't delete a department with employees in it, please reassign employees", "error")
         return redirect('/departments')
@@ -96,7 +97,7 @@ def delete_department():
     data = (dept_id,)
     execute_query(db_connection, query, data)
     # add flash message here if delete was successful
-    flash('department delete was successful', 'successful')
+    flash('department delete was successful', 'success')
     return redirect('/departments')  # after delete redirect to page to show results
 
 
@@ -175,7 +176,7 @@ def add_employee():
         dept_number)
         execute_query(db_connection, query, data)
         # need to return to redirected 'employees' page and add flash message here
-        flash('employee added successfully', 'successful')
+        flash('employee added successfully', 'success')
         # return render_template('success.html', action = 'Add employee', entity='Employees', active='employees', return_page='employees') # returns a success message
         return redirect('/employees')
 
@@ -219,7 +220,7 @@ def update_employee():
         data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status, dept_number, emp_id)
         execute_query(db_connection, query, data)
         # add flash message here
-        flash('employee update successful', 'successful')
+        flash('employee update successful', 'success')
         return redirect('/employees')
 
 
@@ -232,7 +233,7 @@ def delete_employee():
     data = (emp_id,)
     execute_query(db_connection, query, data)
     # flash message here
-    flash('employee delete successful', 'successful')
+    flash('employee delete successful', 'success')
     return redirect('/employees')
 
 # -------------End Employees----------------------------------------------------------
@@ -263,7 +264,7 @@ def add_certification():
         data = (cert_name)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
-        flash('certification add was successful', 'successful')
+        flash('certification add was successful', 'success')
         # return render_template('success.html', action = 'Add certification', entity='Certifications', active='certifications', return_page='certifications') # retuns a success message
         return redirect('/certifications')
 
@@ -285,7 +286,7 @@ def update_certification():
         query = "UPDATE Certifications SET cert_name = %s WHERE cert_id = %s ;"
         data = (cert_name, cert_id)
         execute_query(db_connection, query, data)
-        flash('update certification was successful', 'successful')
+        flash('update certification was successful', 'success')
         return redirect('/certifications')
 
 
@@ -296,7 +297,7 @@ def delete_certification():
     query = "DELETE from Certifications WHERE cert_id = %s ;"
     data = (cert_id,)
     execute_query(db_connection, query, data)
-    flash('certification was successfully deleted', 'successful')
+    flash('certification was successfully deleted', 'success')
     return redirect('/certifications')
 
 # -----------End Certifications------------------------------------------------------------
@@ -338,7 +339,7 @@ def add_job():
         # put data in a tuple and execute query
         data = (dept_number, job_description)
         execute_query(db_connection, query, data)
-        flash('job add was successful', 'successful')
+        flash('job add was successful', 'success')
         # return render_template('success.html', action = 'Add job', entity='Jobs', active='jobs', return_page='jobs')
         # returns a success message
         return redirect('/jobs')
@@ -375,7 +376,7 @@ def delete_job():
     query = "DELETE from Jobs WHERE job_id = %s ;"
     data = (job_id,)
     execute_query(db_connection, query, data)
-    flash('job was deleted successfully', 'successful')
+    flash('job was deleted successfully', 'success')
     return redirect('/jobs')
 
 # ---------------End Jobs--------------------------------------------------------
@@ -402,7 +403,7 @@ def add_class():
     if request.method == 'GET':
         query = "SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = 1 or dept_number = 2;"
         results = db.execute_query(db_connection=db_connection, query=query).fetchall()
-        flash('class add was successful', 'successful')
+        flash('class add was successful', 'success')
         return render_template('add_class.html', instructor=results)
 
     # runs if it needs to update the database
@@ -420,7 +421,7 @@ def add_class():
         # put data in a tuple and execute query
         data = (class_name, instructor, time, length, class_total, class_max)
         execute_query(db_connection, query, data)
-        flash('class add was successful', 'successful')
+        flash('class add was successful', 'success')
         # return render_template('success.html', action = 'Add class', entity='Classes', active='classes', return_page='classes') # retuns a success message
         return redirect('/classes')
 
@@ -451,7 +452,7 @@ def update_class():
         query = "UPDATE Classes SET class_name = %s, instructor = %s, time = %s, length = %s, class_total = %s, class_max = %s WHERE class_id = %s ;"
         data = (class_name, instructor, time, length, class_total, class_max, class_id)
         execute_query(db_connection, query, data)
-        flash('class update was successful', 'successful')
+        flash('class update was successful', 'success')
         return redirect('/classes')
 
 
@@ -462,7 +463,7 @@ def delete_class():
     query = "DELETE from Classes WHERE class_id = %s ;"
     data = (class_id,)
     execute_query(db_connection, query, data)
-    flash('class was successfully deleted', 'successful')
+    flash('class was successfully deleted', 'success')
     return redirect('/classes')
 # ---------------End Classes--------------------------------------------------------
 
@@ -526,7 +527,7 @@ def add_member():
     # connect to database
     db_connection = db.connect_to_database()
     execute_query(db_connection, query, data)
-    flash('member add was successful', 'successful')
+    flash('member add was successful', 'success')
     return redirect('/members')
     # return render_template('success.html', action ='Add member', entity='Members', active='members', return_page='members')
 
@@ -558,7 +559,7 @@ def update_member():
         query = "UPDATE Members SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, status = %s WHERE member_id = %s;"
         data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status, member_id)
         execute_query(db_connection, query, data)
-        flash('member update was successful', 'successful')
+        flash('member update was successful', 'success')
         return redirect('/members')
 
 
@@ -569,7 +570,7 @@ def delete_member():
     query = "DELETE from Members WHERE member_id = %s ;"
     data = (member_id,)
     execute_query(db_connection, query, data)
-    flash('member delete was successful', 'successful')
+    flash('member delete was successful', 'success')
     return redirect('/members')
 
 # ----------------End Members-------------------------------------------------------
@@ -614,7 +615,7 @@ def add_emp_certs():
         query = "INSERT INTO Emp_Certs (emp_id, cert_id) VALUES (%s,%s);"
         data = (employee, cert)
         execute_query(db_connection, query, data)
-        flash('employee certification add was successful', 'successful')
+        flash('employee certification add was successful', 'success')
         return redirect('/emp_certs')
         # return render_template('success.html', action='Certification added to an employee', entity='Emp_Certs', active='other', return_page='emp_certs')
 
@@ -644,7 +645,7 @@ def update_emp_certs():
         query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %s;"
         data = (emp_id, cert_id, emp_id)
         execute_query(db_connection, query, data)
-        flash('employee certification update was successful', 'successful')
+        flash('employee certification update was successful', 'success')
         return redirect('emp_certs')
 
 
@@ -660,7 +661,7 @@ def delete_emp_certs():
     query = "DELETE from Emp_Certs WHERE emp_id = %s and cert_id = %s ;"
     data = (emp_id, cert_id)
     execute_query(db_connection, query, data)
-    flash('employee certification was successfully deleted', 'successful')
+    flash('employee certification was successfully deleted', 'success')
     return redirect('/emp_certs')
 
 # ------------------End Emp_Certs-----------------------------------------------------
@@ -703,7 +704,7 @@ def add_mem_classes():
         query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully added ", 'successful')
+        flash("member's class was successfully added ", 'success')
         return redirect('/mem_classes')
         # return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
 
@@ -736,7 +737,7 @@ def enroll_into_class():
         query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully added ", 'successful')
+        flash("member's class was successfully added ", 'success')
         return redirect('/mem_classes')
 
 
@@ -761,7 +762,7 @@ def update_mem_class():
         query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %s and class_id = %s;"
         data = (member_id, class_id, member_id, curr_class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully updated ", 'successful')
+        flash("member's class was successfully updated ", 'success')
         return redirect('mem_classes')
 
 
@@ -773,7 +774,7 @@ def delete_mem_class():
     query = "DELETE from Mem_Classes WHERE member_id = %s and class_id = %s ;"
     data = (member_id, class_id)
     execute_query(db_connection, query, data)
-    flash("member's class was successfully deleted", 'successful')
+    flash("member's class was successfully deleted", 'success')
     return redirect('/mem_classes')
 
 # -----------------End Mem_Classes------------------------------------------------------
@@ -812,7 +813,7 @@ def add_emp_jobs():
         query = "INSERT INTO Emp_Jobs (emp_id, job_id) VALUES (%s,%s);"
         data = (employee, job)
         execute_query(db_connection, query, data)
-        flash('employee was successfully assigned to a job', 'successful')
+        flash('employee was successfully assigned to a job', 'success')
         return redirect('/emp_jobs')
         # return render_template('success.html', action='Assignment was', entity='Emp_Jobs', active='other', return_page='emp_jobs')
 
@@ -838,7 +839,7 @@ def update_emp_job():
         query = "UPDATE Emp_Jobs SET emp_id = %s, job_id = %s WHERE emp_id = %s;"
         data = (emp_id, job_id, emp_id)
         execute_query(db_connection, query, data)
-        flash("employee's job was successfully updated", 'successful')
+        flash("employee's job was successfully updated", 'success')
         return redirect('emp_jobs')
 
 
@@ -850,7 +851,7 @@ def delete_emp_job():
     query = "DELETE from Emp_Jobs WHERE emp_id = %s and job_id = %s ;"
     data = (emp_id, job_id)
     execute_query(db_connection, query, data)
-    flash("employee's job was successfully deleted", 'successful')
+    flash("employee's job was successfully deleted", 'success')
     return redirect('/emp_jobs')
 
 
