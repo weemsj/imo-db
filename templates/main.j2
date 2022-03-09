@@ -31,10 +31,10 @@
         {% endblock %}
     </div>
     <div id="content">
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% if messages %}
-            {% for message in messages %}
-                <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+            {% for category, message in messages %}
+                <div id="alert" class="{{ category }}" role="alert">
                     <span class="message" >{{ message }}</span>
                     <button type="button" class="close" onclick="this.parentElement.style.display='none';" data-dismiss="alert" aria-label="Close">
                         <span class="close" aria-hidden="true">&times;</span>

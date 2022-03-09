@@ -44,7 +44,6 @@ h4 {
 }
 
 #alert {
-    background: darkseagreen;
     background-blend-mode: lighten;
     -webkit-animation-timing-function: ease-in-out;
     opacity: 0.5;
@@ -53,6 +52,18 @@ h4 {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 
+}
+
+div.error {
+    background-color: lightcoral;
+}
+
+div.warning {
+    background-color: palegoldenrod;
+}
+
+div.success {
+    background-color: darkseagreen;
 }
 
 span.message {
