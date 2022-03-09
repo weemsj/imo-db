@@ -43,10 +43,18 @@ h4 {
 
 }
 
-/*#alert {
+#alert {
     background: darkseagreen;
     background-blend-mode: lighten;
-}*/
+    -webkit-animation-timing-function: ease-in-out;
+    opacity: 1;
+    color: white;
+}
+
+
+.close:hover {
+    color: black;
+}
 
 
 #intro {
