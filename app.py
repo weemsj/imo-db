@@ -53,7 +53,7 @@ def add_department():
         data = (dept_name, dept_total)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
-        flash('department add was successful')
+        flash('department add was successful', 'info')
         # below we display a success page (instead we need to redirect to 'departments' page and add flash message here.
         # return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='/departments')  retuns a success message
         return redirect('/departments')
