@@ -46,23 +46,28 @@ function memSearch() {
   }
 }
 
-function isActive() {
+function isActive(whatTable) {
   // Get the checkbox
   var checkBox = document.getElementById("Active");
 
   // If the checkbox is checked, display the output text
   if (checkBox.checked == true) {
-    onlyActive();
+    onlyActive(whatTable);
   } else {
-    showAll();
+    showAll(whatTable);
   }
 }
 
-function onlyActive() {
+function onlyActive(whatTable) {
   // Declare variables
   var filter, table, tr, td, i, txtValue;
   filter = 'ACTIVE';
-  table = document.getElementById("mem_table");
+  if (whatTable === 'members') {
+    table = document.getElementById("mem_table");
+  } else {
+    table = document.getElementById("emp_table");
+  }
+
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
@@ -79,10 +84,15 @@ function onlyActive() {
   }
 }
 
-function showAll() {
+function showAll(whatTable) {
   // Declare variables
   var table, tr, td, i, txtValue;
-  table = document.getElementById("mem_table");
+  if (whatTable === 'members') {
+    table = document.getElementById("mem_table");
+  } else {
+    table = document.getElementById("emp_table")
+  }
+
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query
