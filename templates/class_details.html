@@ -13,21 +13,24 @@
         <thead>
             {% for key in entity[0].keys() %}
 
-            <th id="thead">{{ key }}</th>
+                <th id="thead">{{ key }}</th>
 
             {% endfor %}
         </thead>
-        <tbody>
+            <tbody>
             {% for data in entity %}
-            <tr>
-                {% for key in data.keys() %}
-                <td>{{data[key]}}</td>
-                {% endfor %}
-            </tr>
+                <tr>
+                    {% for key in data.keys() %}
+                        <td>{{ data[key] }}</td>
+                    {% endfor %}
+                    <td><input type="button" value="remove"
+                               onclick="window.location ='/delete_mem_class?class_id={{ class_id }}&member_id={{ data.member_id }}'">
+                    </td>
+                </tr>
             {% endfor %}
-        </tbody>
+            </tbody>
         </table>
-	</div>
+    </div>
     {% else %}
         <h2> No Members are enrolled in this class </h2>
     {% endif %}
