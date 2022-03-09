@@ -59,10 +59,6 @@ span.message {
     color: white;
 }
 
-button.close:hover {
-    color: black;
-}
-
 button.close {
     margin-left: 15px;
     color: white;
@@ -72,13 +68,19 @@ button.close {
     line-height: 20px;
     cursor: pointer;
     transition: 0.3s;
-    height: 10px;
-    width: 10px;
     visibility: hidden;
 }
 
+
 span.close {
     color: white;
+    visibility: visible;
+    font-size: 15px;
+}
+
+
+span.close:hover {
+    color: black;
 }
 
 
