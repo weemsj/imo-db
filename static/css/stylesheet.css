@@ -47,13 +47,26 @@ h4 {
     background: darkseagreen;
     background-blend-mode: lighten;
     -webkit-animation-timing-function: ease-in-out;
-    opacity: 1;
+    opacity: 0.8;
+}
+
+span.message {
     color: white;
 }
 
-
-.close:hover {
+button.close:hover {
     color: black;
+}
+
+button.close {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 
