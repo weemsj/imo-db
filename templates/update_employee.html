@@ -36,24 +36,25 @@
         <br>
         Zip: <input type="text" name="zip" value="{{ employee.zip }}" minlength="2" maxlength="2" required><br>
         <br>
-        Telephone: <input type="tel" name="tel" value="{{ employee.tel }}" minlength="12" maxlength="12" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
+        Telephone: <input type="tel" name="tel" value="{{ employee.tel }}" minlength="12" maxlength="12"
+                          placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>
         <small>Format: 123-456-7890</small><br><br>
         <br>
         Email: <input type="email" name="email" value="{{ employee.email }}" required><br>
         <br>
         Start date: <input type="Date" name="start_date" value="{{ employee.start_date }}" readonly><br>
         <br>
-        End date: <input type="Date" name="end_date"><br>
+        End date: <input type="Date" name="end_date" value="{{ employee.end_date }}"><br>
         <br>
         Department: <select name="dept" required>
-            {% for d in dept %}
-                {{ d.dept_id }}
-                {{ employee.dept_number }}
-                {% if d.dept_id == employee.dept_number %}
-                    <option selected value="{{ d.dept_id }}">{{ d.dept_name }}</option>
-                {% else %}
-                    <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
-                {% endif %}
+        {% for d in dept %}
+            {{ d.dept_id }}
+            {{ employee.dept_number }}
+            {% if d.dept_id == employee.dept_number %}
+                <option selected value="{{ d.dept_id }}">{{ d.dept_name }}</option>
+            {% else %}
+                <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
+            {% endif %}
             {% endfor %}
         <option value="">None</option>
     </select><br>
