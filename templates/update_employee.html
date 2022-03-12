@@ -55,7 +55,8 @@
                     <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
                 {% endif %}
             {% endfor %}
-        </select><br>
+        <option value="">None</option>
+    </select><br>
         <input type="submit" value="Submit">
     </form>
     <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
