@@ -215,7 +215,7 @@ def update_employee():
             end_date = None
         else:
             status = 'NOT ACTIVE'
-        if not request.form['dept']:
+        if status == 'NOT ACTIVE':
             dept_number = None
         else:
             dept_number = request.form['dept']
