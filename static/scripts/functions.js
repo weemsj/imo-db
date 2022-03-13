@@ -102,12 +102,10 @@ function showAll(whatTable) {
 }
 
 function disable() {
-  var departments = document.getElementById("departments");
-  departments.disabled = true;
+  document.getElementById("departments").disabled = true;
 }
 
 function reset() {
   document.getElementById("end").defaultValue;
-  var departments = document.getElementById("departments");
-  departments.disabled = false;
+  document.getElementById("departments").disabled = false;
 }
