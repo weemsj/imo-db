@@ -114,11 +114,6 @@ function disable() {
 }
 
 function clear() {
-  var date_input = document.getElementById("end");
-  date_input.value = "";
-  if (date_input.type === "date") {
-    date_input.type = "text";
-    date_input.type = "date";
-  }
-  disable()
+  document.getElementById("end").valueAsDate = null;
+  disable();
 }
