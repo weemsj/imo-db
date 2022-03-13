@@ -112,3 +112,10 @@ function disable() {
   }
 
 }
+
+function clear() {
+  var date
+  date = document.getElementById("end")
+  date.value = "None"
+  disable()
+}
