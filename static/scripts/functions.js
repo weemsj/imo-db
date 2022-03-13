@@ -113,7 +113,7 @@ function disable() {
 
 }
 
-function clear() {
-  document.getElementById("end").valueAsDate = null;
+function reset() {
+  document.getElementById("end").defaultValue;
   disable();
 }
