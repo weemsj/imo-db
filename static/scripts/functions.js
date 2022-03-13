@@ -102,7 +102,7 @@ function showAll(whatTable) {
 }
 
 function disable() {
-  var date, departments
+  var date, departments;
   date = document.getElementById("end");
   departments = document.getElementById("departments");
   if (date === "None") {
@@ -114,8 +114,11 @@ function disable() {
 }
 
 function clear() {
-  var date
-  date = document.getElementById("end")
-  date.value = "None"
+  var date_input = document.getElementById("end");
+  date_input.value = "";
+  if (date_input.type === "date") {
+    date_input.type = "text";
+    date_input.type = "date";
+  }
   disable()
 }
