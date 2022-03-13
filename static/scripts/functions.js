@@ -116,5 +116,5 @@ function disable() {
 function reset() {
   document.getElementById("end").defaultValue;
   var departments = document.getElementById("departments");
-  departments.disavled = false;
+  departments.disabled = false;
 }
