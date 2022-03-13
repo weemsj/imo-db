@@ -105,7 +105,7 @@ function disable() {
   var date, departments;
   date = document.getElementById("end");
   departments = document.getElementById("departments");
-  if (date === "") {
+  if (date.value === "None") {
     departments.disabled = false;
   } else {
     departments.disabled = true;
@@ -115,5 +115,6 @@ function disable() {
 
 function reset() {
   document.getElementById("end").defaultValue;
-  disable();
+  var departments = document.getElementById("departments");
+  departments.disavled = false;
 }
