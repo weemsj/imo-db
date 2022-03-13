@@ -44,9 +44,7 @@
         <br>
         Start date: <input type="Date" name="start_date" value="{{ employee.start_date }}" readonly><br>
         <br>
-        End date: <input type="Date" id="end" name="end_date" value="{{ employee.end_date }}" onchange="disable()">
-        <button type="button" id="reset_date" onclick="reset()">clear date</button>
-        <br>
+        End date: <input type="Date" id="end" name="end_date" value="{{ employee.end_date }}" onchange="disable()"><br>
         <br>
         Department: <select name="dept" id="departments" required>
         {% for d in dept %}

@@ -102,8 +102,7 @@ function showAll(whatTable) {
 }
 
 function disable() {
-  var default_val, date_input;
-  default_val = document.getElementById("end").defaultValue;
+  var date_input;
   date_input = document.getElementById("end");
   if (date_input.valueAsDate === null || date_input.value === "None") {
     document.getElementById("departments").disabled = false;
@@ -113,7 +112,3 @@ function disable() {
 
 }
 
-function reset() {
-  document.getElementById("end").valueAsDate = null;
-  document.getElementById("departments").disabled = false;
-}
