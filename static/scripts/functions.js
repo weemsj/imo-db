@@ -105,7 +105,7 @@ function disable() {
   var default_val, date_input;
   default_val = document.getElementById("end").defaultValue;
   date_input = document.getElementById("end");
-  if (date_input.value === default_val) {
+  if (date_input.valueAsDate === null) {
     document.getElementById("departments").disabled = false;
   } else {
     document.getElementById("departments").disabled = true;
