@@ -105,7 +105,7 @@ function disable() {
   var date, departments
   date = document.getElementById("end");
   departments = document.getElementById("departments");
-  if (date === "") {
+  if (date === "None") {
     departments.disabled = false;
   } else {
     departments.disabled = true;
