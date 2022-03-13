@@ -44,9 +44,9 @@
         <br>
         Start date: <input type="Date" name="start_date" value="{{ employee.start_date }}" readonly><br>
         <br>
-        End date: <input type="Date" name="end_date" value="{{ employee.end_date }}"><br>
+        End date: <input type="Date" id="end" name="end_date" value="{{ employee.end_date }}" oninput="disable()"><br>
         <br>
-        Department: <select name="dept" required>
+        Department: <select name="dept" id="departments" required>
         {% for d in dept %}
             {{ d.dept_id }}
             {{ employee.dept_number }}
@@ -55,10 +55,14 @@
             {% else %}
                 <option value="{{ d.dept_id }}">{{ d.dept_name }}</option>
             {% endif %}
-            {% endfor %}
+        {% endfor %}
         <option value="">None</option>
     </select><br>
         <input type="submit" value="Submit">
     </form>
     <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
+{% endblock %}
+{% block note %}
+    * To make employee department nullable, an employee's status must be "NOT ACTIVE". Enter an end-date to change an
+    employee status to "NOT ACTIVE".
 {% endblock %}

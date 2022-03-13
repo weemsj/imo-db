@@ -90,7 +90,7 @@ function showAll(whatTable) {
   if (whatTable === 'members') {
     table = document.getElementById("mem_table");
   } else {
-    table = document.getElementById("emp_table")
+    table = document.getElementById("emp_table");
   }
 
   tr = table.getElementsByTagName("tr");
@@ -99,4 +99,16 @@ function showAll(whatTable) {
   for (i = 0; i < tr.length; i++) {
     tr[i].style.display = "";
   }
+}
+
+function disable() {
+  var date, departments
+  date = document.getElementById("end");
+  departments = document.getElementById("departments");
+  if (date === "") {
+    departments.disabled = false;
+  } else {
+    departments.disabled = true;
+  }
+
 }

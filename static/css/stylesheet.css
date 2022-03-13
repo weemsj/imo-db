@@ -276,3 +276,9 @@ button {
     -moz-transition: ease .3s;
     -o-transition: ease .3s;
 }
+
+.note {
+    text-align: match-parent;
+    font-size: small;
+    font-weight: bold;
+}
