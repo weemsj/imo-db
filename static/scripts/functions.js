@@ -102,10 +102,17 @@ function showAll(whatTable) {
 }
 
 function disable() {
-  document.getElementById("departments").disabled = true;
+  var default_val, date_input;
+  default_val = document.getElementById("end").defaultValue;
+  date_input = document.getElementById("end");
+  if (date_input.value === default_val) {
+    document.getElementById("departments").disabled = false;
+  } else {
+    document.getElementById("departments").disabled = true;
+  }
+
 }
 
 function reset() {
   document.getElementById("end").defaultValue;
-  document.getElementById("departments").disabled = false;
 }
