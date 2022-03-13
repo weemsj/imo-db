@@ -114,6 +114,5 @@ function disable() {
 }
 
 function reset() {
-  document.getElementById("end").defaultValue;
-  disable();
+  document.getElementById("end").valueAsDate = null;
 }
