@@ -115,4 +115,5 @@ function disable() {
 
 function reset() {
   document.getElementById("end").valueAsDate = null;
+  disable()
 }
