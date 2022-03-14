@@ -2,6 +2,7 @@
 {% block title %}Jobs{% endblock %} 
 {% set active_page = "jobs" %}
 {% block content %}
+{% set table_headers = ( 'Job ID','Department Name', 'Job Description') %}
     <h1>Jobs</h1>
     <h3>This page shows all the Jobs at IMO Fitness. Use the below form to search, add, modify, or delete jobs </h3>
 
@@ -11,19 +12,19 @@
     <div id="table">
         <table class="nostretch" class="jobs_table" border="1">
             <thead>
-            {% for key in entity[0].keys() %}
-    
-            <th id="thead">{{ key }}</th>
+            {% for header in table_headers %}
+
+                <th id="thead">{{ header }}</th>
 
             {% endfor %}
-        </thead>
-           <tbody>
-           {% for data in entity %}
-               <tr>
-                   {% for key in data.keys() %}
-                       <td>{{ data[key] }}</td>
-                   {% endfor %}
-                   <td><input type="button" value="On the Job"
+            </thead>
+            <tbody>
+            {% for data in entity %}
+                <tr>
+                    {% for key in data.keys() %}
+                        <td>{{ data[key] }}</td>
+                    {% endfor %}
+                    <td><input type="button" value="On the Job"
                               onclick="window.location.href='{{ url_for('job_emps', job_id=data.job_id) }}';"></td>
                    <td><input type="button" value="Assign Job"
                               onclick="window.location.href='{{ url_for('add_emp_jobs', job_id=data.job_id, dept_name=data.dept_name) }}';">

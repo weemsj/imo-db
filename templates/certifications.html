@@ -2,29 +2,30 @@
 {% block title %}Certifications{% endblock %} 
 {% set active_page = "certifications" %}
 {% block content %}
-
+{% set table_headers = ('Certification ID', 'Certification Name') %}
     <h1> Certifications </h1>
-    <h3> This page shows all the certifications at IMO Fitness. Use the below form to add, modify, or delete certifications </h3><br>
+    <h3> This page shows all the certifications at IMO Fitness. Use the below form to add, modify, or delete
+        certifications </h3><br>
 
     <div id=insert-right>
         <button type="button"><a href="add_certification">Add Certification</a></button>
     </div>
     <div style="overflow-x:auto" class="table">
         <table class="nostretch" id="certs_table" border="1">
-        <thead>
-            {% for key in entity[0].keys() %}
-        
-            <th id="thead">{{ key }}</th>
-    
+            <thead>
+            {% for header in table_headers %}
+
+                <th id="thead">{{ header }}</th>
+
             {% endfor %}
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for data in entity %}
-            <tr>
-                {% for key in data.keys() %}
-                <td>{{data[key]}}</td>
-                
-                    {% if loop.last %}
+                <tr>
+                    {% for key in data.keys() %}
+                        <td>{{ data[key] }}</td>
+
+                        {% if loop.last %}
                     <td><input type="button" value="Employees Certified" onclick="window.location.href ='{{ url_for('emp_certs', cert_id=data.cert_id) }}';"></td>
                     <td><input type='button' value="edit" onclick="window.location.href ='{{ url_for('update_certification', cert_id=data.cert_id) }}';"></td>
 				    <td><input type="button" value="delete"

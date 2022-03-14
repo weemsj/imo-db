@@ -1,17 +1,18 @@
 {% extends "main.j2" %}
-{% block title %}Jobs{% endblock %} 
+{% block title %}Jobs{% endblock %}
 {% set active_page = "jobs" %}
 {% block content %}
-    <h1>Job Employees</h1> 
+    {% set table_headers = ( 'Employee ID', 'Department','First Name', 'Last Name', 'Description') %}
+    <h1>Job Employees</h1>
     <h3>This page shows all employees assigned to Job: {{ job_id }} </h3>
     <div style="overflow-x:auto" class="table">
         <table class="nostretch" id="job_emps_table" border="1">
             {% if entity != () %}
-            <thead>
-            {% for key in entity[0].keys() %}
-                <th id="thead">{{ key }}</th>
-            {% endfor %}
-            </thead>
+                <thead>
+                {% for header in table_headers %}
+                    <th id="thead">{{ header }}</th>
+                {% endfor %}
+                </thead>
                 <tbody>
                 {% for data in entity %}
                     <tr>

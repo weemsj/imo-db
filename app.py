@@ -927,8 +927,6 @@ def enrolled_classes():
     results = cursor.fetchall()
     cursor = db.execute_query(db_connection=db_connection, query=member)
     member = cursor.fetchall()
-    print(results)
-    print(member)
     return render_template('enrolled_classes.html', entity=results, member=member, return_page='/members', page='Members')
 
 

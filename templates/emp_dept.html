@@ -2,24 +2,25 @@
 {% block title %}Employees{% endblock %} 
 {% set active_page = "others" %}
 {% block content %}
+    {% set table_headers = ('First Name', 'Last Name') %}
     <h1> Department Details </h1>
     <h3> Here is a list of all of the {{ dept_name }} department employees </h3>
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "dept_table" border="1">
-        <thead>
-            {% for key in entity[0].keys() %}
-    
-            <th id="thead">{{ key }}</th>
-    
+        <table class="nostretch" id="dept_table" border="1">
+            <thead>
+            {% for header in table_headers %}
+
+                <th id="thead">{{ header }}</th>
+
             {% endfor %}
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for data in entity %}
-            <tr>
-                {% for value in data.keys() %}
-                <td>{{data[value]}}</td>
-                {% endfor %} 
-            </tr>
+                <tr>
+                    {% for value in data.keys() %}
+                        <td>{{ data[value] }}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </tbody>
         </table>

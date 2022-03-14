@@ -2,6 +2,7 @@
 {% block title %}Employees{% endblock %} 
 {% set active_page = "others" %}
 {% block content %}
+{% set table_headers = ( 'Department', 'Employee ID', 'First Name', 'Last Name', 'Job Description', 'Job ID') %}
     <h1> Employee Jobs </h1>
     <h3> This page shows all employees assigned to jobs </h3>
     <div style="overflow-x:auto" class="table">

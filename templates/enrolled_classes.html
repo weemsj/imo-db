@@ -2,27 +2,28 @@
 {% block title %}Classes{% endblock %} 
 {% set active_page = "classes" %}
 {% block content %}
+{% set table_headers = ('Class Name', 'Time', 'Length') %}
     <h1> Enrolled Classes </h1>
     <h3> This page shows all classes {% for value in member[0].values() %} {{ value }} {% endfor %} is enrolled in </h3>
     <div id=insert-right>
         <button type="button"><a href="add_mem_classes">Add a class</a></button>
     </div>
     <div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "enrolled_table" border="1">
-        <thead>
-            {% for key in entity[0].keys() %}
-    
-            <th id="thead">{{ key }}</th>
-    
+        <table class="nostretch" id="enrolled_table" border="1">
+            <thead>
+            {% for header in table_headers %}
+
+                <th id="thead">{{ header }}</th>
+
             {% endfor %}
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {% for data in entity %}
-            <tr>
-                {% for value in data.keys() %}
-                <td>{{data[value]}}</td>
-                {% endfor %} 
-            </tr>
+                <tr>
+                    {% for value in data.keys() %}
+                        <td>{{ data[value] }}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </tbody>
         </table>

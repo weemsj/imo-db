@@ -2,7 +2,7 @@
 {% block title %}Members{% endblock %}
 {% set active_page = 'members' %}
 {% block content %}
-
+{% set table_headers = 'Member ID', 'First Name', 'Last Name', 'Status' %}
     <h1> Members </h1>
     <h3> This page shows all {{ view }} at IMO Fitness. Use the below form to search, add, modify, or delete
         members </h3><br>
@@ -22,9 +22,9 @@
     <div style="overflow-x:auto" class="table">
         <table class="nostretch" id="mem_table" border="1">
             <thead>
-            {% for key in entity[0].keys() %}
+            {% for header in table_headers %}
 
-                <th id="thead">{{ key }}</th>
+                <th id="thead">{{ header }}</th>
 
             {% endfor %}
             </thead>

@@ -2,6 +2,7 @@
 {% block title %}Job{% endblock %} 
 {% set active_page = "jobs" %}
 {% block content %}
+{% set table_headers = ( 'Employee ID','First Name', 'Last Name', 'Certification') %}
 <h3>Add new job: </h3>
 <form id ="addjob" action="/add_job" method="POST">
     Department: <select name="dept" required>

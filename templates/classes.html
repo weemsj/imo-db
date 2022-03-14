@@ -2,22 +2,22 @@
 {% block title %}Classes{% endblock %} 
 {% set active_page = "classes" %}
 {% block content %}
-
+{% set table_headers = 'Class ID', 'Class Name', 'Instructor', 'First Name', 'Last Name' ,'Time', 'Length', 'Class Total', 'Class Max' %}
     <h1> Classes </h1>
     <h3> This page shows all the classes at IMO Fitness. Use the below form to add, modify, or delete classes </h3><br>
 
     <div id=insert-right>
         <button type="button"><a href="add_class">Add class</a></button>
     </div>
-	<div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "classes_table" border="1">
-        <thead>
-            {% for key in entity[0].keys() %}
+    <div style="overflow-x:auto" class="table">
+        <table class="nostretch" id="classes_table" border="1">
+            <thead>
+            {% for header in table_headers %}
 
-                <th id="thead">{{ key }}</th>
+                <th id="thead">{{ headers }}</th>
 
             {% endfor %}
-        </thead>
+            </thead>
             <tbody>
             {% for data in entity %}
                 <tr>
