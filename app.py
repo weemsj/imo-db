@@ -843,11 +843,15 @@ def update_emp_job():
         query = "SELECT emp_id, f_name, l_name FROM Employees WHERE emp_id = %s ;" % (emp_id)
         cursor = db.execute_query(db_connection, query)
         employee = cursor.fetchone()
-        query = "SELECT job_id, job_description FROM Jobs;"
+        query = "SELECT dept_number FROM Employees WHERE emp_id = %s;" % (emp_id)
+        cursor = db.execute_query(db_connection, query)
+        emp_dept = cursor.fetchone()
+        emp_dept = emp_dept['dept_number']
+        query = "SELECT job_id, job_description FROM Jobs WHERE dept_number = %s;" % (emp_dept)
         cursor = db.execute_query(db_connection, query)
         jobs = cursor.fetchall()
-        print(employee)
-        return render_template('update_emp_job.html', employee=employee, jobs=jobs, curr_job_id=job_id, return_page='emp_jobs', entity="Employee's Jobs")
+        return render_template('update_emp_job.html', employee=employee, jobs=jobs, curr_job_id=job_id,
+                               return_page='emp_jobs', entity="Employee's Jobs")
 
     else:
         emp_id = request.form['emp_id']
