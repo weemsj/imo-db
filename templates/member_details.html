@@ -2,7 +2,7 @@
 {% block title %}Members{% endblock %} 
 {% set active_page = "others" %}
 {% block content %}
-    {% set table_headers = ('Member ID', 'First Name', 'Last Name', 'Gender', 'Address 1', 'Address 2', 'City', 'State', 'Zip Code', 'Phone Number', 'Email', 'Status' %}
+    {% set table_headers = ('Member ID', 'First Name', 'Last Name', 'Gender', 'Address 1', 'Address 2', 'City', 'State', 'Zip Code', 'Phone Number', 'Email', 'Status') %}
     <h1> Member Details </h1>
     <h3> This page shows all of member: {{ entity[0]['f_name'] + " " + entity[0]['l_name'] }}'s details </h3>
     <div style="overflow-x:auto" class="table">
