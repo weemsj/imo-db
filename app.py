@@ -20,25 +20,24 @@ cur = db_connection.cursor()
 # Routes
 @app.route('/')
 def root():
-    ''' renders home page '''
+    """ renders home page """
     return render_template('index.html')
 
 
 # ------- Departments add, update, delete and edit ------------------------
 @app.route('/departments')
 def departments():
-    '''displays all departments in the database'''
+    """displays all departments in the database"""
     db_connection = db.connect_to_database()
     query = "SELECT * FROM Departments;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    print(results)  # print statement can be removed
     return render_template("departments.html", entity=results)
 
 
 @app.route('/add_department', methods=['POST','GET'])
 def add_department():
-    ''' adds a department to the database '''
+    """ adds a department to the database """
     if request.method =='GET':
         return render_template("add_department.html")
     
@@ -53,9 +52,7 @@ def add_department():
         data = (dept_name, dept_total)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
-        flash('department add was successful', 'success')
-        # below we display a success page (instead we need to redirect to 'departments' page and add flash message here.
-        # return render_template('success.html', action= 'Add department', entity='Departments', active='departments', return_page='/departments')  retuns a success message
+        flash('Department add was successful', 'success')
         return redirect('/departments')
 
 
@@ -66,7 +63,7 @@ def update_department():
     dept_id = request.args.get('dept_id')
     if request.method == 'GET':
         dept_query = 'SELECT * FROM Departments WHERE dept_id = %s;' % (dept_id)
-        dept_result = execute_query(db_connection, dept_query).fetchone()  # when fetchone results are a dictionary
+        dept_result = execute_query(db_connection, dept_query).fetchone()
         return render_template("update_department.html", dept_id=dept_id, department=dept_result, entity='Departments', return_page='/departments')
 
     elif request.method == 'POST':
@@ -76,9 +73,8 @@ def update_department():
         query = "UPDATE Departments SET dept_name = %s WHERE dept_id = %s ;"
         data = (dept_name, dept_id)
         execute_query(db_connection, query, data)
-        # add flash message here if update was successful
-        flash('update department was successful', 'success')
-        return redirect('/departments')     # after update redirect to the page to show results
+        flash('Update department was successful', 'success')
+        return redirect('/departments')
 
 
 @app.route('/delete_department')
@@ -90,14 +86,14 @@ def delete_department():
     cursor = execute_query(db_connection, query)
     dept = cursor.fetchone()
     if dept['dept_total'] > 0:
-        flash("can't delete a department with employees in it, please reassign employees", "error")
+        flash("Can't delete a department with employees in it, please reassign employees", "error")
         return redirect('/departments')
 
     query = "DELETE from Departments WHERE dept_id = %s ;"
     data = (dept_id,)
     execute_query(db_connection, query, data)
     # add flash message here if delete was successful
-    flash('department delete was successful', 'success')
+    flash('Department delete was successful', 'success')
     return redirect('/departments')  # after delete redirect to page to show results
 
 
@@ -114,6 +110,7 @@ def employees():
     results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
     return render_template('employees.html', entity=results)
 
+
 @app.route('/employee_search', methods=['POST'])
 def employee_search():
     """ Displays employee id, first name, last name, status and department number for a provided last name, using SQL LIKE functionality """
@@ -122,8 +119,6 @@ def employee_search():
     last_name = last_name.title()
     query = "SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;"
     data = (last_name,)
-    # cursor = db_connection.cursor()
-    # cursor.execute("SELECT emp_id, f_name, l_name, status, dept_number FROM Employees WHERE l_name LIKE %s;", (last_name,))
     cursor = db.execute_query(db_connection, query, data)
     results = cursor.fetchall()  # returns a tuple so need to access first value in the tuple first
     # Only display results if one is found:
@@ -165,7 +160,7 @@ def add_employee():
         tel = request.form['tel']
         email = request.form['email']
         start_date = request.form['start_date']
-        end_date = 'Null'  # default is null. Can't add a terminated employee to the database
+        end_date = None  # default is null. Can't add a terminated employee to the database
         status = 'ACTIVE'  # employee is only added to the database when active
         dept_number = request.form['dept']
         # create query from user feedback 
@@ -176,8 +171,7 @@ def add_employee():
         dept_number)
         execute_query(db_connection, query, data)
         # need to return to redirected 'employees' page and add flash message here
-        flash('employee added successfully', 'success')
-        # return render_template('success.html', action = 'Add employee', entity='Employees', active='employees', return_page='employees') # returns a success message
+        flash('Employee added successfully', 'success')
         return redirect('/employees')
 
 
@@ -225,7 +219,7 @@ def update_employee():
         dept_number, emp_id)
         execute_query(db_connection, query, data)
         # add flash message here
-        flash('employee update successful', 'success')
+        flash('Employee update successful', 'success')
         return redirect('/employees')
 
 
@@ -238,7 +232,7 @@ def delete_employee():
     data = (emp_id,)
     execute_query(db_connection, query, data)
     # flash message here
-    flash('employee delete successful', 'success')
+    flash('Employee delete successful', 'success')
     return redirect('/employees')
 
 # -------------End Employees----------------------------------------------------------
@@ -248,6 +242,7 @@ def delete_employee():
 
 @app.route('/certifications')
 def certifications():
+    """ shows all certifications at IMO """
     db_connection = db.connect_to_database()
     query = "SELECT * FROM Certifications;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
@@ -257,6 +252,7 @@ def certifications():
 
 @app.route('/add_certification', methods=['POST', 'GET'])
 def add_certification():
+    """ add new certification to database """
     if request.method == 'GET':
         return render_template("add_certification.html")
     else:
@@ -269,13 +265,13 @@ def add_certification():
         data = (cert_name)
         db_connection = db.connect_to_database()
         execute_query(db_connection, query, data)
-        flash('certification add was successful', 'success')
-        # return render_template('success.html', action = 'Add certification', entity='Certifications', active='certifications', return_page='certifications') # retuns a success message
+        flash('Certification add was successful', 'success')
         return redirect('/certifications')
 
 
 @app.route('/update_certification', methods=['POST', 'GET'])
 def update_certification():
+    """ updates an existing certification, needs a certification id """
     db_connection = db.connect_to_database()
     cert_id = request.args.get('cert_id')
     if request.method == 'GET':
@@ -291,18 +287,19 @@ def update_certification():
         query = "UPDATE Certifications SET cert_name = %s WHERE cert_id = %s ;"
         data = (cert_name, cert_id)
         execute_query(db_connection, query, data)
-        flash('update certification was successful', 'success')
+        flash('Update certification was successful', 'success')
         return redirect('/certifications')
 
 
 @app.route('/delete_certification')
 def delete_certification():
+    """ deletes a certification from the database, needs a certification id"""
     cert_id = request.args.get('cert_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Certifications WHERE cert_id = %s ;"
     data = (cert_id,)
     execute_query(db_connection, query, data)
-    flash('certification was successfully deleted', 'success')
+    flash('Certification was successfully deleted', 'success')
     return redirect('/certifications')
 
 # -----------End Certifications------------------------------------------------------------
@@ -312,6 +309,7 @@ def delete_certification():
 
 @app.route('/jobs')
 def jobs():
+    """ shows all jobs and descriptions in database """
     db_connection = db.connect_to_database()
     query = "SELECT j.job_id, d.dept_name, j.job_description FROM Jobs j LEFT JOIN Departments d ON j.dept_number = d.dept_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
@@ -344,14 +342,14 @@ def add_job():
         # put data in a tuple and execute query
         data = (dept_number, job_description)
         execute_query(db_connection, query, data)
-        flash('job add was successful', 'success')
-        # return render_template('success.html', action = 'Add job', entity='Jobs', active='jobs', return_page='jobs')
+        flash('Job add was successful', 'success')
         # returns a success message
         return redirect('/jobs')
 
 
 @app.route('/update_job', methods=['POST', 'GET'])
 def update_job():
+    """ updates a job in the database, needs job_id """
     db_connection = db.connect_to_database()
     job_id = request.args.get('job_id')
     print(job_id)
@@ -370,18 +368,19 @@ def update_job():
         query = "UPDATE Jobs SET job_description = %s, dept_number = %s WHERE job_id = %s ;"
         data = (job_description, dept_id, job_id)
         execute_query(db_connection, query, data)
-        flash('job updated successfully', 'successful')
+        flash('Job updated successfully', 'successful')
         return redirect('/jobs')
 
 
 @app.route('/delete_job')
 def delete_job():
+    """ deletes a job from the database, needs job_id """
     job_id = request.args.get('job_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Jobs WHERE job_id = %s ;"
     data = (job_id,)
     execute_query(db_connection, query, data)
-    flash('job was deleted successfully', 'success')
+    flash('Job was deleted successfully', 'success')
     return redirect('/jobs')
 
 # ---------------End Jobs--------------------------------------------------------
@@ -408,7 +407,7 @@ def add_class():
     if request.method == 'GET':
         query = "SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = 1 or dept_number = 2;"
         results = db.execute_query(db_connection=db_connection, query=query).fetchall()
-        flash('class add was successful', 'success')
+        flash('Class add was successful', 'success')
         return render_template('add_class.html', instructor=results)
 
     # runs if it needs to update the database
@@ -426,13 +425,13 @@ def add_class():
         # put data in a tuple and execute query
         data = (class_name, instructor, time, length, class_total, class_max)
         execute_query(db_connection, query, data)
-        flash('class add was successful', 'success')
-        # return render_template('success.html', action = 'Add class', entity='Classes', active='classes', return_page='classes') # retuns a success message
+        flash('Class add was successful', 'success')
         return redirect('/classes')
 
 
 @app.route('/update_class', methods=['POST', 'GET'])
 def update_class():
+    """ updates a class in the database, needs class_id """
     db_connection = db.connect_to_database()
     class_id = request.args.get('class_id')
     print(class_id)
@@ -457,18 +456,19 @@ def update_class():
         query = "UPDATE Classes SET class_name = %s, instructor = %s, time = %s, length = %s, class_total = %s, class_max = %s WHERE class_id = %s ;"
         data = (class_name, instructor, time, length, class_total, class_max, class_id)
         execute_query(db_connection, query, data)
-        flash('class update was successful', 'success')
+        flash('Class update was successful', 'success')
         return redirect('/classes')
 
 
 @app.route('/delete_class')
 def delete_class():
+    """ deletes class from database, needs class_id """
     class_id = request.args.get('class_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Classes WHERE class_id = %s ;"
     data = (class_id,)
     execute_query(db_connection, query, data)
-    flash('class was successfully deleted', 'success')
+    flash('Class was successfully deleted', 'success')
     return redirect('/classes')
 # ---------------End Classes--------------------------------------------------------
 
@@ -477,7 +477,7 @@ def delete_class():
 
 @app.route('/members')
 def members():
-    ''' Displays all members in the database '''
+    """ Displays all members in the database """
     db_connection = db.connect_to_database()
     query = "SELECT member_id, f_name, l_name, status FROM Members;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
@@ -505,7 +505,7 @@ def members_search():
 
 @app.route("/add_member", methods=['POST', 'GET'])
 def add_member():
-    ''' adds a member to the database '''
+    """ adds a member to the database """
 
     if request.method == 'GET':
         return render_template('add_member.html')
@@ -532,13 +532,13 @@ def add_member():
     # connect to database
     db_connection = db.connect_to_database()
     execute_query(db_connection, query, data)
-    flash('member add was successful', 'success')
+    flash('Member add was successful', 'success')
     return redirect('/members')
-    # return render_template('success.html', action ='Add member', entity='Members', active='members', return_page='members')
 
 
 @app.route('/update_member', methods=['POST','GET'])
 def update_member():
+    """ updates member in database, takes member_id """
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
     if request.method == 'GET':
@@ -564,18 +564,19 @@ def update_member():
         query = "UPDATE Members SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, status = %s WHERE member_id = %s;"
         data = (f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, status, member_id)
         execute_query(db_connection, query, data)
-        flash('member update was successful', 'success')
+        flash('Member update was successful', 'success')
         return redirect('/members')
 
 
 @app.route('/delete_member')
 def delete_member():
+    """ delete member from database, takes member_id """
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Members WHERE member_id = %s ;"
     data = (member_id,)
     execute_query(db_connection, query, data)
-    flash('member delete was successful', 'success')
+    flash('Member delete was successful', 'success')
     return redirect('/members')
 
 # ----------------End Members-------------------------------------------------------
@@ -585,6 +586,7 @@ def delete_member():
 
 @app.route('/emp_certs')
 def emp_certs():
+    """ displays all employee certifications can take a cert_id """
     cert_id = request.args.get('cert_id')
     db_connection = db.connect_to_database()
     if cert_id is None:
@@ -597,13 +599,13 @@ def emp_certs():
         data = (cert_id,)
         cursor = db.execute_query(db_connection, query, data)
         results = cursor.fetchall()
-        page = results[0]['cert_name'] # value is {'f_name': 'Eberto', 'l_name': 'Cashman', 'cert_name': 'NASM-CPT'}
-        print(page)  # trying to find the index for cert_name in the dictionary 
+        page = results[0]['cert_name']
         return render_template('emp_certs.html', entity=results, page=page) 
 
 
 @app.route('/add_emp_certs', methods=['POST','GET'])
 def add_emp_certs():
+    """ adds employee certification relationship """
     db_connection = db.connect_to_database()
     if request.method == 'GET':
         query = "SELECT emp_id, f_name, l_name FROM Employees;"
@@ -620,13 +622,14 @@ def add_emp_certs():
         query = "INSERT INTO Emp_Certs (emp_id, cert_id) VALUES (%s,%s);"
         data = (employee, cert)
         execute_query(db_connection, query, data)
-        flash('employee certification add was successful', 'success')
+        flash('Employee certification add was successful', 'success')
         return redirect('/emp_certs')
         # return render_template('success.html', action='Certification added to an employee', entity='Emp_Certs', active='other', return_page='emp_certs')
 
 
 @app.route('/update_emp_certs', methods=['POST', 'GET'])
 def update_emp_certs():
+    """ updates an employee certification relationship , takes an emp_id and cert_name """
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')
     cert_name = request.args.get('cert_name')
@@ -650,12 +653,13 @@ def update_emp_certs():
         query = "UPDATE Emp_Certs SET emp_id = %s, cert_id = %s WHERE emp_id = %s;"
         data = (emp_id, cert_id, emp_id)
         execute_query(db_connection, query, data)
-        flash('employee certification update was successful', 'success')
+        flash('Employee certification update was successful', 'success')
         return redirect('emp_certs')
 
 
 @app.route('/delete_emp_certs')
 def delete_emp_certs():
+    """ deletes employee certification relationship, takes certification name and emp_id"""
     cert_name = request.args.get('cert_name')
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
@@ -666,7 +670,7 @@ def delete_emp_certs():
     query = "DELETE from Emp_Certs WHERE emp_id = %s and cert_id = %s ;"
     data = (emp_id, cert_id)
     execute_query(db_connection, query, data)
-    flash('employee certification was successfully deleted', 'success')
+    flash('Employee certification was successfully deleted', 'success')
     return redirect('/emp_certs')
 
 # ------------------End Emp_Certs-----------------------------------------------------
@@ -675,6 +679,7 @@ def delete_emp_certs():
 # ------- Mem_Classes add, update, delete and edit ------------------------
 @app.route('/mem_classes')
 def mem_classes():
+    """ shows members and class relationship """
     db_connection = db.connect_to_database()
     query = "SELECT c.class_id, c.class_name, m.member_id, m.f_name, m.l_name FROM Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_name is not NULL ORDER by m.member_id;"
     cursor = db.execute_query(db_connection=db_connection, query=query)
@@ -684,6 +689,7 @@ def mem_classes():
 
 @app.route('/add_mem_classes', methods=['POST','GET'])
 def add_mem_classes():
+    """ adds a member/class relationship to the database """
     db_connection = db.connect_to_database()
     if request.method == 'GET':
         query = "SELECT member_id, f_name, l_name FROM Members WHERE status = 'ACTIVE';"
@@ -709,13 +715,13 @@ def add_mem_classes():
         query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully added ", 'success')
+        flash("Member's class was successfully added ", 'success')
         return redirect('/mem_classes')
-        # return render_template('success.html', action='Member add to class', entity='Mem_Classes', active='other', return_page='mem_classes')
 
 
 @app.route('/enroll_into_class', methods=['POST', 'GET'])
 def enroll_into_class():
+    """ enrolls a member into a class, takes a class_id """
     db_connection = db.connect_to_database()
     class_id = request.args.get('class_id')
     if request.method == 'GET':
@@ -742,12 +748,13 @@ def enroll_into_class():
         query = "INSERT INTO Mem_Classes (member_id, class_id) VALUES (%s,%s);"
         data = (member, class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully added ", 'success')
+        flash("Member's class was successfully added ", 'success')
         return redirect('/mem_classes')
 
 
 @app.route('/update_mem_class', methods=['POST', 'GET'])
 def update_mem_class():
+    """ updates a member and class relationship, needs member_id and class_id """
     db_connection = db.connect_to_database()
     member_id = request.args.get('member_id')
     class_id = request.args.get('class_id')
@@ -767,19 +774,20 @@ def update_mem_class():
         query = "UPDATE Mem_Classes SET member_id = %s, class_id = %s WHERE member_id = %s and class_id = %s;"
         data = (member_id, class_id, member_id, curr_class_id)
         execute_query(db_connection, query, data)
-        flash("member's class was successfully updated ", 'success')
+        flash("Member's class was successfully updated ", 'success')
         return redirect('mem_classes')
 
 
 @app.route('/delete_mem_class')
 def delete_mem_class():
+    """ deletes member class relationship, expects class_id and member_id """
     class_id = request.args.get('class_id')
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Mem_Classes WHERE member_id = %s and class_id = %s ;"
     data = (member_id, class_id)
     execute_query(db_connection, query, data)
-    flash("member's class was successfully deleted", 'success')
+    flash("Member's class was successfully deleted", 'success')
     return redirect('/mem_classes')
 
 # -----------------End Mem_Classes------------------------------------------------------
@@ -788,6 +796,7 @@ def delete_mem_class():
 # ------- Emp_Jobs add, update, delete and edit ------------------------
 @app.route('/emp_jobs')
 def emp_jobs():
+    """ shows employee job relationship """
     db_connection = db.connect_to_database()
     query = 'SELECT d.dept_name, e.emp_id, e.f_name, e.l_name, j.job_description, j.job_id FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL;'
     cursor = db.execute_query(db_connection=db_connection, query=query)
@@ -797,6 +806,7 @@ def emp_jobs():
 
 @app.route('/add_emp_jobs', methods=['POST','GET'])
 def add_emp_jobs():
+    """ adds an employee job relationship """
     db_connection = db.connect_to_database()
 
     if request.method == 'GET':
@@ -825,6 +835,7 @@ def add_emp_jobs():
 
 @app.route('/update_emp_job', methods=['POST', 'GET'])
 def update_emp_job():
+    """ updates an employee job relationship, expects emp_id and job_id """
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')
     job_id = request.args.get('job_id')
@@ -850,13 +861,14 @@ def update_emp_job():
 
 @app.route('/delete_emp_job')
 def delete_emp_job():
+    """ deletes an employee job relationship expects a job_id and emp_id """
     job_id = request.args.get('job_id')
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
     query = "DELETE from Emp_Jobs WHERE emp_id = %s and job_id = %s ;"
     data = (emp_id, job_id)
     execute_query(db_connection, query, data)
-    flash("employee's job was successfully deleted", 'success')
+    flash("Employee's job was successfully deleted", 'success')
     return redirect('/emp_jobs')
 
 
@@ -865,6 +877,7 @@ def delete_emp_job():
 
 @app.route('/others')
 def others():
+    """ renders a page that links to the relational tables """
     return render_template('others.html')
 
 # --------------- Additional views------------------------------------------------------------
@@ -878,8 +891,7 @@ def job_emps():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     result = cursor.fetchall()
     if result is None:
-        print(result)  # add flash message here
-        flash("employee isn't assigned to any jobs", 'warning')
+        flash("Employee isn't assigned to any jobs", 'warning')
         return redirect('/jobs')
     else:
         return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')
@@ -887,17 +899,18 @@ def job_emps():
 
 @app.route('/emp_details')
 def emp_details():
+    """ shows an employee details expects an emp_id """
     emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
     query = 'SELECT * FROM Employees WHERE emp_id = %s;' % (emp_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    print(results)
     return render_template('emp_details.html', entity = results, emp_id=emp_id, page='All Employees', return_page='/employees')
 
 
 @app.route('/enrolled_classes')
 def enrolled_classes():
+    """ shows classes a member is enrolled in expects a member_id"""
     member_id = request.args.get('member_id')
     print(member_id)
     db_connection = db.connect_to_database()
@@ -914,6 +927,7 @@ def enrolled_classes():
 
 @app.route('/member_details')
 def member_details():
+    """ shows all a members details expects a member_id """
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
     query = 'SELECT * FROM Members WHERE member_id = %s;' % (member_id)
@@ -925,17 +939,16 @@ def member_details():
 
 @app.route('/emp_dept')
 def emp_dept():
+    """ shows employees in a department, expects a dept_id and dept_name"""
     dept_id = request.args.get('dept_id')
     dept_name = request.args.get('dept_name')
-    print(dept_name)
     db_connection = db.connect_to_database()
     query = 'SELECT f_name, l_name FROM Employees WHERE dept_number = %s;' % (dept_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    print(results)
     if results == ():
         print(results)  # add flash message here
-        flash("this department doesn't have any employees", 'warning')
+        flash("This department doesn't have any employees", 'warning')
         return redirect('/departments')
     else:
         return render_template('emp_dept.html', entity=results, dept_name=dept_name)
@@ -943,14 +956,13 @@ def emp_dept():
 
 @app.route('/class_details')
 def class_details():
+    """ shows class details expects a class_id """
     db_connection = db.connect_to_database()
     class_id = request.args.get('class_id')
-    print(class_id)
     query = "SELECT m.member_id, m.f_name, m.l_name from Members m LEFT JOIN Mem_Classes mc ON m.member_id = mc.member_id LEFT JOIN Classes c ON mc.class_id = c.class_id WHERE c.class_id = %s ;" % (
         class_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     results = cursor.fetchall()
-    print(results)
     return render_template('class_details.html', entity=results, class_id=class_id)
 
 
