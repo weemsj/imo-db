@@ -2,7 +2,7 @@
 {% block title %}Certified Employees {% endblock %} 
 {% set active_page = "others" %}
 {% block content %}
-
+{% set table_headers = ( 'Employee ID','First Name', 'Last Name', 'Certification') %}
     <h1> Employee Certifications </h1>
     <h3> This page shows all the employees with a {{ page }} certification at IMO Fitness. Use the below form to add,
         modify, or delete certifications </h3><br>
@@ -13,12 +13,12 @@
     <div style="overflow-x:auto" class="table">
         <table class="nostretch" id="emp_certs_table" border="1">
             <thead>
-            {% for key in entity[0].keys() %}
-    
-            <th id="thead">{{ key }}</th>
+            {% for header in table_headers %}
+
+                <th id="thead">{{ header }}</th>
 
             {% endfor %}
-        </thead>
+            </thead>
             <tbody>
             {% for data in entity %}
                 <tr>
