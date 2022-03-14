@@ -8,23 +8,26 @@
         <table class="nostretch" id="job_emps_table" border="1">
             {% if entity != () %}
             <thead>
-                {% for key in entity[0].keys() %}
+            {% for key in entity[0].keys() %}
                 <th id="thead">{{ key }}</th>
-                {% endfor %}
+            {% endfor %}
             </thead>
-            <tbody>
+                <tbody>
                 {% for data in entity %}
-                <tr>
-                    {% for key in data.keys() %}
-                    <td>{{data[key]}}</td>
-                    {% endfor %}
-                </tr>
+                    <tr>
+                        {% for key in data.keys() %}
+                            <td>{{ data[key] }}</td>
+                        {% endfor %}
+                        <td><input type="button" value="remove"
+                                   onclick="window.location ='/delete_emp_job?job_id={{ job_id }}&emp_id={{ data.emp_id }}'">
+                        </td>
+                    </tr>
                 {% endfor %}
-            </tbody>
-            </table>
-        </div>
-        <a href="{{ return_page }}"><u>back to {{ page }}</u></a>
-        {% else %}
-        <h2> No employees are assigned to this job </h2>
-        {% endif %}
+                </tbody>
+                </table>
+                </div>
+                <a href="{{ return_page }}"><u>back to {{ page }}</u></a>
+            {% else %}
+                <h2> No employees are assigned to this job </h2>
+            {% endif %}
 {% endblock %}
