@@ -4,13 +4,13 @@
 {% block content %}
 
     <h1> Update Employee's Job </h1>
-    <h3>  Update {{ employee.f_name + " " + employee.l_name }} job </h3><br>
+    <h3> Update {{ employee.f_name + " " + employee.l_name }} job </h3><br>
     <form id='update_emp_job' action='/update_emp_job' method='post'>
         <input type="hidden" name="emp_id" value="{{ employee.emp_id }}">
-    Employee name: <input type="text" name="employee" value='{{ employee.f_name + " " + employee.l_name }}'
-                          readonly><br>
+        Employee name: <input type="text" name="employee" value='{{ employee.f_name + " " + employee.l_name }}'
+                              readonly><br>
         <br>
-        <input type="hidden" name="curr_job_id" value="curr_job_id">
+        <input type="hidden" name="curr_job_id" value="{{ curr_job_id }}">
         Job: <select name="job_id" required>
         {% for j in jobs %}
             {% if j.job_id == curr_job_id %}
@@ -19,8 +19,8 @@
                 <option value="{{ j.job_id }}">{{ j.job_description }}</option>
             {% endif %}
         {% endfor %}
-        </select><br>
-    <br> <br>
+    </select><br>
+        <br> <br>
     <input type="submit" value="Submit">
 </form>
 <a href="{{ return_page }}"><u>back to {{ entity }}</u></a>
