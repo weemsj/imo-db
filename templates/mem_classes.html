@@ -4,13 +4,14 @@
 {% block content %}
 
     <h1> Class Enrollment </h1>
-    <h3> This page shows all enrolled in classes at IMO Fitness. Use the below form to add or remove a member from a class </h3></center><br>
+    <h3> This page shows all enrolled in classes at IMO Fitness. Use the below form to add or remove a member from a
+        class </h3></center><br>
 
     <div id=insert-right>
         <button type="button"><a href="add_mem_classes">Enroll member in class</a></button>
     </div>
-	<div style="overflow-x:auto" class="table">
-        <table class="nostretch" id= "classes_table" border="1">
+    <div style="overflow-x:auto" class="table">
+        <table class="nostretch" id="mem_classes_table" border="1">
             {% if entity != () %}
             <thead>
                 {% for key in entity[0].keys() %}

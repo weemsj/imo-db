@@ -898,7 +898,7 @@ def job_emps():
     cursor = db.execute_query(db_connection=db_connection, query=query)
     result = cursor.fetchall()
     if result is None:
-        flash("Employee isn't assigned to any jobs", 'warning')
+        flash("No employees are assigned to this job", 'warning')
         return redirect('/jobs')
     else:
         return render_template('job_emps.html', entity=result, job_id=job_id, page='Jobs', return_page='/jobs')

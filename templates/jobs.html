@@ -2,15 +2,15 @@
 {% block title %}Jobs{% endblock %} 
 {% set active_page = "jobs" %}
 {% block content %}
-    <h1>Jobs</h1> 
+    <h1>Jobs</h1>
     <h3>This page shows all the Jobs at IMO Fitness. Use the below form to search, add, modify, or delete jobs </h3>
-	
+
     <div id=insert-right>
         <button type="button"><a href="add_job">Add Job</a></button>
     </div>
-	<div id="table">  
-	   <table class="nostretch" class= "table" border="1" >
-        <thead>
+    <div id="table">
+        <table class="nostretch" class="jobs_table" border="1">
+            <thead>
             {% for key in entity[0].keys() %}
     
             <th id="thead">{{ key }}</th>

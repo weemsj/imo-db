@@ -4,9 +4,9 @@
 {% block content %}
     <h1> Employee Jobs </h1>
     <h3> This page shows all employees assigned to jobs </h3>
-    <div style="overflow-x:auto" class="table"> 
-        <table class="nostretch" id= "dept_table" border="1" >
-        <thead>
+    <div style="overflow-x:auto" class="table">
+        <table class="nostretch" id="emp_jobs_table" border="1">
+            <thead>
             {% for key in entity[0].keys() %}
     
             <th id="thead">{{ key }}</th>

@@ -283,6 +283,13 @@ button {
     font-weight: bold;
 }
 
-#job_emps_table tr td:nth-child(1), #job_emps_table th:nth-child(1) {
+#job_emps_table tr td:nth-child(1), #job_emps_table th:nth-child(1),
+#emp_certs_table tr td:nth-child(1), #emp_certs_table th:nth-child(1),
+#jobs_table tr td:nth-child(1), #jobs_table th:nth-child(1),
+#emp_jobs_table tr td:nth-child(2), #emp_jobs_table th:nth-child(2),
+#emp_jobs_table tr td:nth-child(6), #emp_jobs_table th:nth-child(6),
+#mem_classes_table tr td:nth-child(1), #mem_classes_table th:nth-child(1),
+#mem_classes_table tr td:nth-child(3), #mem_classes_table th:nth-child(3) {
     display: none;
 }
+
