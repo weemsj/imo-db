@@ -4,8 +4,8 @@
 {% block content %}
     <h1>Job Employees</h1> 
     <h3>This page shows all employees assigned to Job: {{ job_id }} </h3>
-    <div style="overflow-x:auto" class="table"> 
-        <table class="nostretch" id= "jobemps_table" border="1" >
+    <div style="overflow-x:auto" class="table">
+        <table class="nostretch" id="job_emps_table" border="1">
             {% if entity != () %}
             <thead>
                 {% for key in entity[0].keys() %}

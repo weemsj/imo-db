@@ -893,7 +893,8 @@ def job_emps():
     """ this view shows a specific job and the employees associated with the job """
     job_id = request.args.get('job_id')
     db_connection = db.connect_to_database()
-    query = 'SELECT d.dept_name, e.f_name, e.l_name, j.job_description FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL and j.job_id = %s;' % (job_id)
+    query = 'SELECT e.emp_id, d.dept_name, e.f_name, e.l_name, j.job_description FROM Employees e LEFT JOIN Emp_Jobs ej ON ej.emp_id = e.emp_id LEFT JOIN Jobs j ON ej.job_id = j.job_id LEFT JOIN Departments d ON d.dept_id = j.dept_number WHERE j.job_description is NOT NULL and j.job_id = %s;' % (
+        job_id)
     cursor = db.execute_query(db_connection=db_connection, query=query)
     result = cursor.fetchall()
     if result is None:

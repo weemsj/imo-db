@@ -282,3 +282,7 @@ button {
     font-size: small;
     font-weight: bold;
 }
+
+#job_emps_table tr td:nth-child(1), #job_emps_table th:nth-child(1) {
+    display: none;
+}
