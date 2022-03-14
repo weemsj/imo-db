@@ -811,6 +811,7 @@ def add_emp_jobs():
 
     if request.method == 'GET':
         dept_name = request.args.get('dept_name')
+        job_id = request.args.get('job_id')
         query1 = "SELECT dept_id FROM Departments WHERE dept_name = '%s';" % (dept_name)
         cursor = db.execute_query(db_connection, query1)
         results = cursor.fetchone()
@@ -818,7 +819,7 @@ def add_emp_jobs():
         query2 = "SELECT emp_id, f_name, l_name FROM Employees WHERE dept_number = %s;" % (dept_id)
         cursor = db.execute_query(db_connection=db_connection, query=query2)
         employees = cursor.fetchall()
-        query3 = "SELECT * FROM Jobs;"
+        query3 = "SELECT * FROM Jobs WHERE job_id = %s;" % (job_id)
         jobs = db.execute_query(db_connection=db_connection, query=query3)
         return render_template('add_emp_jobs.html', employee=employees, job=jobs)
 

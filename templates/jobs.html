@@ -26,7 +26,7 @@
                    <td><input type="button" value="On the Job"
                               onclick="window.location.href='{{ url_for('job_emps', job_id=data.job_id) }}';"></td>
                    <td><input type="button" value="Assign Job"
-                              onclick="window.location.href='{{ url_for('add_emp_jobs', dept_name=data.dept_name) }}';">
+                              onclick="window.location.href='{{ url_for('add_emp_jobs', job_id=data.job_id, dept_name=data.dept_name) }}';">
                    </td>
                    <td><input type='button' value="edit"
                               onclick="window.location.href ='{{ url_for('update_job', job_id=data.job_id) }}';"></td>
