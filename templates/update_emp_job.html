@@ -10,6 +10,7 @@
     Employee name: <input type="text" name="employee" value='{{ employee.f_name + " " + employee.l_name }}'
                           readonly><br>
         <br>
+        <input type="hidden" name="curr_job_id" value="curr_job_id">
         Job: <select name="job_id" required>
         {% for j in jobs %}
             {% if j.job_id == curr_job_id %}

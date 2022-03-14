@@ -856,8 +856,9 @@ def update_emp_job():
     else:
         emp_id = request.form['emp_id']
         job_id = request.form['job_id']
-        query = "UPDATE Emp_Jobs SET emp_id = %s, job_id = %s WHERE emp_id = %s;"
-        data = (emp_id, job_id, emp_id)
+        old_job_id = request.form['curr_job_id']
+        query = "UPDATE Emp_Jobs SET emp_id = %s, job_id = %s WHERE emp_id = %s and job_id = %s;"
+        data = (emp_id, job_id, emp_id, old_job_id)
         execute_query(db_connection, query, data)
         flash("employee's job was successfully updated", 'success')
         return redirect('emp_jobs')
