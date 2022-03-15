@@ -226,8 +226,16 @@ def update_employee():
 @app.route('/delete_employee')
 def delete_employee():
     """ deletes an employee from the table, expects an integer argument passed as 'emp_id' """
-    emp_id = request.args.get('emp_id')
     db_connection = db.connect_to_database()
+    emp_id = request.args.get('emp_id')
+    query1 = "SELECT class_id FROM Classes WHERE instructor = %s;" % (emp_id)
+    cursor = db.execute_query(db_connection, query1)
+    classes = cursor.fetchall()
+    if classes:
+        flash(
+            "Sorry, this employee is currently assigned as an Instructor, please assign class to new instructor and try again!",
+            'error')
+        return redirect('/employees')
     query = "DELETE from Employees WHERE emp_id = %s ;"
     data = (emp_id,)
     execute_query(db_connection, query, data)
@@ -573,6 +581,12 @@ def delete_member():
     """ delete member from database, takes member_id """
     member_id = request.args.get('member_id')
     db_connection = db.connect_to_database()
+    query1 = "SELECT class_id FROM Mem_Classes WHERE member_id = %s;" % (member_id)
+    cursor = execute_query(db_connection, query1)
+    classes = cursor.fetchall()
+    for c in classes:
+        mini_query = "UPDATE Classes SET class_total = class_total - 1 WHERE class_id = %s;" % (c)
+        execute_query(db_connection, mini_query)
     query = "DELETE from Members WHERE member_id = %s ;"
     data = (member_id,)
     execute_query(db_connection, query, data)
