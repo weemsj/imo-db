@@ -230,10 +230,10 @@ def delete_employee():
     if request.method == 'POST':
         confirm = request.form.get('user_input')
         print(confirm)
-    if confirm and confirm == 'True':
-        print("will delete all classes")
-    elif confirm and confirm == 'False':
-        print('wont delete anything')
+        if confirm and confirm == 'True':
+            print("will delete all classes")
+        elif confirm and confirm == 'False':
+            print('wont delete anything')
 
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')

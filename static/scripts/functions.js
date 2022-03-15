@@ -1,10 +1,10 @@
 document.getElementById('emp_delete').addEventListener('click', message(), false)
 
-function message() {
+function message(id) {
   if (confirm("If this employee is an instructor for any class this action will delete all classes this employee is associated with. This action is irreversible, Are you sure you want to proceed with this action?") === true) {
-    document.getElementById('user_input').value = "True";
+    document.getElementById(id).value = "True";
   } else {
-    document.getElementById('user_input').value = "False";
+    document.getElementById(id).value = "False";
   }
   return 0
 }
