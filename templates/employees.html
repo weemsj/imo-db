@@ -42,7 +42,7 @@
                                onclick="window.location.href='{{ url_for('update_employee', emp_id=data.emp_id) }}';">
                     </td>
                     <td>
-                        <form action="/delete_employee?emp_id={{ data.emp_id }}">
+                        <form action="/delete_employee?emp_id={{ data.emp_id }}" method="post">
                             <input type="hidden" id="user_input" name="user_input">
                             <input type='submit' id="emp_delete" value="delete" onclick="message()">
                         </form>
