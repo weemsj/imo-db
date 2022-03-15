@@ -63,14 +63,17 @@ p {
 
 div.error {
     background-color: lightcoral;
+    border-color: coral;
 }
 
 div.warning {
     background-color: gold;
+    border-color: goldenrod;
 }
 
 div.success {
     background-color: darkseagreen;
+    border-color: mediumseagreen;
 }
 
 span.message {
