@@ -228,6 +228,11 @@ def delete_employee():
     """ deletes an employee from the table, expects an integer argument passed as 'emp_id' """
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')
+    confirm = request.form['user_input']
+    if confirm and confirm == 'True':
+        print("will delete all classes")
+    elif confirm and confirm == 'False':
+        print('wont delete anything')
     query1 = "SELECT class_id FROM Classes WHERE instructor = %s;" % (emp_id)
     cursor = db.execute_query(db_connection, query1)
     classes = cursor.fetchall()
