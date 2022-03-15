@@ -215,8 +215,8 @@ def update_employee():
             dept_number = request.form['dept']
         query = "UPDATE Employees SET f_name = %s, l_name = %s, gender = %s, address_1 = %s, address_2 = %s, city = %s, state = %s, zip = %s, tel = %s, email = %s, start_date = %s , end_date = %s, status = %s, dept_number = %s WHERE emp_id = %s;"
         data = (
-        f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status,
-        dept_number, emp_id)
+            f_name, l_name, gender, address_1, address_2, city, state, zip, tel, email, start_date, end_date, status,
+            dept_number, emp_id)
         execute_query(db_connection, query, data)
         # add flash message here
         flash('Employee update successful', 'success')
@@ -226,24 +226,28 @@ def update_employee():
 @app.route('/delete_employee', methods=['POST', 'GET'])
 def delete_employee():
     """ deletes an employee from the table, expects an integer argument passed as 'emp_id' """
-    db_connection = db.connect_to_database()
-    emp_id = request.args.get('emp_id')
-    confirm = request.form['user_input']
-    print(confirm)
+
+    if request.method == 'POST':
+        confirm = request.form.get('user_input')
+        print(confirm)
     if confirm and confirm == 'True':
         print("will delete all classes")
     elif confirm and confirm == 'False':
         print('wont delete anything')
-    query1 = "SELECT class_id FROM Classes WHERE instructor = %s;" % (emp_id)
-    cursor = db.execute_query(db_connection, query1)
-    classes = cursor.fetchall()
-    if classes:
-        flash(
-            "Sorry, this employee is currently assigned as an Instructor, please assign class to new instructor and try again!",
-            'error')
-        return redirect('/employees')
-    query = "DELETE from Employees WHERE emp_id = %s ;"
-    data = (emp_id,)
+
+
+db_connection = db.connect_to_database()
+emp_id = request.args.get('emp_id')
+query1 = "SELECT class_id FROM Classes WHERE instructor = %s;" % (emp_id)
+cursor = db.execute_query(db_connection, query1)
+classes = cursor.fetchall()
+if classes:
+    flash(
+        "Sorry, this employee is currently assigned as an Instructor, please assign class to new instructor and try again!",
+        'error')
+    return redirect('/employees')
+query = "DELETE from Employees WHERE emp_id = %s ;"
+data = (emp_id,)
     execute_query(db_connection, query, data)
     # flash message here
     flash('Employee delete successful', 'success')
