@@ -584,7 +584,7 @@ def delete_member():
     query1 = "SELECT class_id FROM Mem_Classes WHERE member_id = %s;" % (member_id)
     cursor = execute_query(db_connection, query1)
     classes = cursor.fetchall()
-    for c in classes.values():
+    for c in classes[0].values():
         mini_query = "UPDATE Classes SET class_total = class_total - 1 WHERE class_id = %s;" % (c)
         execute_query(db_connection, mini_query)
     query = "DELETE from Members WHERE member_id = %s ;"
