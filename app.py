@@ -223,7 +223,7 @@ def update_employee():
         return redirect('/employees')
 
 
-@app.route('/delete_employee')
+@app.route('/delete_employee', methods=['POST', 'GET'])
 def delete_employee():
     """ deletes an employee from the table, expects an integer argument passed as 'emp_id' """
     db_connection = db.connect_to_database()
