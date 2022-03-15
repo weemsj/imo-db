@@ -229,6 +229,7 @@ def delete_employee():
     db_connection = db.connect_to_database()
     emp_id = request.args.get('emp_id')
     confirm = request.form['user_input']
+    print(confirm)
     if confirm and confirm == 'True':
         print("will delete all classes")
     elif confirm and confirm == 'False':
