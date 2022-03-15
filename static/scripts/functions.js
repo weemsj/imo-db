@@ -1,7 +1,9 @@
-document.getElementById('emp_delete').addEventListener('click', message(), false)
 
 function message(id) {
-  if (confirm("If this employee is an instructor for any class this action will delete all classes this employee is associated with. This action is irreversible, Are you sure you want to proceed with this action?") === true) {
+  if (confirm("If this employee is an Instructor for any class at IMO Fitness\n " +
+      "this action will also delete ALL classes this employee is associated with." +
+      "This action is irreversible, Are you sure you want to proceed with this action?\n \n" +
+      "To prevent this behavior click 'cancel' and re-assign a new employee to instruct the related classes. ") === true) {
     document.getElementById(id).value = "True";
   } else {
     document.getElementById(id).value = "False";
