@@ -304,7 +304,7 @@ button {
 #emp_jobs_table tr td:nth-child(6), #emp_jobs_table th:nth-child(6),
 #mem_classes_table tr td:nth-child(1), #mem_classes_table th:nth-child(1),
 #mem_classes_table tr td:nth-child(4), #mem_classes_table th:nth-child(4),
-#classes_details_table tr td:nth-child(1), #classes_details_table th:nth-child(1)
+#classes_details_table tr td:nth-child(1), #classes_details_table th:nth-child(1),
 #classes_table tr td:nth-child(1), #classes_table th:nth-child(3) {
     display: none;
 }
