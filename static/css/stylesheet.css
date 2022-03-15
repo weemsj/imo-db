@@ -43,15 +43,21 @@ h4 {
 
 }
 
+p {
+    line-height: 1.5em;
+}
+
 #alert {
     background-blend-mode: lighten;
     -webkit-animation-timing-function: ease-in-out;
     opacity: 0.5;
     height: 60px;
     padding-top: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 3px;
+    border-style: solid;
     box-shadow: gray;
+    transition: opacity 0.6ms;
+    border-width: 8px;
 
 }
 
@@ -68,7 +74,7 @@ div.success {
 }
 
 span.message {
-    color: white;
+    color: black;
     font-weight: bolder;
     font-size: large;
 }
@@ -186,7 +192,7 @@ li{
 
 th, td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 th {
@@ -204,7 +210,7 @@ table{
 
 
 tr,td {
-    text-align:left;
+    text-align: center;
     white-space: nowrap;
 }
 
