@@ -160,9 +160,17 @@ input.button:hover{
     background-color: gray;
 }
 
-li{
+li {
     list-style-type: none;
 
+}
+
+form #delete {
+    margin-bottom: 0px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    padding-right: 8px;
+    padding-bottom: 8px;
 }
 
 .text {
