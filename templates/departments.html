@@ -34,13 +34,16 @@
                     <td><input type='button' value="delete" onclick="window.location ='/delete_department?dept_id={{ data.dept_id }}'"></td>
                     {% endif %}
                 {% endfor %}
-            </tr>
+                </tr>
             {% endfor %}
-        </tbody>
+            </tbody>
         </table>
     </div>
     <div>
         <button type="button"><a href="add_department">Add Department</a></button>
     </div>
 
+{% endblock %}
+{% block note %}
+    * To delete a Department you must first re-assign any employees in that Department to a new department.
 {% endblock %}
