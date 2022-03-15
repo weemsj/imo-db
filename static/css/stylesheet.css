@@ -47,10 +47,11 @@ h4 {
     background-blend-mode: lighten;
     -webkit-animation-timing-function: ease-in-out;
     opacity: 0.5;
-    height: 45px;
+    height: 60px;
     padding-top: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    box-shadow: gray;
 
 }
 
@@ -68,6 +69,8 @@ div.success {
 
 span.message {
     color: white;
+    font-weight: bolder;
+    font-size: large;
 }
 
 button.close {
@@ -128,13 +131,14 @@ a:link{
     text-decoration: none;
 }
 
-a.navigation-link:hover{
+a.navigation-link:hover {
     background-color: gray;
+    text-decoration-color: whitesmoke;
 }
 
-.navigation-link.current{
+.navigation-link.current {
     border-width: thick;
-    text-decoration-color: #e7e3d8;
+    text-decoration-color: whitesmoke;
     background-color: gray;
 
 }
@@ -283,6 +287,7 @@ button {
     font-weight: bold;
 }
 
+/* hides id columns */
 #job_emps_table tr td:nth-child(1), #job_emps_table th:nth-child(1),
 #emp_certs_table tr td:nth-child(1), #emp_certs_table th:nth-child(1),
 #jobs_table tr td:nth-child(1), #jobs_table th:nth-child(1),
