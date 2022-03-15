@@ -2,6 +2,7 @@
 {% block title %}Employees{% endblock %} 
 {% set active_page = "employees" %}
 {% block content %}
+    <script> addEventListener('load', disable)</script>
     <h1>Employee</h1>
     <h3>Update Employee: {{ employee.emp_id }}</h3>
     <form id="update_employee" action="/update_employee?emp_id={{ employee.emp_id }}" method="POST">
@@ -44,7 +45,7 @@
         <br>
         Start date: <input type="Date" name="start_date" value="{{ employee.start_date }}" readonly><br>
         <br>
-        End date: <input type="Date" id="end" name="end_date" value="{{ employee.end_date }}" onload="disable()"
+        End date: <input type="Date" id="end" name="end_date" value="{{ employee.end_date }}"
                          onchange="disable()"><br>
         <br>
         Department: <select name="dept" id="departments" required>

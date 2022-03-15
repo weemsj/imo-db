@@ -1,3 +1,4 @@
+document.getElementById('end').addEventListener("load", disable());
 
 function message(id) {
   if (confirm("If this employee is an Instructor for any class at IMO Fitness\n " +
