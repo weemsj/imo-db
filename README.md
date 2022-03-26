@@ -1,6 +1,11 @@
 # imo-db
 This website is created to be used by administration of a fictional fitness company. The administration will be able to CRUD all employees, members, classes, jobs, certifications and departments. 
-Web app is avalible to view at imofitness.link:5000
+Web app is avalible to view at 
+http://imofitness.link:5000
+
+Full Executive Summary, Project outline, ERD, and Database Schema avalible at 
+https://docs.google.com/document/d/1G2f5M1lUuk-ZJ2exV9qsRDDLrh7t_7ckrPgzn6TWXds/edit?usp=sharing
+
 
 Executive Summary
 	Over the course of this quarter we kept the core project idea and structure consistent, making improvements at each step inspired by our peers and our own explorations. Some of those improvements include changes to data types, user interfaces, relationships, constraints, and business rules:
